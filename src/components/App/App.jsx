@@ -19,6 +19,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Photos from '../Photos/Photos';
+import Videos from '../Videos/Videos';
+import Letters from '../Letters/Letters';
+import VoiceRecording from '../VoiceRecording/VoiceRecording';
 
 import './App.css';
 
@@ -111,6 +115,37 @@ function App() {
           </Route>
 
           {/* Routes for box-turtles */}
+          <ProtectedRoute
+            // logged in shows imageUpload page else shows LoginPage
+            exact
+            path="/imageUpload"
+          >
+            <Photos />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows videoUpload page else shows LoginPage
+            exact
+            path="/videoUpload"
+          >
+            <Videos />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows letterUpload page else shows LoginPage
+            exact
+            path="/letterUpload"
+          >
+            <Letters />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows voiceUpload page else shows LoginPage
+            exact
+            path="/voiceUpload"
+          >
+            <VoiceRecording />
+          </ProtectedRoute>
 
           {/* Routes for console-log */}
 
