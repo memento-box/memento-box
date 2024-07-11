@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import RecipientBox from '../RecipientBox/RecipientBox';
 
 import './App.css';
 
@@ -115,7 +116,9 @@ function App() {
           {/* Routes for console-log */}
 
           {/* Routes for three-toed-turtles */}
-          
+          <Route path="/recipientbox">
+              <RecipientBox />
+            </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
