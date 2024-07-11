@@ -1,0 +1,30 @@
+.boxClosed {
+    position: relative;
+    width: 790px;
+    height: 800px;
+    grid-column: 2;
+    grid-row: 1;
+    animation-name: openBox;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.boxOpen {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    width: 790px;
+    height: 800px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 400px 800px 200px;
+    grid-template-rows: 200px 200px 200px;
+}
+
+@keyframes openBox {
+    from { left: 0px; }
+    to { left: 700px; }
+}
