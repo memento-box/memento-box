@@ -3,7 +3,8 @@ import {useSelector} from 'react-redux';
 import './RecipientBox.css';
 
 function RecipientBox() {
-    let [greeting, setGreeting] = useState();
+    let [openBox, setOpenBox] = useState(false);
+    let [greeting, setGreeting] = useState('Happy Birthday');
     let [collabs, setCollabs] = useState(['Lons', 'Sarah', 'Sean', 'Zoe']);
 
     useEffect(() => {
@@ -14,10 +15,10 @@ function RecipientBox() {
   return (
     <div id='grid'>
         <div id="collaborators">
-        <h4>{greeting}</h4>
-        <h6>From:</h6>
+        <h3 id='greeting'>{greeting}</h3>
+        <h6 id='from'>From:</h6>
         {collabs.map((person) => 
-            <p className='person'>{person}</p>
+            <p className='person' key={person}>{person}</p>
         )}
         </div>
         <img src='/RecipientBoxOpen.png' id='boxOpen' useMap='#image-map'/>
@@ -30,7 +31,12 @@ function RecipientBox() {
                 <area target="" alt="Letters" title="Letters" href="" coords="266,357,538,535" shape="rect" />
             </map>
       
-        <img src='/RecipientBoxClosed.png' id='boxClosed'/>
+        <img 
+            src='/RecipientBoxClosed.png' 
+            id='boxClosed' 
+            onClick={() => setOpenBox(true)}
+            className={openBox ? 'animation' : ''}
+            />
     </div>
   );
 }
