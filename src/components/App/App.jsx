@@ -20,6 +20,12 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+// Need to create these consolelog team
+// import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
+// import BoxSetupDesign from '../BoxSetupDesign/BoxSetupDesign';
+// import ContactUs from '../ContactUs/ContactUs';
+// import MyBoxes from '../User/MyBoxes';
+
 import './App.css';
 
 function App() {
@@ -113,6 +119,34 @@ function App() {
           {/* Routes for box-turtles */}
 
           {/* Routes for console-log */}
+
+          <Route
+            exact
+            path="/box-setup-information"
+          >
+            <BoxSetupInformation />
+          </Route>
+
+          <Route
+            exact
+            path="/box-setup-design"
+          >
+            <BoxSetupDesign />
+          </Route>
+
+          <Route
+            exact
+            path="/contact-us"
+          >
+            <ContactUs />
+          </Route>
+
+          <ProtectedRoute
+            exact
+            path="/user/my-boxes"
+          >
+            <MyBoxes />
+          </ProtectedRoute>
 
           {/* Routes for three-toed-turtles */}
 
