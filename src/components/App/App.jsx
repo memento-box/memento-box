@@ -118,7 +118,7 @@ function App() {
           {/* Routes for three-toed-turtles */}
           <Route path="/recipientbox">
               <RecipientBox />
-            </Route>
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
