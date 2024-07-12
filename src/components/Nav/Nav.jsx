@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const location = useLocation();
+  const [isEdit,setIsEdit] = useState(false);
+
+  useEffect(() => {
+    const editPaths = ['/imageUpload', '/videoUpload', '/letterUpload', '/voiceUpload'];
+    if(editPaths.includes(location.pathname)) {
+      setIsEdit(true);
+    } else {
+      setIsEdit(false);
+    }
+  }, [location])
+
 
   return (
-    <div className="nav">
+    <div className={isEdit ? "edit-nav" : "nav"}>
       <Link to="/home">
         <h2 className="nav-title">Prime Solo Project</h2>
       </Link>
