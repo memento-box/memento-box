@@ -129,7 +129,7 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 * If you have not already created a `.env` file at the root of the project, create one.
 * Create a MailChimp account.  You should be able to use a free account for the basic functionality of this application.
-* Create an API key in your account.  You can find your API keys in the Extras section of your Profile.  When you create your API key, you can only see it immediately after creating it.  
+* [Create an API key in your account](https://mailchimp.com/help/about-api-keys/#Generate_an_API_key). 
 * Insert your API key into your `.env` file with the name `MAILCHIMP_SECRET`.  For example:
 
 ```plaintext
