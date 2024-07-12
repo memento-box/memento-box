@@ -74,6 +74,7 @@ export default function EditingSidebar() {
           width: drawerWidth,
           boxSizing: 'border-box',
           zIndex: 1,
+          overflow: 'hidden',
         },
       }}
       open={open}
