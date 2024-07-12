@@ -5,6 +5,16 @@ const {
 const router = express.Router();
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config;
+/**
+ * Example .env set up:
+ * SERVER_SESSION_SECRET=
+ * 
+ * CLOUDINARY_CLOUD_NAME=
+ * CLOUDINARY_API_KEY=
+ * CLOUDINARY_API_SECRET=
+ * UPLOAD_PRESET=
+ */
+
 
 // Cloudinary configuration
 cloudinary.config({
