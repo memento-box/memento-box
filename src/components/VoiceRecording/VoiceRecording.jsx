@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function VoiceRecording() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
@@ -15,7 +15,7 @@ export default function VoiceRecording() {
   }, []);
 
   return (
-    <div>
+    <div className="box-edit-container">
       <div className="notes-actions">
         <button>Upload</button>
         {/* button will pull up small upload form */}
