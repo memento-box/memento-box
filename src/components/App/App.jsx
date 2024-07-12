@@ -23,7 +23,7 @@ import Photos from '../Photos/Photos';
 import Videos from '../Videos/Videos';
 import Letters from '../Letters/Letters';
 import VoiceRecording from '../VoiceRecording/VoiceRecording';
-// import RecipientBox from '../RecipientBox/RecipientBox';
+import RecipientBox from '../RecipientBox/RecipientBox';
 import RecipientPhotos from '../RecipientPhotos/RecipientPhotos';
 import RecipientLetters from '../RecipientLetters/RecipientLetters';
 import RecipientVoiceNotes from '../RecipientVoiceNotes/RecipientVoiceNotes';
@@ -191,7 +191,9 @@ function App() {
           </ProtectedRoute>
 
           {/* Routes for three-toed-turtles */}
-
+          <Route path="/recipientbox">
+              <RecipientBox />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
