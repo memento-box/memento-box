@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import EditingSidebar from '../EditingSidebar/EditingSidebar.jsx';
 
 export default function VoiceRecording() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
@@ -16,6 +17,7 @@ export default function VoiceRecording() {
 
   return (
     <div className="box-edit-container">
+      <EditingSidebar/>
       <div className="notes-actions">
         <button>Upload</button>
         {/* button will pull up small upload form */}
