@@ -155,7 +155,7 @@ function App() {
 
           {/* Routes for console-log */}
 
-          <Route
+          {/* <Route
             exact
             path="/box-setup-information"
           >
@@ -181,7 +181,7 @@ function App() {
             path="/user/my-boxes"
           >
             <MyBoxes />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           {/* Routes for three-toed-turtles */}
 
