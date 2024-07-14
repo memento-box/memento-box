@@ -1,11 +1,13 @@
 import { Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
-import UploadButton from "./UploadButton/UploadButton.jsx";
+import UploadButton from "../UploadButton/UploadButton.jsx";
 import "./VoiceRecording.css";
 
 export default function VoiceRecording() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
+
+  const uploadFileType = "audio/*";
 
   const fetchNotes = () => {
     // API call to retrieve relevant voice notes
@@ -24,7 +26,7 @@ export default function VoiceRecording() {
         Voice Notes
       </Typography>
       <div className="notes-actions">
-        <UploadButton />
+        <UploadButton uploadFileType={uploadFileType} />
         <button>Record</button>
         {/* button will pull up small upload form */}
 

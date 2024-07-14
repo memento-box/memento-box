@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 
-export default function UploadButton({reload}) {
+export default function UploadButton({reload, uploadFileType}) {
     const getSignedUrl = async () => {
         const response = await axios.get('/api/upload/signed-url');
         return response;
@@ -49,7 +49,7 @@ export default function UploadButton({reload}) {
   return (
     <div>
       <input
-        accept="audio/*"
+        accept={uploadFileType}
         style={{ display: "none" }}
         id="upload-button-file"
         type="file"
