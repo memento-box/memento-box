@@ -191,8 +191,26 @@ function App() {
           </ProtectedRoute> */}
 
           {/* Routes for three-toed-turtles */}
-          <Route path="/recipientbox">
-              <RecipientBox />
+          <Route exact path="/recipientbox">
+            <RecipientBox />
+          </Route>
+          <Route exact path="/recipient/photos">
+            <RecipientPhotos />
+          </Route>
+          <Route exact path="/recipient/videos">
+            <RecipientVideos />
+          </Route>
+          <Route exact path="/recipient/voicenotes">
+            <RecipientVoiceNotes />
+          </Route>
+          <Route exact path="/recipient/gifts">
+            <RecipientGifts />
+          </Route>
+          <Route exact path="/recipient/mixtape">
+            <RecipientMixtape />
+          </Route>
+          <Route exact path="/recipient/letters">
+            <RecipientLetters />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
