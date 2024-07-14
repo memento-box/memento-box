@@ -9,8 +9,8 @@ function Hero() {
                 <button>Learn more</button>
             </div>
             
-                <img src="/boxes/white-red-ribbon.png" id="closed-box"/>
-                <img src="/RecipientBoxOpen.png" id="hover-box"/>
+                <img src="/boxes/white-red-ribbon.png" id="closedBox"/>
+                <img src="/RecipientBoxOpen.png" id="hoverBox"/>
          
 
         </div>
