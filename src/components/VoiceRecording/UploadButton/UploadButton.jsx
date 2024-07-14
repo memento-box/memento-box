@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 
-export default function UploadButton() {
+export default function UploadButton({reload}) {
     const getSignedUrl = async () => {
         const response = await axios.get('/api/upload/signed-url');
         return response;
@@ -13,6 +13,9 @@ export default function UploadButton() {
 
         const formData = new FormData();
         formData.append('file', file);
+        formData.append('timestamp',timestamp);
+        formData.append('api_key', api_key);
+        formData.append('signature', signature);
         formData.append('upload_preset', upload_preset);
 
         try {
@@ -24,10 +27,10 @@ export default function UploadButton() {
                 }
             );
 
-            const cloudinaryFileUrl = uploadResponse.data.secure_url;
-            console.log('upload success:', cloudinaryFileUrl);
+            const {public_id, secure_url} = uploadResponse.data;
+            console.log('upload success:', 'public_id - ',public_id,'secure_url - ',secure_url);
 
-            return cloudinaryFileUrl;
+            return uploadResponse.data;
         } catch(err) {
             console.log(err);
         }
@@ -37,8 +40,10 @@ export default function UploadButton() {
         const file = event.target.files[0];
         if(file) {
             console.log('name:',file.name);
-            let response = await beginUpload(file);
+            const response = await beginUpload(file);
+            const {public_id, secure_url} = response;
             // going to send url to database
+            // reload
         }
     }
   return (
