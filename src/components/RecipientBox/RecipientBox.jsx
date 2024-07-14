@@ -27,6 +27,11 @@ function RecipientBox() {
         setModalContent(null);
     };
 
+    const handleAreaClick = (e, content) => {
+        e.preventDefault(); // Prevent default action
+        openModal(content);
+    };
+
     useEffect(() => {
         // Any additional setup can go here
     }, []);
@@ -42,12 +47,12 @@ function RecipientBox() {
             </div>
             <img src='/RecipientBoxOpen.png' id='boxOpen' useMap='#image-map'/>
             <map name="image-map">
-                <area alt="Photos" title="Photos" href="#" onClick={(e) => { e.preventDefault(); openModal(<RecipientPhotos />); }} coords="89,71,249,303" shape="rect" />
-                <area alt="Videos" title="Videos" href="#" onClick={(e) => { e.preventDefault(); openModal(<RecipientVideos />); }} coords="254,78,529,269" shape="rect" />
-                <area alt="Voice notes" title="Voice notes" href="#" onClick={(e) => { e.preventDefault(); openModal(<RecipientVoiceNotes />); }} coords="270,352,540,274" shape="rect" />
-                <area alt="Gifts" title="Gifts" href="#" onClick={(e) => { e.preventDefault(); openModal(<RecipientGifts />); }} coords="92,310,245,417" shape="rect" />
-                <area alt="Mixtape" title="Mixtape" href="#" onClick={(e) => { e.preventDefault(); openModal(<RecipientMixtape />); }} coords="80,422,262,537" shape="rect" />
-                <area alt="Letters" title="Letters" href="#" onClick={(e) => { e.preventDefault(); openModal(<RecipientLetters />); }} coords="266,357,538,535" shape="rect" />
+                <area alt="Photos" title="Photos" onClick={(e) => handleAreaClick(e, <RecipientPhotos />)} coords="89,71,249,303" shape="rect" />
+                <area alt="Videos" title="Videos" onClick={(e) => handleAreaClick(e, <RecipientVideos />)} coords="254,78,529,269" shape="rect" />
+                <area alt="Voice notes" title="Voice notes" onClick={(e) => handleAreaClick(e, <RecipientVoiceNotes />)} coords="270,352,540,274" shape="rect" />
+                <area alt="Gifts" title="Gifts" onClick={(e) => handleAreaClick(e, <RecipientGifts />)} coords="92,310,245,417" shape="rect" />
+                <area alt="Mixtape" title="Mixtape" onClick={(e) => handleAreaClick(e, <RecipientMixtape />)} coords="80,422,262,537" shape="rect" />
+                <area alt="Letters" title="Letters" onClick={(e) => handleAreaClick(e, <RecipientLetters />)} coords="266,357,538,535" shape="rect" />
             </map>
             <img 
                 src='/RecipientBoxClosed.png' 
