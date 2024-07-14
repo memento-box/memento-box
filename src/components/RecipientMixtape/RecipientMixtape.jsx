@@ -1,11 +1,11 @@
 import React from 'react';
-import './RecipientMixtape.css';
 
-function RecipientMixtape() {
+function RecipientMixtape({ onBack }) {
   return (
     <div className="container">
+      <button className="back-link" onClick={onBack}>Back</button>
       <h1>Mixtape</h1>
-      <p>Mixtapes will be displayed here.</p>
+      <p>This portion of the project is outside of the current scope.</p>
     </div>
   );
 }
