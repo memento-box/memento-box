@@ -1,3 +1,5 @@
+// src/components/Nav/Nav.jsx
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
@@ -43,6 +45,10 @@ function Nav() {
 
             <Link className="navLink" to="/info">
               Info Page
+            </Link>
+
+            <Link className="navLink" to="/recipientbox">
+              Recipient Box
             </Link>
 
             <LogOutButton className="navLink" />
