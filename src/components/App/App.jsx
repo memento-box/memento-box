@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -39,11 +40,15 @@ import RecipientVideos from '../RecipientVideos/RecipientVideos';
 
 import './App.css';
 
+// Setting the root element for the modal for accessibility
+Modal.setAppElement('#react-root');
+
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
 
+  // Fetch user data on component mount
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
