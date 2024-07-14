@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RecipientPhotos.css';
-import cameraIcon from '/icons/camera.png'; 
+import cameraIcon from '/icons/camera.png'; // Adjust the path if necessary
 
 function RecipientPhotos({ onBack }) {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -9,12 +9,12 @@ function RecipientPhotos({ onBack }) {
   useEffect(() => {
     const fetchPhotos = async () => {
       const photoFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg'];
-      const photoSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const photoTitles = ['Photo from Lons', 'Photo from Sarah', 'Photo from Sean', 'Photo from Zoe'];
 
-      const fetchedPhotos = photoFiles.map((file, index) => {
-        const url = `/photos/${file}`;
-        return { sender: photoSenders[index], url };
-      });
+      const fetchedPhotos = photoFiles.map((file, index) => ({
+        title: photoTitles[index],
+        src: `/photos/${file}`
+      }));
 
       setPhotos(fetchedPhotos);
     };
@@ -29,10 +29,14 @@ function RecipientPhotos({ onBack }) {
   return (
     <div className="container">
       {selectedPhoto ? (
-        <div>
+        <div className="photo-modal">
           <button className="back-link" onClick={() => setSelectedPhoto(null)}>Back</button>
-          <h1>Photo from {selectedPhoto.sender}</h1>
-          <img src={selectedPhoto.url} alt="Selected photo" />
+          <h1>{selectedPhoto.title}</h1>
+          <img
+            src={selectedPhoto.src}
+            alt={selectedPhoto.title}
+            style={{ maxWidth: '90vw', maxHeight: '90vh', width: 'auto', height: 'auto' }}
+          />
         </div>
       ) : (
         <div>
@@ -42,7 +46,7 @@ function RecipientPhotos({ onBack }) {
             {photos.map((photo, index) => (
               <div key={index} className="photo-item" onClick={() => handlePhotoClick(photo)}>
                 <img src={cameraIcon} alt="Camera icon" className="photo-icon" />
-                <span>{photo.sender} sent you a photo!</span>
+                <span>{photo.title}</span>
               </div>
             ))}
           </div>
