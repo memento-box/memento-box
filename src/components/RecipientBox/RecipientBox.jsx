@@ -64,6 +64,19 @@ function RecipientBox() {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Recipient Box Modal"
+        style={{
+          content: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '90vw',
+            maxHeight: '90vh',
+            overflow: 'hidden',
+            padding: '20px',
+            border: '1px solid #ccc',
+            background: '#fff',
+          },
+        }}
       >
         {modalContent}
       </Modal>
