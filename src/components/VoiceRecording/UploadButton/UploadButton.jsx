@@ -56,8 +56,8 @@ export default function UploadButton({reload}) {
         onChange={handleUpload}
       />
       <label htmlFor="upload-button-file">
-        <Button variant="contained" color="error" component="span"
-        sx={{borderRadius:"50px"}}>
+        <Button variant="contained" component="span"
+        sx={{borderRadius:"50px", backgroundColor:"black"}}>
             + Upload
         </Button>
       </label>
