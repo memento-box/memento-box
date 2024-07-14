@@ -42,8 +42,8 @@ export default function UploadButton({reload}) {
             console.log('name:',file.name);
             const response = await beginUpload(file);
             const {public_id, secure_url} = response;
-            // going to send url to database
-            // reload
+            // id and url ready to be sent to db (still need to implement box id)
+            // afterwards reload voice list
         }
     }
   return (
