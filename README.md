@@ -122,3 +122,18 @@ This code is also heavily commented. We recommend reading through the comments, 
 ## Update Documentation
 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2.
+
+----
+
+## Email setup using MailChimp
+
+* If you have not already created a `.env` file at the root of the project, create one.
+* Create a MailChimp account.  You should be able to use a free account for the basic functionality of this application.
+* [Create an API key in your account](https://mailchimp.com/help/about-api-keys/#Generate_an_API_key). 
+* Insert your API key into your `.env` file with the name `MAILCHIMP_SECRET`.  For example:
+
+```plaintext
+MAILCHIMP_SECRET=FooVX5hooooSAMPLEAPIKEYooood4mXV7RUt2N6v
+```
+
+

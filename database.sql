@@ -13,7 +13,6 @@ CREATE TABLE "user" (
 	"created_at" date default current_date
 );
 
-
 CREATE TABLE "box_ribbon" (
     "id" SERIAL PRIMARY KEY,
 	"media_url" varchar(2048)
