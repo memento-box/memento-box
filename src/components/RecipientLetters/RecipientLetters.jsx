@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RecipientLetters.css';
-import letterIcon from '/icons/letter.png'; // Adjust the path if necessary
+import letterIcon from '/icons/letter.png'; 
 
 function RecipientLetters({ onBack }) {
   const [selectedLetter, setSelectedLetter] = useState(null);
