@@ -1,51 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './RecipientLetters.css';
+import letterIcon from '/icons/letter.png'; // Adjust the path if necessary
 
-const letters = [
-  { sender: 'Lons', file: '/letters/letter1.txt' },
-  { sender: 'Sarah', file: '/letters/letter2.txt' },
-  { sender: 'Sean', file: '/letters/letter3.txt' },
-  { sender: 'Zoe', file: '/letters/letter4.txt' }
-];
-
-function RecipientLetters() {
+function RecipientLetters({ onBack }) {
   const [selectedLetter, setSelectedLetter] = useState(null);
-  const [letterContent, setLetterContent] = useState('');
+  const [letters, setLetters] = useState([]);
 
-  const fetchLetterContent = async (file) => {
-    const response = await fetch(file);
-    const text = await response.text();
-    setLetterContent(text);
-  };
+  useEffect(() => {
+    const fetchLetters = async () => {
+      const letterFiles = ['letter1.txt', 'letter2.txt', 'letter3.txt', 'letter4.txt'];
+      const letterSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+
+      const fetchedLetters = await Promise.all(
+        letterFiles.map(async (file, index) => {
+          const response = await fetch(`/letters/${file}`);
+          const text = await response.text();
+          return { sender: letterSenders[index], text };
+        })
+      );
+
+      setLetters(fetchedLetters);
+    };
+
+    fetchLetters();
+  }, []);
 
   const handleLetterClick = (letter) => {
-    fetchLetterContent(letter.file);
     setSelectedLetter(letter);
-  };
-
-  const closeLetter = () => {
-    setSelectedLetter(null);
-    setLetterContent('');
   };
 
   return (
     <div className="container">
-      <h1>Letters</h1>
       {selectedLetter ? (
         <div>
-          <h2>{selectedLetter.sender} sent you a letter!</h2>
-          <p>{letterContent}</p>
-          <button onClick={closeLetter}>Close</button>
+          <button className="back-link" onClick={() => setSelectedLetter(null)}>Back</button>
+          <h1>Letter from {selectedLetter.sender}</h1>
+          <p>{selectedLetter.text}</p>
         </div>
       ) : (
-        <ul>
-          {letters.map((letter, index) => (
-            <li key={index} onClick={() => handleLetterClick(letter)}>
-              <img src="/icons/letter.png" alt="Letter icon" className="icon" />
-              {letter.sender} sent you a letter!
-            </li>
-          ))}
-        </ul>
+        <div>
+          <a className="back-link" onClick={onBack}>Back</a>
+          <h1 className="letters-heading">Letters</h1>
+          <div className="letters-list">
+            {letters.map((letter, index) => (
+              <div key={index} className="letter-item" onClick={() => handleLetterClick(letter)}>
+                <img src={letterIcon} alt="Letter icon" className="letter-icon" />
+                <span>{letter.sender} sent you a letter!</span>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );
