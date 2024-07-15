@@ -1,11 +1,11 @@
 import React from 'react';
-import './RecipientGifts.css';
 
-function RecipientGifts() {
+function RecipientGifts({ onBack }) {
   return (
     <div className="container">
+      <button className="back-link" onClick={onBack}>Back</button>
       <h1>Gifts</h1>
-      <p>Gifts will be displayed here.</p>
+      <p>This portion of the project is outside of the current scope.</p>
     </div>
   );
 }

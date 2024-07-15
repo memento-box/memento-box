@@ -50,7 +50,7 @@ function RecipientBox() {
         <area alt="Photos" title="Photos" href="#" onClick={(event) => handleImageMapClick(event, <RecipientPhotos onBack={closeModal} />)} coords="89,71,249,303" shape="rect" />
         <area alt="Videos" title="Videos" href="#" onClick={(event) => handleImageMapClick(event, <RecipientVideos />)} coords="254,78,529,269" shape="rect" />
         <area alt="Voice notes" title="Voice notes" href="#" onClick={(event) => handleImageMapClick(event, <RecipientVoiceNotes />)} coords="270,352,540,274" shape="rect" />
-        <area alt="Gifts" title="Gifts" href="#" onClick={(event) => handleImageMapClick(event, <RecipientGifts />)} coords="92,310,245,417" shape="rect" />
+        <area alt="Gifts" title="Gifts" href="#" onClick={(event) => handleImageMapClick(event, <RecipientGifts onBack={closeModal} />)} coords="92,310,245,417" shape="rect" />
         <area alt="Mixtape" title="Mixtape" href="#" onClick={(event) => handleImageMapClick(event, <RecipientMixtape onBack={closeModal} />)} coords="80,422,262,537" shape="rect" />
         <area alt="Letters" title="Letters" href="#" onClick={(event) => handleImageMapClick(event, <RecipientLetters onBack={closeModal} />)} coords="266,357,538,535" shape="rect" />
       </map>
