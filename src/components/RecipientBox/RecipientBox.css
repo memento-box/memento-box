@@ -1,60 +1,58 @@
-/* src/components/RecipientBox/RecipientBox.css */
 #boxClosed {
     position: relative;
     width: 790px;
     height: 800px;
     grid-column: 2;
     grid-row: 1;
-  }
-  
-  .animation {
+}
+
+.animation {
     animation-name: openBox;
     animation-duration: 5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-  }
-  
-  #boxOpen {
+}
+
+#boxOpen {
     position: relative;
     grid-column: 2;
     grid-row: 1;
     width: 790px;
     height: 800px;
-  }
-  
-  #grid {
+}
+
+#grid {
     display: grid;
     grid-template-columns: 400px 800px 200px;
     grid-template-rows: 200px 200px 200px;
-  }
-  
-  #collaborators {
+}
+
+#collaborators {
     margin: 20px;
     grid-column: 1;
     grid-row: 2;
-  }
-  
-  .person {
+}
+
+.person {
     margin: 0px;
-  }
-  
-  #from {
+}
+
+#from {
     margin: 2px;
-  }
-  
-  @keyframes openBox {
+}
+
+@keyframes openBox {
     from {
-      left: 0px;
+        left: 0px;
     }
     to {
-      left: 700px;
+        left: 700px;
     }
-  }
-  
-  /* Adjusting the modal size */
-  .ReactModal__Content {
+}
+
+/* Adjusting the modal size */
+.ReactModal__Content {
     width: 50%; /* Adjust as needed */
     height: 50%; /* Adjust as needed */
     margin: auto;
-  }
-  
+}
