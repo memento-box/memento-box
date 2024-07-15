@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -23,6 +24,13 @@ import Photos from '../Photos/Photos';
 import Videos from '../Videos/Videos';
 import Letters from '../Letters/Letters';
 import VoiceRecording from '../VoiceRecording/VoiceRecording';
+import RecipientBox from '../RecipientBox/RecipientBox';
+import RecipientPhotos from '../RecipientPhotos/RecipientPhotos';
+import RecipientLetters from '../RecipientLetters/RecipientLetters';
+import RecipientVoiceNotes from '../RecipientVoiceNotes/RecipientVoiceNotes';
+import RecipientGifts from '../RecipientGifts/RecipientGifts';
+import RecipientMixtape from '../RecipientMixtape/RecipientMixtape';
+import RecipientVideos from '../RecipientVideos/RecipientVideos';
 
 // Need to create these consolelog team
 // import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
@@ -32,11 +40,15 @@ import VoiceRecording from '../VoiceRecording/VoiceRecording';
 
 import './App.css';
 
+// Setting the root element for the modal for accessibility
+Modal.setAppElement('#react-root');
+
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
 
+  // Fetch user data on component mount
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
@@ -159,7 +171,7 @@ function App() {
             exact
             path="/box-setup-information"
           >
-            <BoxSetupInformation />
+           <BoxSetupInformation />
           </Route>
 
           <Route
@@ -184,7 +196,27 @@ function App() {
           </ProtectedRoute> */}
 
           {/* Routes for three-toed-turtles */}
-
+          <Route exact path="/recipientbox">
+            <RecipientBox />
+          </Route>
+          <Route exact path="/recipient/photos">
+            <RecipientPhotos />
+          </Route>
+          <Route exact path="/recipient/videos">
+            <RecipientVideos />
+          </Route>
+          <Route exact path="/recipient/voicenotes">
+            <RecipientVoiceNotes />
+          </Route>
+          <Route exact path="/recipient/gifts">
+            <RecipientGifts />
+          </Route>
+          <Route exact path="/recipient/mixtape">
+            <RecipientMixtape />
+          </Route>
+          <Route exact path="/recipient/letters">
+            <RecipientLetters />
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
