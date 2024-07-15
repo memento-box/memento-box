@@ -71,7 +71,7 @@ function RecipientPhotos({ onBack }) {
             {photos.map((photo, index) => (
               <div key={index} className="photo-item" onClick={() => handlePhotoClick(photo)}>
                 <img src={cameraIcon} alt="Camera icon" className="photo-icon" />
-                <span>Photo from {photo.sender}</span>
+                <span>{photo.sender} sent you a photo!</span>
               </div>
             ))}
           </div>
