@@ -1,0 +1,25 @@
+#hero {
+    display: grid;
+    grid-template-columns: 400px 800px 200px;
+    grid-template-rows: 200px 200px 200px;
+}
+#text {
+    grid-column: 1;
+    grid-row: 1;
+}
+#closed-box {
+    z-index: 3;
+    position: relative;
+    width: 790px;
+    height: 800px;
+    grid-column: 2;
+    grid-row: 1;
+}
+#hover-box {
+    z-index: 0;
+    position: relative;
+    width: 790px;
+    height: 800px;
+    grid-column: 2;
+    grid-row: 1;
+}

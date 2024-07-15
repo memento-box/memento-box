@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import Modal from 'react-modal';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -39,11 +40,15 @@ import RecipientVideos from '../RecipientVideos/RecipientVideos';
 
 import './App.css';
 
+// Setting the root element for the modal for accessibility
+Modal.setAppElement('#react-root');
+
 function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
 
+  // Fetch user data on component mount
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
@@ -162,11 +167,11 @@ function App() {
 
           {/* Routes for console-log */}
 
-          <Route
+          {/* <Route
             exact
             path="/box-setup-information"
           >
-            <BoxSetupInformation />
+           <BoxSetupInformation />
           </Route>
 
           <Route
@@ -188,11 +193,29 @@ function App() {
             path="/user/my-boxes"
           >
             <MyBoxes />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           {/* Routes for three-toed-turtles */}
-          <Route path="/recipientbox">
-              <RecipientBox />
+          <Route exact path="/recipientbox">
+            <RecipientBox />
+          </Route>
+          <Route exact path="/recipient/photos">
+            <RecipientPhotos />
+          </Route>
+          <Route exact path="/recipient/videos">
+            <RecipientVideos />
+          </Route>
+          <Route exact path="/recipient/voicenotes">
+            <RecipientVoiceNotes />
+          </Route>
+          <Route exact path="/recipient/gifts">
+            <RecipientGifts />
+          </Route>
+          <Route exact path="/recipient/mixtape">
+            <RecipientMixtape />
+          </Route>
+          <Route exact path="/recipient/letters">
+            <RecipientLetters />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

@@ -20,7 +20,7 @@ export default function EditingSidebar() {
   const drawer = (
     <Box>
       <Toolbar/>
-      <Typography variant="h6" noWrap sx={{ padding: 2 }}>
+      <Typography variant="h6" noWrap sx={{ padding: 2, color:"#FFFFFF" }}>
         Build & Edit
       </Typography>
       <List>
@@ -75,6 +75,7 @@ export default function EditingSidebar() {
           boxSizing: 'border-box',
           zIndex: 1,
           overflow: 'hidden',
+          backgroundColor: '#e85230',
         },
       }}
       open={open}
