@@ -61,3 +61,15 @@ video {
     width: 100%;
     height: auto;
 }
+
+.video-caption {
+    margin-top: 10px;
+    font-size: 1.2em;
+    text-align: center;
+    color: #333;
+    width: 100%;
+    word-wrap: break-word;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+}

@@ -4,12 +4,30 @@ import videoIcon from '/icons/video-player.png'; // Adjust the path if necessary
 
 function RecipientVideos({ onBack }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const videoFiles = [
-    { file: 'video1.mp4', sender: 'Lons' },
-    { file: 'video2.mp4', sender: 'Sarah' },
-    { file: 'video3.mp4', sender: 'Sean' },
-    { file: 'video4.mp4', sender: 'Zoe' }
-  ];
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      const videoFiles = ['video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4'];
+      const videoSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const videoCaptions = [
+        "Turtles communicate with each other using sounds and vibrations.",
+        "Some turtles can live to be over 100 years old.",
+        "Turtles are found on every continent except Antarctica.",
+        "Leatherback sea turtles can weigh over 1,000 pounds."
+      ];
+
+      const fetchedVideos = videoFiles.map((file, index) => ({
+        sender: videoSenders[index],
+        file: file,
+        caption: videoCaptions[index]
+      }));
+
+      setVideos(fetchedVideos);
+    };
+
+    fetchVideos();
+  }, []);
 
   const handleVideoClick = (video) => {
     setSelectedVideo(video);
@@ -26,6 +44,7 @@ function RecipientVideos({ onBack }) {
               <source src={`/videos/${selectedVideo.file}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
+            <p className="video-caption">{`${selectedVideo.caption} - ${selectedVideo.sender}`}</p>
           </div>
         </div>
       ) : (
@@ -33,7 +52,7 @@ function RecipientVideos({ onBack }) {
           <a className="back-link" onClick={onBack}>Back</a>
           <h1 className="videos-heading">Videos</h1>
           <div className="videos-list">
-            {videoFiles.map((video, index) => (
+            {videos.map((video, index) => (
               <div key={index} className="video-item" onClick={() => handleVideoClick(video)}>
                 <img src={videoIcon} alt="Video icon" className="video-icon" />
                 <span>{video.sender} sent you a video!</span>
