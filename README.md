@@ -125,15 +125,29 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 ----
 
-## Email setup using MailChimp
+## Marketing email (newsletter) setup using MailChimp
 
 * If you have not already created a `.env` file at the root of the project, create one.
 * Create a MailChimp account.  You should be able to use a free account for the basic functionality of this application.
 * [Create an API key in your account](https://mailchimp.com/help/about-api-keys/#Generate_an_API_key). 
-* Insert your API key into your `.env` file with the name `MAILCHIMP_SECRET`.  For example:
+* Insert your API key into your `.env` file with the name `mail_key`.  For example:
 
 ```plaintext
-MAILCHIMP_SECRET=FooVX5hooooSAMPLEAPIKEYooood4mXV7RUt2N6v
+mail_key=FooVX5hooooSAMPLEAPIKEYooood4mXV7RUt2N6v
 ```
 
+* Find your MailChimp data center.  It's at the start of the URL you visit when you're on your dashboard.  [Here's more information](https://mailchimp.com/developer/marketing/docs/fundamentals/#connecting-to-the-api).
+* Insert your data center into your `.env` file with the name `mail_dc`.  For example:
+
+```plaintext
+mail_dc=us12
+```
+
+* Find your MailChimp Audience ID by following the following path or using their [help center instructions](https://mailchimp.com/help/find-audience-id/):
+   * "Audience" > "Audience dashboard" > "Manage Audience" > "Settings"
+* Insert your data center into your `.env` file with the name `mail_aud_id`.  For example:
+
+```plaintext
+mail_aud_id=304g5398t4
+```
 
