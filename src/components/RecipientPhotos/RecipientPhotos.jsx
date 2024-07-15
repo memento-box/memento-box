@@ -35,9 +35,8 @@ function RecipientPhotos({ onBack }) {
     setIsLoading(true);
   };
 
-  const handleImageLoad = (event) => {
+  const handleImageLoad = () => {
     setIsLoading(false);
-    const img = event.target;
     const caption = document.getElementById(`caption-${selectedPhoto.sender}`);
     if (caption) {
       caption.style.display = 'block';
