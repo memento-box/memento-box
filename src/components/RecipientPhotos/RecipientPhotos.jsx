@@ -38,10 +38,8 @@ function RecipientPhotos({ onBack }) {
   const handleImageLoad = (event) => {
     setIsLoading(false);
     const img = event.target;
-    console.log(`Image from ${selectedPhoto.sender} loaded: ${img.naturalWidth}x${img.naturalHeight}`);
     const caption = document.getElementById(`caption-${selectedPhoto.sender}`);
     if (caption) {
-      console.log(`Caption for ${selectedPhoto.sender} is now visible`);
       caption.style.display = 'block';
     }
   };
