@@ -17,6 +17,7 @@
     "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.2.0",
+    "cloudinary-video-player": "^2.0.5",
     "connect-pg-simple": "^9.0.1",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",

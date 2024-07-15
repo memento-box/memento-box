@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import VideoPlayer from "./VideoPlayer";
 
 const Videos = () => {
 
@@ -46,12 +47,11 @@ const Videos = () => {
         {
             fileMap.length > 0 ? (
                 fileMap.map((file) => {
-                    <video> 
-                     <source src={file}/>  
-                    </video>
+                    <VideoPlayer />
                 })
             ) : (<p>No Videos To Display</p>)
         }
+        <VideoPlayer width={720} height={480}/>
 
         </div>
     )
