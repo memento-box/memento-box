@@ -6,18 +6,23 @@ import "./VoiceRecording.css";
 
 export default function VoiceRecording() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
+  const box_id = 1; // NEED TO PULL THIS FROM REDUX< USING 1 FOR TESTING
 
   const uploadFileType = "audio/*";
 
-  const fetchNotes = () => {
-    // API call to retrieve relevant voice notes
-    setNotes([]);
+  const fetchNotes = async () => {
+    try{// API call to retrieve relevant voice notes
+    const response = await axios.get('api/content/voice', {box_id});
+    setNotes(response.data);
+    } catch (err) {
+      console.error('Error fetching voice notes:',err);
+    }
   };
 
   useEffect(() => {
     // Fetch voice notes on component load
     fetchNotes();
-  }, []);
+  }, [notes]);
 
   return (
     <div className="box-edit-container">
@@ -26,7 +31,7 @@ export default function VoiceRecording() {
         Voice Notes
       </Typography>
       <div className="notes-actions">
-        <UploadButton uploadFileType={uploadFileType} />
+        <UploadButton uploadFileType={uploadFileType} reload={fetchNotes} />
         <button>Record</button>
         {/* button will pull up small upload form */}
 
