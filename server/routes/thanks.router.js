@@ -65,7 +65,7 @@ router.get('/collaborators', (req, res) => {
         SELECT "user"."first_name", "user"."last_name", "box_item"."media_url", "box_item"."description", "box_item"."title", "media_type"."type" FROM "box_item" 
         JOIN "media_type" ON "box_item"."media_type" = "media_type"."id" 
         JOIN "user" ON "user"."id" = "box_item"."user_id"
-        WHERE "box_item"."box_id" = 2;
+        WHERE "box_item"."box_id" = $1;
       `;
       pool
           .query(queryText, [req.body.boxID])
