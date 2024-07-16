@@ -1,25 +1,54 @@
-  h2 {
-    margin-bottom: 10px;
-  }
-  
-  p {
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  li {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .icon {
-    margin-right: 10px;
-    width: 24px; 
-    height: 24px; 
-  }
-  
+.memento-box-info .section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 100%;
+  align-items: center; 
+}
+
+.memento-box-info .columns {
+  display: flex;
+  width: 100%;
+}
+
+.memento-box-info .left-column,
+.memento-box-info .right-column {
+  flex: 1;
+  display: flex;
+  align-items: center; 
+}
+
+.memento-box-info .left-column {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.memento-box-info .right-column {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.memento-box-info .recipient-box-icon,
+.memento-box-info .memento-box-icon {
+  max-height: 100%; 
+  width: auto; 
+}
+
+.memento-box-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.memento-box-info li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.memento-box-info .icon {
+  margin-right: 10px;
+  width: 24px; 
+  height: auto;
+}
