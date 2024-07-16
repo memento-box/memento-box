@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
-import VideoPlayer from "./VideoPlayer";
+import { useState, React } from "react";
+import ReactPlayer from 'react-player';
 
 const Videos = () => {
 
@@ -22,8 +22,9 @@ const Videos = () => {
 
       axios.post(apiUrl, formData)
       .then((r) => {
-        console.log(r.data.url);
-        setFileMap([...fileMap, r.data.url])
+        console.log(r.data);
+        setFileMap([...fileMap, r.data.public_id])
+        console.log(fileMap);
       })
       .catch((e) => {
         console.log("Something went wrong with your video upload", e)
@@ -44,14 +45,17 @@ const Videos = () => {
         </form>
 
         {/*Temporary mapping until video urls connect to databse*/}
+
         {
             fileMap.length > 0 ? (
                 fileMap.map((file) => {
-                    <VideoPlayer />
+                    <></>
                 })
             ) : (<p>No Videos To Display</p>)
         }
-        <VideoPlayer width={720} height={480}/>
+        <ReactPlayer url='https://res.cloudinary.com/dsjcmqb0q/video/upload/fhnk3ltj617dov0fafd5.mov' controls />
+
+        
 
         </div>
     )
