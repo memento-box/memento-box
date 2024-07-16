@@ -1,7 +1,4 @@
 <!doctype html>
-
-<!-- EMAIL TEMPLATE FROM: https://github.com/leemunroe/responsive-html-email-template -->
-
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +13,7 @@
     
     body {
       font-family: Poppins, sans-serif;
+      /* In test email, Poppins did not appear */
       -webkit-font-smoothing: antialiased;
       font-size: 16px;
       line-height: 1.3;
@@ -139,6 +137,8 @@
             src="file:///Users/lons/Documents/prime/tier-3/group-project/memento-box/public/boxes/white-red-ribbon.png" 
             alt="A white gift box with a bright red ribbon"
             style="width:50%">
+            <!-- Alt shows as off-center if the image doesn't appear in the email 
+             because of the custom margin to offset the shadow -->
         </a>
       </div>
       <div class="footer">
