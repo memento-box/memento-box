@@ -31,6 +31,7 @@ import RecipientVoiceNotes from "../RecipientVoiceNotes/RecipientVoiceNotes";
 import RecipientGifts from "../RecipientGifts/RecipientGifts";
 import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
+import ThankYouPage from "../ThankYouPage/ThankYouPage";
 
 // Need to create these consolelog team
 // import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
@@ -198,6 +199,9 @@ function App() {
           </Route>
           <Route exact path="/recipient/letters">
             <RecipientLetters />
+          </Route>
+          <Route exact path="/thankyou">
+            <ThankYouPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
