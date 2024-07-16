@@ -23,7 +23,7 @@ router.post('/messages', (req, res) => {
       INSERT INTO "box_thanks" ("message", "thanks_receiver_id", "box_id") VALUES ($1, $2, $3);
     `;
     pool
-        .query(queryText, [req.body.message, req.body.recipientID, req.body.boxID])
+        .query(queryText, [req.body.message, req.body.thanksreceiverID, req.body.boxID])
         .then(() => {res.sendStatus(201)})
         .catch((err) => {
           console.log('Posting thanks messages failed:', err);
@@ -33,7 +33,7 @@ router.post('/messages', (req, res) => {
 
 router.get('/collaborators', (req, res) => {
   queryText = `
-    SELECT "user"."first_name", "user"."last_name" FROM "user"
+    SELECT "user"."first_name", "user"."last_name", "user"."id" FROM "user"
     JOIN "collaborator" ON "collaborator"."user_id" = "user"."id"
     WHERE "collaborator"."box_id" = $1 AND "collaborator"."accepted" = true;
   `;
