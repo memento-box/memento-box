@@ -31,6 +31,20 @@ router.post('/messages', (req, res) => {
         });
 });
 
+router.get('/collaborators', (req, res) => {
+  queryText = `
+    SELECT "user"."first_name", "user"."last_name" FROM "user"
+    JOIN "collaborator" ON "collaborator"."user_id" = "user"."id"
+    WHERE "collaborator"."box_id" = $1 AND "collaborator"."accepted" = true;
+  `;
+  pool
+      .query(queryText, [req.body.boxID])
+      .then((dbRes) => {res.status(200).send(dbRes.rows)})
+      .catch((err) => {
+        console.log('Fetching collaborators failed:', err);
+        res.sendStatus(500);
+      });
+  });
 
 
 module.exports = router;
