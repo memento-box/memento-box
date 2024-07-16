@@ -21,10 +21,10 @@ const Videos = () => {
       let apiUrl = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`; //appending cloud names & presets to url
 
       axios.post(apiUrl, formData)
-      .then((r) => {
-        console.log(r.data);
-        setFileMap([...fileMap, r.data.public_id])
-        console.log(fileMap);
+      .then((r) => {  //creating an array for the video urls
+        console.log(r.data.url);
+        const videoUrl = r.data.url
+        setFileMap([...fileMap, videoUrl])
       })
       .catch((e) => {
         console.log("Something went wrong with your video upload", e)
@@ -45,15 +45,16 @@ const Videos = () => {
         </form>
 
         {/*Temporary mapping until video urls connect to databse*/}
-
         {
             fileMap.length > 0 ? (
                 fileMap.map((file) => {
-                    <></>
+                    return <>
+                    <ReactPlayer url={file} controls />
+                    </>
                 })
             ) : (<p>No Videos To Display</p>)
         }
-        <ReactPlayer url='https://res.cloudinary.com/dsjcmqb0q/video/upload/fhnk3ltj617dov0fafd5.mov' controls />
+        
 
         
 
