@@ -64,14 +64,9 @@ CREATE TABLE "box_item" (
 CREATE TABLE "box_thanks" (
     "id" SERIAL PRIMARY KEY,
 	"message" varchar(1000),
+	"recipient_id" integer references "user",
 	"box_id" integer references "memento_box",
 	"created_at" date default current_date
-);
-
-CREATE TABLE "user_box_thanks" (
-    "id" SERIAL PRIMARY KEY,
-	"box_thanks_id" integer references "box_thanks",
-	"user_id" integer references "user"
 );
 
 -- Sample data
