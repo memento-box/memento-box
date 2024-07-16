@@ -171,7 +171,7 @@ function App() {
             exact
             path="/box-setup-information"
           >
-            <BoxSetupInformation />
+           <BoxSetupInformation />
           </Route>
 
           <Route
