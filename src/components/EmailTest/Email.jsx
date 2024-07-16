@@ -4,7 +4,7 @@
 // NOTE: SENDING AS A TEMPLATE REQUIRES PLUGGING THE LINK TO THE SPECIFIC BOX IN AS DYNAMIC CONTENT
 // ####I AM GUESSING THAT I CAN PUT MORE HTML IN AS DYNAMIC CONTENT BUT I HAVE NOT TESTED THIS THEORY####
 // 1. Create .env file
-// 2. Acquire MailChimp transactional API
+// 2. Acquire MailChimp transactional API key
 // 3. Add API key to .env file as "TRANSACTIONAL_KEY"
 // 4. Create template for email in MailChimp account using template provided in this folder
 //     i. Log into Mandrill using MailChimp account information (can access Mandrill from the MailChimp dashboard by navigating to "Automations" > "Transactional email" in the sidebar)
