@@ -4,7 +4,7 @@ import { Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
 import UploadButton from "../UploadButton/UploadButton.jsx";
-// import "./VoiceRecording.css";
+import "./Photos.css";
 
 export default function Photos() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
