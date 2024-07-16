@@ -1,0 +1,149 @@
+<!doctype html>
+
+<!-- EMAIL TEMPLATE FROM: https://github.com/leemunroe/responsive-html-email-template -->
+
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- TYPOGRAPHY: POPPINS -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Memento Box</title>
+    <style media="all" type="text/css">
+    /* -------------------------------------
+    GLOBAL RESETS
+------------------------------------- */
+    
+    body {
+      font-family: Poppins, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.3;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* -------------------------------------
+    BODY
+------------------------------------- */
+    
+    body {
+      background-color: #F8A820;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+
+    /* -------------------------------------
+    MAIN AND COMPONENTS
+------------------------------------- */
+    
+    .main {
+      background: #ffffff;
+      border: 1px solid #eaebed;
+      width: 75%;
+      margin: auto;
+      text-align: center;
+    }
+
+    .greeting {
+      background-image: url(file:///Users/lons/Documents/prime/tier-3/group-project/memento-box/public/confetti/confetti-exploded.png);
+      background-size: 100% 100%;
+      height: 25vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .from-list {
+      background: #ffffff;
+      width: 75%;
+      margin: auto;
+      text-align: left;
+    }
+
+    .footer,
+    .footer a {
+      clear: both;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      width: 100%;
+      color: #B4B4B4;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* This seems to be the best way to center the box; 
+    shadow is perhaps part of the image and preventing true centering */
+    .giftbox {
+      margin-left: 9%;
+    }
+
+    /* Preheader is what will appear first in the preview on the email client; 
+    it's hidden in the email itself */
+    .preheader {
+      color: transparent;
+      display: none;
+      height: 0;
+      max-height: 0;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      /* mso-hide: all; */
+      visibility: hidden;
+      width: 0;
+    }
+    /* -------------------------------------
+    TYPOGRAPHY
+------------------------------------- */
+    
+    p {
+      font-size: 16px;
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 16px;
+    }
+    
+    a {
+      font-family: Poppins, sans-serif;
+      color: #0057FF;
+      text-decoration: underline;
+    }
+    </style>
+  </head>
+  <body>
+    <span class="preheader">You've received a Memento Box!</span>
+    <div class="main">
+      <div class="greeting">
+        <h1><span mc:edit="occasion_greeting">Happy Birthday,</span> <span mc:edit="recipient_name">Greg</span>!</h1>
+      </div>
+      <div class="from-list">
+        <b>You've just received a Memento Box from:</b>
+        <!-- TODO: HOW TO LOOP THROUGH ALL SENDERS AND MAP THEM WITHOUT HAVING EXTRAS OR DEFAULT CONTENT? -->
+        <br> <span mc:edit="sender_name">Julie Franklin</span>
+        <br> <span mc:edit="sender_name">Soren Spills</span>
+        <br> <span mc:edit="sender_name">Frank Ocean</span>
+        <br> <span mc:edit="sender_name">José Martinez</span>
+        <br> <span mc:edit="sender_name">Steve Clancy</span>
+        <br> <span mc:edit="sender_name">Kaitlynn Rose</span>
+      </div>
+      <div>
+        <h2>Click on your box to open!</h2>
+      </div>
+      <div class="giftbox">
+        <!-- TODO: NEED TO LINK TO MEMENTO BOX -->
+        <a href="https://www.primeacademy.io/" target="_blank">
+          <!-- TODO: NEED EXTERNAL LINK FOR BOX IMAGE IN ORDER FOR IT TO APPEAR IN THE EMAIL -->
+          <img 
+            src="file:///Users/lons/Documents/prime/tier-3/group-project/memento-box/public/boxes/white-red-ribbon.png" 
+            alt="A white gift box with a bright red ribbon"
+            style="width:50%">
+        </a>
+      </div>
+      <div class="footer">
+        Powered by <a href="http://htmlemail.io">HTMLemail.io</a>
+      </div>
+    </div>
+  </body>
+</html>
