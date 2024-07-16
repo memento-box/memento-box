@@ -24,12 +24,5 @@
     grid-row: 1;
 }
 #closedBox:hover {
-    animation-name: openBox;
-    animation-duration: 5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
-@keyframes openBox {
-    from { left: 0px; }
-    to { left: 700px; }
+    transform: translate(500px, 0);
 }
