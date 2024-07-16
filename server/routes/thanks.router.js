@@ -46,5 +46,19 @@ router.get('/collaborators', (req, res) => {
       });
   });
 
+  router.get('/greeting', (req, res) => {
+    queryText = `
+      SELECT "memento_box"."collaborator_note" AS "greeting" FROM "memento_box"
+      WHERE "memento_box"."id" = 1;
+    `;
+    pool
+        .query(queryText, [req.body.boxID])
+        .then((dbRes) => {res.status(200).send(dbRes.rows)})
+        .catch((err) => {
+          console.log('Fetching greeting failed:', err);
+          res.sendStatus(500);
+        });
+    });
+
 
 module.exports = router;
