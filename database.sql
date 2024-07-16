@@ -4,14 +4,14 @@
 -- Otherwise you will have errors!
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
+    "username" VARCHAR (80) UNIQUE NOT NULL,
 	"first_name" varchar(25),
 	"last_name" varchar(25),
 	"email" varchar(400),
 	"birthday" date,
-	"password" varchar(50),
+	"password" varchar(1000),
 	"created_at" date default current_date
 );
-
 
 CREATE TABLE "box_ribbon" (
     "id" SERIAL PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE "box_item" (
 	"description" varchar(1000),
 	"media_type" integer references "media_type",
 	"created_at" date default current_date,
-	"box_code" varchar(1028),
+	"box_code" varchar(1028)
 );
 
 CREATE TABLE "box_thanks" (

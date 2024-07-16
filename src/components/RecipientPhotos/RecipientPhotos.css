@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
+
+.back-link {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    cursor: pointer;
+    color: black;
+}
+
+.photos-heading {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photos-list {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Poppins', sans-serif;
+}
+
+.photo-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.photo-item:hover {
+    text-decoration: underline;
+}
+
+.photo-icon {
+    margin-right: 10px;
+}
+
+.photo-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.photo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.photo-image {
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+.photo-caption {
+    margin-top: 10px;
+    font-size: 1.2em;
+    text-align: center;
+    color: #333;
+    width: 100%;
+    word-wrap: break-word;
+    display: none;
+    font-family: 'Poppins', sans-serif;
+}
