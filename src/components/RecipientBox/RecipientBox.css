@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 #boxClosed {
     position: relative;
     width: 790px;
@@ -31,6 +37,7 @@
     margin: 20px;
     grid-column: 1;
     grid-row: 2;
+    font-family: 'Poppins', sans-serif;
 }
 
 .person {
@@ -50,9 +57,10 @@
     }
 }
 
-/* Adjusting the modal size */
+
 .ReactModal__Content {
-    width: 50%; /* Adjust as needed */
-    height: 50%; /* Adjust as needed */
+    width: 50%; 
+    height: 50%; 
     margin: auto;
+    font-family: 'Poppins', sans-serif;
 }

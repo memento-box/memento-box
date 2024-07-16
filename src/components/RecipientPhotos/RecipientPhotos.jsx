@@ -35,13 +35,10 @@ function RecipientPhotos({ onBack }) {
     setIsLoading(true);
   };
 
-  const handleImageLoad = (event) => {
+  const handleImageLoad = () => {
     setIsLoading(false);
-    const img = event.target;
-    console.log(`Image from ${selectedPhoto.sender} loaded: ${img.naturalWidth}x${img.naturalHeight}`);
     const caption = document.getElementById(`caption-${selectedPhoto.sender}`);
     if (caption) {
-      console.log(`Caption for ${selectedPhoto.sender} is now visible`);
       caption.style.display = 'block';
     }
   };
@@ -71,7 +68,7 @@ function RecipientPhotos({ onBack }) {
             {photos.map((photo, index) => (
               <div key={index} className="photo-item" onClick={() => handlePhotoClick(photo)}>
                 <img src={cameraIcon} alt="Camera icon" className="photo-icon" />
-                <span>Photo from {photo.sender}</span>
+                <span>{photo.sender} sent you a photo!</span>
               </div>
             ))}
           </div>
