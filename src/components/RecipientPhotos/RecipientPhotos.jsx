@@ -5,15 +5,23 @@ import cameraIcon from '/icons/camera.png'; // Adjust the path if necessary
 function RecipientPhotos({ onBack }) {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [photos, setPhotos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchPhotos = async () => {
       const photoFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg'];
-      const photoTitles = ['Photo from Lons', 'Photo from Sarah', 'Photo from Sean', 'Photo from Zoe'];
+      const photoSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const photoCaptions = [
+        "Turtles have existed for around 215 million years. Happy Birthday!",
+        "A turtle's shell is made up of 50 bones fused together. Happy Birthday!",
+        "Sea turtles can hold their breath for 5 hours underwater. Happy Birthday!",
+        "Turtles have excellent night vision. Happy Birthday!"
+      ];
 
       const fetchedPhotos = photoFiles.map((file, index) => ({
-        title: photoTitles[index],
-        src: `/photos/${file}`
+        sender: photoSenders[index],
+        src: `/photos/${file}`,
+        caption: photoCaptions[index]
       }));
 
       setPhotos(fetchedPhotos);
@@ -24,6 +32,15 @@ function RecipientPhotos({ onBack }) {
 
   const handlePhotoClick = (photo) => {
     setSelectedPhoto(photo);
+    setIsLoading(true);
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+    const caption = document.getElementById(`caption-${selectedPhoto.sender}`);
+    if (caption) {
+      caption.style.display = 'block';
+    }
   };
 
   return (
@@ -31,12 +48,17 @@ function RecipientPhotos({ onBack }) {
       {selectedPhoto ? (
         <div className="photo-modal">
           <button className="back-link" onClick={() => setSelectedPhoto(null)}>Back</button>
-          <h1>{selectedPhoto.title}</h1>
-          <img
-            src={selectedPhoto.src}
-            alt={selectedPhoto.title}
-            style={{ maxWidth: '90vw', maxHeight: '90vh', width: 'auto', height: 'auto' }}
-          />
+          <div className="photo-wrapper">
+            {isLoading && <p>Loading...</p>}
+            <img
+              src={selectedPhoto.src}
+              alt={selectedPhoto.sender}
+              onLoad={handleImageLoad}
+              style={{ display: isLoading ? 'none' : 'block' }}
+              className="photo-image"
+            />
+            <p id={`caption-${selectedPhoto.sender}`} className="photo-caption">{`${selectedPhoto.caption} - ${selectedPhoto.sender}`}</p>
+          </div>
         </div>
       ) : (
         <div>
@@ -46,7 +68,7 @@ function RecipientPhotos({ onBack }) {
             {photos.map((photo, index) => (
               <div key={index} className="photo-item" onClick={() => handlePhotoClick(photo)}>
                 <img src={cameraIcon} alt="Camera icon" className="photo-icon" />
-                <span>{photo.title}</span>
+                <span>{photo.sender} sent you a photo!</span>
               </div>
             ))}
           </div>
