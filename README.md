@@ -125,6 +125,12 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 ----
 
+# MailChimp email
+
+MailChimp has a [breakdown of when you should use which of their APIs](https://mailchimp.com/developer/transactional/guides/send-first-email/#transactional-vs-marketing-email). 
+
+The following is a step-by-step guide for how MailChimp is integrated with this application.
+
 ## Marketing email (newsletter) setup using MailChimp
 
 * If you have not already created a `.env` file at the root of the project, create one.
@@ -151,3 +157,15 @@ mail_dc=us12
 mail_aud_id=304g5398t4
 ```
 
+## Transactional email (confirmations, etc.) setup using MailChimp
+
+The following are required for sending transactional emails using MailChimp:
+
+* A domain
+* Authentication/confirmation of the domain
+   * [Requires that you have access to your DNS](https://mailchimp.com/developer/transactional/docs/authentication-delivery/#configure-your-dns)
+* 
+
+Emails [can be scheduled](https://mailchimp.com/developer/transactional/docs/outbound-email/#scheduling-messages) using the `send_at` parameter:
+
+* The API accepts a UTC timestamp in YYYY-MM-DD HH:MM:SS format.
