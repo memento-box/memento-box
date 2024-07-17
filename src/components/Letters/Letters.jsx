@@ -10,13 +10,13 @@ const Letters = () => {
     const [textUpload, setTextUpload] = useState([]);
     const [fileMap, setFileMap] = useState([]);
 
-    let displaySwitch = false
+    const [displaySwitch, setDisplaySwitch] = useState(false);
 
 
     const uploadFile = () => {
         console.log(fileUpload);
 
-        displaySwitch = true;
+       setDisplaySwitch(true);
 
         const formData = new FormData();
         formData.append('file', fileUpload);
@@ -31,12 +31,13 @@ const Letters = () => {
          .catch((e) => {
          console.log("Something went wrong with your letter upload", e)
         })
+
     };
 
     const uploadText =() => {
         console.log(textUpload)
 
-        displaySwitch = false;
+        setDisplaySwitch(false);
         setFileMap(textUpload);
     }
 
@@ -54,8 +55,12 @@ const Letters = () => {
            <button type='submit'>Submit</button>
         </form>
 
-        {
-            fileMap.map((file) => ( <img src={file} style={{height: '480px', width: '720px'}} /> ))
+        { displaySwitch == true ? 
+            (
+            fileMap.map((file) => ( 
+            <img src={file} style={{height: '480px', width: '720px'}} /> )) 
+            ) 
+            : (  <div>{fileMap}</div> )
         }
 
         </div>
