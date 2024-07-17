@@ -1,22 +1,28 @@
+.memento-box-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1200px;
+}
+
 .memento-box-info .section {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: center;
   width: 100%;
-  align-items: center; 
 }
 
 .memento-box-info .columns {
   display: flex;
-  width: 100%;
+  width: 70%; 
+  max-width: 1200px; 
 }
 
 .memento-box-info .left-column,
 .memento-box-info .right-column {
   flex: 1;
   display: flex;
-  align-items: center; 
+  align-items: center;
+  padding: 20px;
 }
 
 .memento-box-info .left-column {
@@ -28,12 +34,14 @@
 .memento-box-info .right-column {
   flex-direction: column;
   justify-content: center;
+  text-align: center;
 }
 
 .memento-box-info .recipient-box-icon,
 .memento-box-info .memento-box-icon {
-  max-height: 100%; 
-  width: auto; 
+  max-height: 350px;
+  width: auto;
+  align-self: center;
 }
 
 .memento-box-info ul {
@@ -49,6 +57,6 @@
 
 .memento-box-info .icon {
   margin-right: 10px;
-  width: 24px; 
+  width: 32px;
   height: auto;
 }
