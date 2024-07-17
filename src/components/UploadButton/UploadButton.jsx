@@ -1,7 +1,9 @@
 import { Button } from "@mui/material";
 import axios from "axios";
 
-export default function UploadButton({reload, uploadFileType}) {
+export default function UploadButton({reload, uploadFileType, endpoint}) {
+    const box_id = 1; // NEED TO PULL THIS FROM REDUX< USING 1 FOR TESTING
+
     const getSignedUrl = async () => { // Retrieving variables from server
         const response = await axios.get('/api/upload/signed-url');
         return response;
@@ -30,7 +32,13 @@ export default function UploadButton({reload, uploadFileType}) {
             const {public_id, secure_url} = uploadResponse.data;
             console.log('upload success:', 'public_id - ',public_id,'secure_url - ',secure_url);
 
-            return uploadResponse.data;
+            const payload = {
+              box_id:box_id,
+              secure_url:secure_url,
+              // public_id:public_id
+            }
+
+            endpoint(payload);
         } catch(err) {
             console.log(err);
         }
@@ -41,9 +49,6 @@ export default function UploadButton({reload, uploadFileType}) {
         if(file) {
             console.log('name:',file.name);
             const response = await beginUpload(file);
-            const {public_id, secure_url} = response;
-            // id and url ready to be sent to db (still need to implement box id)
-            // afterwards reload voice list
         }
     }
   return (
