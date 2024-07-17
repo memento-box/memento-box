@@ -9,10 +9,12 @@ export default function VoiceRecording() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
   const box_id = 1; // NEED TO PULL THIS FROM REDUX, USING 1 FOR TESTING
 
+
   const uploadFileType = "audio/*";
   const endpoint = async (payload) => {
     try {
       await axios.post("/api/upload/voice", payload);
+      fetchNotes(); // Fetching notes after successful upload
     } catch (err) {
       console.log("Error posting voice note:", err);
     }
