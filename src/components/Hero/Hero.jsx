@@ -18,7 +18,7 @@ function Hero() {
                 <img src="/boxes/white-red-ribbon.png" id="closedBox"/>
                 <img src="/RecipientBoxOpen.png" id="hoverBox"/>
             </div>
-        </div>
+        // </div>
     )
 };
 
