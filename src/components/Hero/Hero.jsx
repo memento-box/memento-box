@@ -15,6 +15,7 @@ function Hero() {
                 <a href='#video-wrapper' class="btn">Learn more</a>
                 <button onClick={() => toVideo()}>Learn more</button>
             </div> */}
+            <div className='box-wrapper' >
                 <img src="/boxes/white-red-ribbon.png" id="closedBox"/>
                 <img src="/RecipientBoxOpen.png" id="hoverBox"/>
             </div>
