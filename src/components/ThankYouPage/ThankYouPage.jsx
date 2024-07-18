@@ -5,7 +5,7 @@ import axios from 'axios';
 import './ThankYouPage.css';
 
 function ThankYouPage() {
-    let [collabs, setCollabs] = useState([{first_name: 'Ken', last_name: 'G', id: '1'}, {first_name: 'Mohamed',last_name: 'A', id: '2'}, {first_name: 'Matt', last_name: 'G', id: '3'}, {first_name: 'David', last_name: 'S', id: '4'}, {first_name: 'Erik', last_name: 'S', id: '5'}, {first_name: 'Michael', last_name: 'K', id: '6'}]);
+    let [collabs, setCollabs] = useState([{first_name: 'David', id: '4'}, {first_name: 'Erik', id: '5'}, {first_name: 'Michael', id: '6'}]);
     let [message, setMessage] = useState();
     let [isChecked, setIsChecked] = useState([]);
     const { id } = useParams();
