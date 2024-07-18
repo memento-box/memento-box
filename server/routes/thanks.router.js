@@ -49,7 +49,7 @@ router.get('/collaborators', (req, res) => {
   router.get('/greeting', (req, res) => {
     queryText = `
       SELECT "occasion"."name" AS "greeting" FROM "occasion"
-      JOIN "memento_box" ON "memento_box"."occasion_id" = "occaasion"."id"
+      JOIN "memento_box" ON "memento_box"."occasion_id" = "occasion"."id"
       WHERE "memento_box"."id" = $1;
     `;
     pool
