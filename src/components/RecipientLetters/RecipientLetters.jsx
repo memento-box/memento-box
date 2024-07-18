@@ -8,16 +8,18 @@ function RecipientLetters({ onBack }) {
 
   useEffect(() => {
     const fetchLetters = async () => {
-      const letterFiles = ['letter1.txt', 'letter2.txt', 'letter3.txt'];
       const letterSenders = ['David', 'Erik', 'Michael'];
 
-      const fetchedLetters = await Promise.all(
-        letterFiles.map(async (file, index) => {
-          const response = await fetch(`/letters/${file}`);
-          const text = await response.text();
-          return { sender: letterSenders[index], text };
-        })
-      );
+      const letterContents = [
+        "Dear friend, wishing you a fantastic birthday! - David",
+        "Hope you have an amazing day! Happy Birthday! - Erik",
+        "Sending you lots of love on your special day! - Michael"
+      ];
+
+      const fetchedLetters = letterSenders.map((sender, index) => ({
+        sender: sender,
+        text: letterContents[index]
+      }));
 
       setLetters(fetchedLetters);
     };
