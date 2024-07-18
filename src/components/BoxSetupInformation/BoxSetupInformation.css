@@ -2,12 +2,13 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
+/* body {
   width: 100%;
   height: 100vh;
-}
-.box-setup {
-  width: 100%;
+} */
+
+.box-setup-information {
+  width: 1392px;
   margin: 0px auto;
   height: 100vh;
 }
@@ -20,14 +21,13 @@ body {
 .box-setup-content {
   margin-left: 150px;
   margin-top: 30px;
-  width: 50%;
-  height: 500px;
+  width: 80%;
   padding-left: 40px;
   border-left: 1px solid rgb(193, 193, 193);
   border-bottom: 1px solid rgb(193, 193, 193);
-  border-right: 1px solid rgb(193, 193, 193);
+  border-right: 1px solid rgba(193, 193, 193, 0.582);
   font-family: "Poppins", sans-serif;
-  border-radius: 1px 1px black;
+  box-shadow: 1px 1px rgb(158, 158, 158);
 }
 .box-setup-content h5 {
   font-size: 20px;
@@ -51,4 +51,95 @@ body {
   padding: 8px;
   border-radius: 5px;
   border: 1px solid rgb(94, 94, 94);
+}
+
+.box-setup-content .occation-date h4 {
+  margin-top: 20px;
+}
+.box-setup-content .occation-date .date {
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid rgb(94, 94, 94);
+  padding: 8px;
+
+  width: 300px;
+}
+
+.collaborate .coll-title {
+  display: flex;
+  margin-bottom: 20px;
+}
+.collaborate .coll-title h4,
+a {
+  font-size: 20px;
+  margin-top: 20px;
+}
+.collabarate .coll-title h4 {
+  margin-right: 50px;
+}
+.collaborate .coll-title a:visited {
+  margin-bottom: 20px;
+  color: blue;
+}
+
+.collaborate .coll-contacts input {
+  width: 300px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid rgb(94, 94, 94);
+}
+
+.collaborate .coll-contacts {
+  width: 800px;
+}
+.collabarate .coll-contcts button {
+  border: none;
+  margin-left: 20px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  font-size: 18px;
+  padding: 15px;
+  cursor: pointer;
+  width: 150px;
+}
+
+.coll-msg {
+  margin-top: 20px;
+}
+.coll-msg h4 {
+  font-size: 20px;
+}
+
+.coll-msg textarea {
+  margin-top: 20px;
+  width: 800px;
+  height: 100px;
+}
+.prompt-msg-title {
+  margin-top: 20px;
+}
+.prompt-msg-title h4 {
+  margin-bottom: 10px;
+}
+ul {
+  list-style-type: none;
+}
+
+.next-steps {
+  display: flex;
+  justify-content: end;
+  margin-right: 30px;
+
+  margin-bottom: 30px;
+}
+.next-steps button {
+  background-color: black;
+  padding: 10px;
+  width: 150px;
+  border-radius: 15px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 30px;
 }
