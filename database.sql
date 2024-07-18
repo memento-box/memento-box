@@ -98,7 +98,21 @@ CREATE TABLE "user_box_thanks" (
 -- TODO: Ken
 INSERT INTO "box_ribbon" ("media_url")
 VALUES ('./boxes/black-blue-ribbon.png'),
-('./boxes/black-gold-bow.png');
+('./boxes/black-gold-bow.png'),
+('./boxes/black-gold-ribbon.png'),
+('./boxes/black-red-ribbon.png'),
+('./boxes/black-ribbon.png'),
+('./boxes/black-w&g-angled.png'),
+('./boxes/black-w&g-ribbon.png'),
+('./boxes/black-white-ribbon.png'),
+('./boxes/white-black-ribbon.png'),
+('./boxes/white-blue-ribbon.png'),
+('./boxes/white-gold-bow.png'),
+('./boxes/white-gold-ribbon.png'),
+('./boxes/white-red-ribbon.png'),
+('./boxes/white-ribbon.png'),
+('./boxes/white-w&g-angled.png'),
+('./boxes/white-w&g-ribbon.png');
 -- End TODO
 
 -- INSERT INTO "box_ribbon" ("media_url")
