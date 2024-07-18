@@ -93,6 +93,7 @@ CREATE TABLE "user_box_thanks" (
 	"user_id" integer references "user"
 );
 
+
 -- Sample data
 
 -- TODO: Ken
