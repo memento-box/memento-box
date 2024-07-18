@@ -1,37 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import './ThankYouPage.css';
 
 function ThankYouPage() {
-    let [collabs, setCollabs] = useState(['Lons', 'Sarah', 'Sean', 'Zoe']);
+    let [collabs, setCollabs] = useState([{first_name: 'Lons', last_name: 'N', id: '1'}, {first_name: 'Sarah',last_name: 'M', id: '2'}, {first_name: 'Sean', last_name: 'H', id: '3'}, {first_name: 'Zoe', last_name: 'L', id: '4'}]);
     let [message, setMessage] = useState();
-    let [receivers, setReceivers] = useState([]);
-    let [selectAll, setSelectAll] = useState(false);
+    let [isChecked, setIsChecked] = useState([]);
+    const { id } = useParams();
+
+    function getCollabs() {
+        axios.get('/api/thanks/collaborators', {boxID: id}).then((response) => {
+            setCollabs(response.data);
+        }).catch((error) => {
+            console.log('Error getting collaborators', error)
+        })
+    }
+
+    useEffect (() => {
+        getCollabs()
+    }, [])
 
     function handleSubmit(event) {
         event.preventDefault;
-        console.log(message);
+        if (isChecked.length === 0) {
+            alert('Please select someone to send the message!')
+        } else {
+        console.log(message, isChecked);
+        setMessage('');
+        }
     }
 
-    if(selectAll) {
-
+    function handleCheck(event) {
+        const checkedId = event.target.value;
+        if(event.target.checked) {
+            setIsChecked([...isChecked, checkedId]);
+        } else {
+            setIsChecked(isChecked.filter((id) => id !== checkedId)) 
+        }
     }
+
 
   return (
     <div id='pageGrid'>
         <h1 id='heading'>Give Thanks!</h1>
         <h4 id='messageTitle'>Send a message</h4>
         <form id='messageForm' onSubmit={(e) => handleSubmit(e)}>
-            <textarea id='message' onChange={(event) => setMessage(event.target.value)}/>
+            <textarea id='message' value={message} onChange={(event) => setMessage(event.target.value)}/>
             <div>
-            <input type='checkbox' id='selectAll' />
-            <label>Select All</label>
-            {collabs.map((person) => 
-            <div key={person}>
-                <input className='collaborator' type='checkbox' checked={isChecked} /> 
-                <label>{person}</label>
+            {collabs && (collabs.map((person) => 
+            <div key={person.id}>
+                <input className='collaborator' type='checkbox' value={person.id} onChange={(e) => handleCheck(e)} /> 
+                <label>{person.first_name} {person.last_name}</label>
             </div>
-            )}
+            ))}
             </div> 
             <input type='submit' value='Send'/>
         </form>

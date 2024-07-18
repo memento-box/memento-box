@@ -179,7 +179,7 @@ function App() {
           </ProtectedRoute>
 
           {/* Routes for three-toed-turtles */}
-          <Route exact path="/recipientbox">
+          <Route exact path="/recipientbox/:id">
             <RecipientBox />
           </Route>
           <Route exact path="/recipient/photos">
@@ -200,7 +200,7 @@ function App() {
           <Route exact path="/recipient/letters">
             <RecipientLetters />
           </Route>
-          <Route exact path="/thankyou">
+          <Route exact path="/thankyou/:id">
             <ThankYouPage />
           </Route>
 
