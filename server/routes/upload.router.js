@@ -91,8 +91,42 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
 
 /************************** POST VIDEO **************************/
 router.post("/video", rejectUnauthenticated, (req, res) => {
-    console.log(req.body);
-    res.sendStatus(201);
+
+    const upload = req.body
+    const user = req.user
+    console.log(user.id);
+
+    //res.sendStatus(201);
+  
+
+
+
+  const queryText = `
+    INSERT INTO "box_item"
+    VALUES (
+      "user_id" = $1,
+      "media_url" = $2,
+      "media_type" = $3,
+      "public_id" = $4);
+  `;
+  //"box_id" = $1,
+  const queryValues = {
+    //box_id: box_id,
+    user_id: user.id,
+    media_url: upload.url,
+    media_type: upload.resource_type,
+    public_id: upload.public_id,
+  };
+
+  pool
+    .query(queryText, [queryValues])
+    .then((res) => {
+      res.sendStatus(201);
+    })
+    .catch((e) => {
+      console.log("Error in server-side Video upload", e);
+      res.sendStatus(500);
+    }); 
 });
 
 
