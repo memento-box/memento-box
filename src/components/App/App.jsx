@@ -33,7 +33,7 @@ import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
 
 // Need to create these consolelog team
-// import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
+import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
 // import ContactUs from '../ContactUs/ContactUs';
 import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
 // import MyBoxes from '../User/MyBoxes';
@@ -159,7 +159,7 @@ function App() {
           {/* Routes for console-log */}
 
           <Route exact path="/box-setup-information">
-            {/* <BoxSetupInformation /> */}
+            <BoxSetupInformation />
           </Route>
 
           <Route exact path="/box-setup-design">
