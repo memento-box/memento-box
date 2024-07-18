@@ -121,6 +121,11 @@ router.post("/image", rejectUnauthenticated, (req, res) => {
 });
 
 /************************** POST VIDEO **************************/
+router.post("/video", rejectUnauthenticated, (req, res) => {
+    console.log(req.body);
+    res.sendStatus(201);
+});
+
 
 /************************** POST (PHOTO) LETTER **************************/
 
