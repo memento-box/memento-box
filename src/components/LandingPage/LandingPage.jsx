@@ -8,12 +8,6 @@ import Hero from '../Hero/Hero'
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const url = 'public/videos/memento-Intro.mp4';
-  // const introVideo = useRef(null);
-  // const toVideo = () => {
-  //   //  useRef with .focus in the function to target te video componenet? ref needed in video component.
-  //     let inputElement = introVideo.current;
-  //     inputElement.focus();
-  // };
 
   return (
     <div className="container">
@@ -21,8 +15,7 @@ function LandingPage() {
       <div id="text">
                 <h1>Digital gifts, <br /> done differently</h1>
                 <h6>Introducing the Memento Box</h6>
-                <a href="#video-wrapper" >Learn more</a>
-                {/* <button onClick={() => toVideo()}>Learn more</button> */}
+                <p>Learn more below</p>
       </div>
       <Hero />
       <div id="video-wrapper">

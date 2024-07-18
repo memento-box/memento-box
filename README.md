@@ -125,15 +125,72 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 ----
 
-## Email setup using MailChimp
+# MailChimp email
+
+MailChimp has a [breakdown of when you should use which of their APIs](https://mailchimp.com/developer/transactional/guides/send-first-email/#transactional-vs-marketing-email). 
+
+The following is a step-by-step guide for how MailChimp is integrated with this application.
+
+## Marketing email (newsletter) setup using MailChimp
 
 * If you have not already created a `.env` file at the root of the project, create one.
-* Create a MailChimp account.  You should be able to use a free account for the basic functionality of this application.
+* Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application.
 * [Create an API key in your account](https://mailchimp.com/help/about-api-keys/#Generate_an_API_key). 
-* Insert your API key into your `.env` file with the name `MAILCHIMP_SECRET`.  For example:
+* Insert your API key into your `.env` file with the name `MARKETING_KEY`.  For example:
 
 ```plaintext
-MAILCHIMP_SECRET=FooVX5hooooSAMPLEAPIKEYooood4mXV7RUt2N6v
+MARKETING_KEY=FooVX5hooooSAMPLEAPIKEYooood4mXV7RUt2N6v
 ```
 
+* Find your MailChimp data center.  It's at the start of the URL you visit when you're on your dashboard.  [Here's more information](https://mailchimp.com/developer/marketing/docs/fundamentals/#connecting-to-the-api).
+* Insert your data center into your `.env` file with the name `MARKETING_DC`.  For example:
 
+```plaintext
+MARKETING_DC=us12
+```
+
+* Find your MailChimp Audience ID by following the following path or using their [help center instructions](https://mailchimp.com/help/find-audience-id/):
+   * "Audience" > "Audience dashboard" > "Manage Audience" > "Settings"
+* Insert your data center into your `.env` file with the name `MARKETING_AUD_ID`.  For example:
+
+```plaintext
+MARKETING_AUD_ID=304g5398t4
+```
+
+## Transactional email (confirmations, etc.) setup using MailChimp
+
+* If you have not already created a `.env` file at the root of the project, create one.
+* Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application.
+* Navigate to Transactional email from the dashboard sidebar: "Automations" > "Transactional email"
+* Select "Try for free" if you are using a free account.
+* Select "Launch App" to sign into Mandrill using MailChimp.
+    * Note: The following are required for sending transactional emails using MailChimp:
+       * A domain
+       * Authentication/confirmation of the domain
+             * [Requires that you have access to your DNS](https://mailchimp.com/developer/transactional/docs/authentication-delivery/#configure-your-dns)
+       * An email address that can be provided as a "from email"
+* Set up your sending domain.
+* Authenticate your sending domain.
+* Navigate to Settings from the Mandrill dashboard sidebar
+* Create a new API key by selecting "+ New API Key"
+* Insert your API key into your `.env` file with the name `TRANSACTIONAL_KEY`.  For example:
+
+```plaintext
+TRANSACTIONAL_KEY=X5hooooSAMPLEAPIKEYoooodN6v
+```
+
+### To use the email template: 
+
+1. Create template for email in MailChimp account using template provided in this folder
+    1. Log into Mandrill using MailChimp account information (can access Mandrill from the MailChimp dashboard by navigating to "Automations" > "Transactional email" in the sidebar)
+    1. Navigate to email templates from the dashboard: "Outbound" > "Templates" > "+ Create a Template"
+    1. Name the template "Memento Box Gift Notif"
+       1. You can use another name, but you will then need to take note of the provided "Template Slug" and insert it into the API call, where it is referred to as the "template_name"
+    1. Select "Start Coding"
+    1. Copy/paste the provided emailTemplate.html into the HTML field.
+    1. Set template defaults as preferred.  Some suggestions:
+       1. From Address: your business email, possibly a designated account for administrative emails
+       1. From Name: "Memento Box"
+       1. Subject: "You've received a Memento Box!"
+    1. You can preview the content by selecting "Preview and Test".  Testing will allow you to input your email address and you will receive a test version of your email to your inbox, assuming that you have authenticated your domain properly. You can also either save the template as a draft ("Save Draft"), in which case the API call will not work, or publish it ("Publish") when it's final.
+ 1. Once your email is saved as a template, the API should correctly prompt the template to send with the appropriate dynamic content pulled from the application database and plugged in.
