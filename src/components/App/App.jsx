@@ -1,51 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Redirect,
   Route,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
+import Modal from "react-modal";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import Photos from '../Photos/Photos';
-import Videos from '../Videos/Videos';
-import Letters from '../Letters/Letters';
-import VoiceRecording from '../VoiceRecording/VoiceRecording';
-import RecipientBox from '../RecipientBox/RecipientBox';
-import RecipientPhotos from '../RecipientPhotos/RecipientPhotos';
-import RecipientLetters from '../RecipientLetters/RecipientLetters';
-import RecipientVoiceNotes from '../RecipientVoiceNotes/RecipientVoiceNotes';
-import RecipientGifts from '../RecipientGifts/RecipientGifts';
-import RecipientMixtape from '../RecipientMixtape/RecipientMixtape';
-import RecipientVideos from '../RecipientVideos/RecipientVideos';
+import AboutPage from "../AboutPage/AboutPage";
+import UserPage from "../UserPage/UserPage";
+import InfoPage from "../InfoPage/InfoPage";
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import Photos from "../Photos/Photos";
+import Videos from "../Videos/Videos";
+import Letters from "../Letters/Letters";
+import VoiceRecording from "../VoiceRecording/VoiceRecording";
+import RecipientBox from "../RecipientBox/RecipientBox";
+import RecipientPhotos from "../RecipientPhotos/RecipientPhotos";
+import RecipientLetters from "../RecipientLetters/RecipientLetters";
+import RecipientVoiceNotes from "../RecipientVoiceNotes/RecipientVoiceNotes";
+import RecipientGifts from "../RecipientGifts/RecipientGifts";
+import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
+import RecipientVideos from "../RecipientVideos/RecipientVideos";
 
 // Need to create these consolelog team
-// import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
-// import BoxSetupDesign from '../BoxSetupDesign/BoxSetupDesign';
+import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
 // import ContactUs from '../ContactUs/ContactUs';
+import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
 // import MyBoxes from '../User/MyBoxes';
 
-import './App.css';
+import "./App.css";
+
+// Setting the root element for the modal for accessibility
+Modal.setAppElement("#react-root");
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
+  // Fetch user data on component mount
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -85,46 +90,37 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/login">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the login page
               <LoginPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/registration">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the registration page
               <RegisterPage />
-            }
+            )}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
+          <Route exact path="/home">
+            {user.id ? (
+              // If the user is already logged in,
               // redirect them to the /user page
               <Redirect to="/user" />
-              :
+            ) : (
               // Otherwise, show the Landing page
               <LandingPage />
-            }
+            )}
           </Route>
 
           {/* Routes for box-turtles */}
@@ -162,37 +158,46 @@ function App() {
 
           {/* Routes for console-log */}
 
-          {/* <Route
-            exact
-            path="/box-setup-information"
-          >
+          <Route exact path="/box-setup-information">
             <BoxSetupInformation />
           </Route>
 
-          <Route
-            exact
-            path="/box-setup-design"
-          >
+          <Route exact path="/box-setup-design">
             <BoxSetupDesign />
           </Route>
 
-          <Route
-            exact
-            path="/contact-us"
-          >
-            <ContactUs />
+          <Route exact path="/contact-us">
+            {/* Dont forget to take it off the comment */}
+            {/* <ContactUs /> */}
           </Route>
 
-          <ProtectedRoute
-            exact
-            path="/user/my-boxes"
-          >
-            <MyBoxes />
-          </ProtectedRoute> */}
+          <ProtectedRoute exact path="/user/my-boxes">
+            {/* Dont forget to take it off the comment */}
+
+            {/* <MyBoxes /> */}
+          </ProtectedRoute>
 
           {/* Routes for three-toed-turtles */}
-          <Route path="/recipientbox">
-              <RecipientBox />
+          <Route exact path="/recipientbox">
+            <RecipientBox />
+          </Route>
+          <Route exact path="/recipient/photos">
+            <RecipientPhotos />
+          </Route>
+          <Route exact path="/recipient/videos">
+            <RecipientVideos />
+          </Route>
+          <Route exact path="/recipient/voicenotes">
+            <RecipientVoiceNotes />
+          </Route>
+          <Route exact path="/recipient/gifts">
+            <RecipientGifts />
+          </Route>
+          <Route exact path="/recipient/mixtape">
+            <RecipientMixtape />
+          </Route>
+          <Route exact path="/recipient/letters">
+            <RecipientLetters />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
