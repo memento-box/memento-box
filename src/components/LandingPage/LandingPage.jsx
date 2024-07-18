@@ -20,8 +20,6 @@ function LandingPage() {
     setSelectedBox(null);
   };
 
-  const url = 'public/videos/memento-Intro.mp4';
-
   return (
     <div className="container">
       <h2>{heading}</h2>
