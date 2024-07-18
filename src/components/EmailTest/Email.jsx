@@ -20,6 +20,10 @@
 //     vii. You can preview the content by selecting "Preview and Test".  Testing will allow you to input your email address and you will receive a test version of your email to your inbox, assuming that you have authenticated your domain properly. 
 //          You can also either save the template as a draft ("Save Draft"), in which case the API call will not work, or publish it ("Publish") when it's final.
 // 5. Once your email is saved as a template, the API should correctly prompt the template to send with the appropriate dynamic content pulled from the application database and plugged in.
+// NOTE: The free version of MailChimp Transactional/Mandrill will ONLY send to email addresses at the domain that you have registered.  This means you cannot effectively use the free version for more than testing.  
+// NOTE: Emails MUST come from the same domain that's associated with the account/API key.  The API request requires a "from email" and, because of this requirement, I have written this part of the 
+// request as "from_email": `${process.env.FROM_EMAIL}` because I had to use my personal domain for this part of the project.  You can insert the from email in your .env file as "FROM_EMAIL=youremail@yourdomain.com" and use this same setup or you can replace 
+// `${process.env.FROM_EMAIL}` with "youremail@yourdomain.com" (include the quotation marks if you're plugging your email into the API call).
 
 // --------------------------------------------
 
@@ -32,11 +36,14 @@
 // 2. How are we pulling from the database?  What will trigger the send on the front end?
 // 3. We need images that are already hosted in order for them to appear in the email.
 //    These need to be plugged into the email HTML and into the API call, which attempts to insert an image and currently does not have a link to that image.
+//    SOLVED: hosting the images on my domain for the purposes of this demo; they will be removed before handoff.
 // 4. We also need a link to the particular box for the recipient to be redirected to the application and their particular box.
 //    This then needs to be plugged into the HTML as dynamic content
+//    SOLVED: redirecting to http://localhost:5173/#/recipientbox for the purposes of the demo.  The next presenter will pull the ID, and we'll note on the router that we're using the simple ID for the sake of time but that a unique ID will need to be used for safety purposes in the future.
 // 5. We need a bit of code that takes the occasion recorded in the database and translates each into an appropriate greeting.  E.g. "birthday" becomes "Happy Birthday", etc.  
 //    No punctuation needed, I've already hard-coded that for the greeting and just need to plug in the dynamic content.
-// 6. We need a "from_email" and a decision on whether we want the "from_name" to be "Memento Box" or the sender.  I don't know if the "from_email" needs to be a real, functioning email.
+// 6. We need a "from_email" and a decision on whether we want the "from_name" to be "Memento Box" or the sender.
+//    SOLVED: I'm plugging an email on my domain into the .env file and using that to pull it through without uploading personal stuff to the shared repo
 
 // STRETCH GOALS:
 // 1. Timed delivery, which would require input of a UTC timestamp in YYYY-MM-DD HH:MM:SS format.
@@ -75,8 +82,8 @@ let scheduledTime = "";
         ],
         "message": {
             "text": `Your friends have sent you a Memento Box!  Follow this link to view the box: ${boxUrl}.`,
-            "subject": "You've received a Memento Box!",
-            "from_email": "box@memento.com",
+            "subject": `${recipientName}, you've received a Memento Box!`,
+            "from_email": `${process.env.FROM_EMAIL}`,
             "from_name": "Memento Box",
             "to": [
                 {
@@ -257,9 +264,9 @@ const call = {
                 </body>
             </html>
         `,
-        "text": `Your friends have sent you a Memento Box!  Follow this link to view the box: ${boxUrl}.`,
+        "text": `${recipientName}, your friends have sent you a Memento Box!  Follow this link to view the box: ${boxUrl}.`,
         "subject": "You've received a Memento Box!",
-        "from_email": "box@memento.com",
+        "from_email": `${process.env.FROM_EMAIL}`,
         "from_name": "Memento Box",
         "to": [
             {

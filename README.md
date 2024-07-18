@@ -129,7 +129,7 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 MailChimp has a [breakdown of when you should use which of their APIs](https://mailchimp.com/developer/transactional/guides/send-first-email/#transactional-vs-marketing-email). 
 
-The following is a step-by-step guide for how MailChimp is integrated with this application.
+The following is a step-by-step guide for how MailChimp is integrated with this application and how you can implement it in your own instance.
 
 ## Marketing email (newsletter) setup using MailChimp
 
@@ -157,23 +157,20 @@ MARKETING_DC=us12
 MARKETING_AUD_ID=304g5398t4
 ```
 
-## Transactional email (confirmations, etc.) setup using MailChimp
+## Transactional email (gift emails, etc.) setup using MailChimp
 
-* If you have not already created a `.env` file at the root of the project, create one.
-* Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application.
-* Navigate to Transactional email from the dashboard sidebar: "Automations" > "Transactional email"
-* Select "Try for free" if you are using a free account.
-* Select "Launch App" to sign into Mandrill using MailChimp.
-    * Note: The following are required for sending transactional emails using MailChimp:
-       * A domain
-       * Authentication/confirmation of the domain
-             * [Requires that you have access to your DNS](https://mailchimp.com/developer/transactional/docs/authentication-delivery/#configure-your-dns)
-       * An email address that can be provided as a "from email"
-* Set up your sending domain.
-* Authenticate your sending domain.
-* Navigate to Settings from the Mandrill dashboard sidebar
-* Create a new API key by selecting "+ New API Key"
-* Insert your API key into your `.env` file with the name `TRANSACTIONAL_KEY`.  For example:
+1. If you have not already created a `.env` file at the root of the project, create one.
+1. Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application. <br>
+__NOTE:__ The free version of MailChimp Transactional/Mandrill will ONLY send to email addresses at the domain that you have registered.  This means you cannot effectively use the free version for more than testing/demos.
+
+1. Navigate to Transactional email from the dashboard sidebar: "Automations" > "Transactional email"
+1. Select "Try for free" if you are using a free account.
+1. Select "Launch App" to sign into Mandrill using MailChimp.
+1. Set up your sending domain
+1. [Authenticate your sending domain](https://mailchimp.com/developer/transactional/docs/authentication-delivery/#configure-your-dns)
+1. Navigate to Settings from the Mandrill dashboard sidebar
+1. Create a new API key by selecting "+ New API Key"
+1. Insert your API key into your `.env` file with the name `TRANSACTIONAL_KEY`.  For example:
 
 ```plaintext
 TRANSACTIONAL_KEY=X5hooooSAMPLEAPIKEYoooodN6v
@@ -189,8 +186,9 @@ TRANSACTIONAL_KEY=X5hooooSAMPLEAPIKEYoooodN6v
     1. Select "Start Coding"
     1. Copy/paste the provided emailTemplate.html into the HTML field.
     1. Set template defaults as preferred.  Some suggestions:
-       1. From Address: your business email, possibly a designated account for administrative emails
+       1. From Address: your business email, possibly a designated account for administrative emails.  This email __must__ use the same domain as the domain you have registered with MailChimp/Mandrill for your transactional emails.
        1. From Name: "Memento Box"
        1. Subject: "You've received a Memento Box!"
     1. You can preview the content by selecting "Preview and Test".  Testing will allow you to input your email address and you will receive a test version of your email to your inbox, assuming that you have authenticated your domain properly. You can also either save the template as a draft ("Save Draft"), in which case the API call will not work, or publish it ("Publish") when it's final.
  1. Once your email is saved as a template, the API should correctly prompt the template to send with the appropriate dynamic content pulled from the application database and plugged in.
+    1. __NOTE:__ Emails MUST come from the same domain that's associated with the account/API key.  The API request requires a from email.  Because the project does not currently have a domain, this parameter is specified as  `` "from_email": `${process.env.FROM_EMAIL}` `` in order that the tester can use their own domain.  To use your domain, insert the from email in your `.env` file as `FROM_EMAIL=youremail@yourdomain.com` and use the current setup.  Alternately, you can replace `${process.env.FROM_EMAIL}` with `"youremail@yourdomain.com"` within the API request.
