@@ -30,15 +30,8 @@
     "react": "^18.2.0",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-modal": "^3.16.1",
     "react-player": "^2.16.0",
-=======
-    "react-modal": "^3.16.1",
-    "react-player": "^2.16.0",
-    "react-modal": "^3.16.1",
-    "react-icons": "^5.2.1",
->>>>>>> c8febf528d9d57ef7849846a0180026aa7dcfa56
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.4",
     "react-router-hash-link": "^2.4.3",
