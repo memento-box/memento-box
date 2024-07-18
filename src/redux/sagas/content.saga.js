@@ -44,11 +44,24 @@ function* fetchLetters(action) {
         console.log('Error in fetch letters(sagas)',err);
     }
 }
+/** BOX CONTENT **/
+function* fetchContent(action) {
+    const box_id = action.payload;
+    try{
+        yield put({type:'FETCH_VOICE', payload:box_id});
+        yield put({type:'FETCH_PHOTOS', payload:box_id});
+        yield put({type:'FETCH_VIDEOS', payload:box_id});
+        yield put({type:'FETCH_LETTERS', payload:box_id});
+    } catch(err) {
+        console.log('Error fetching box content(sagas):',err);
+    }
+}
 /** CONTENT SAGA **/
-function* contentSaga () {
+export default function* contentSaga () {
     yield takeLatest('FETCH_VOICE', fetchVoice);
     yield takeLatest('UPLOAD_VOICE', uploadVoice);
     yield takeLatest('FETCH_PHOTOS', fetchPhotos);
     yield takeLatest('FETCH_VIDEOS', fetchVideos);
     yield takeLatest('FETCH_LETTERS', fetchLetters);
+    yield takeLatest('FETCH_BOX_CONTENT', fetchContent);
 };
