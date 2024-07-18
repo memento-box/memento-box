@@ -2,32 +2,41 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
+-- Done
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
 	"first_name" varchar(25),
 	"last_name" varchar(25),
-	"email" varchar(400),
+	-- "email" varchar(400), -- username will be the email
 	"birthday" date,
 	"password" varchar(1000),
 	"created_at" date default current_date
 );
 
+-- Done
 CREATE TABLE "box_ribbon" (
     "id" SERIAL PRIMARY KEY,
-	"media_url" varchar(2048)
+	"media_url" varchar(2048) -- either local path or absolute path
+);
+
+CREATE TABLE "occasion" (
+    "id" SERIAL PRIMARY KEY,
+	"name" varchar(200) -- birthday, etc.
 );
 
 CREATE TABLE "memento_box" (
     "id" SERIAL PRIMARY KEY,
-	"box_color" varchar(25),
-	"delivery_date" date,
-	"collaborator_note" varchar(300) null,
-	"user_id" integer references "user",
-	"created_at" date default current_date,
-	"box_ribbon_id" integer references "box_ribbon",
-	"recipient_name" varchar(50),
-	"recipient_email" varchar(50)
+	-- "box_color" varchar(25), -- not needed, this is behind the ribbon in the image
+	"delivery_date" date, -- when is the occasion
+	"collaborator_note" varchar(1000) null, -- write a message...
+	"user_id" integer references "user", -- req.user.id of logged in user
+	"created_at" date default current_date, -- auto populated, not needed in query
+	"box_ribbon_id" integer references "box_ribbon", -- ribbon selection
+	"recipient_name" varchar(100), -- who we are celebrating
+	"recipient_email" varchar(100), -- input field below name
+	"occasion_id" integer references "occasion",
+	"unique_id" varchar(1000) -- create this on the server (stretch)
 );
 
 CREATE TABLE "media_type" (
@@ -35,6 +44,15 @@ CREATE TABLE "media_type" (
 	"type" varchar(200)
 );
 
+INSERT INTO "media_type" ("type")
+VALUES 
+('photo'),
+('video'),
+('photoLetter'),
+('textLetter'),
+('voice');
+
+-- really nice to have but likely not a blocker (stretch)
 CREATE TABLE "collaborator" (
     "id" SERIAL PRIMARY KEY,
 	"box_id" integer references "memento_box",
@@ -50,16 +68,17 @@ CREATE TABLE "collaborator" (
 CREATE TABLE "box_item" (
     "id" SERIAL PRIMARY KEY,
 	"box_id" integer references "memento_box",
-	"physical_gift" integer,
+	-- "physical_gift" integer, -- Out of scope
 	"user_id" integer references "user",
 	"media_url" varchar(2048),
-	"title" varchar(200),
+	-- "title" varchar(200), -- I don't think this is needed
 	"description" varchar(1000),
 	"media_type" integer references "media_type",
-	"created_at" date default current_date,
-	"box_code" varchar(1028)
+	"created_at" date default current_date
+	-- "box_code" varchar(1028) -- I don't think this is needed
 );
 
+-- Stretch
 CREATE TABLE "box_thanks" (
     "id" SERIAL PRIMARY KEY,
 	"message" varchar(1000),
@@ -67,6 +86,7 @@ CREATE TABLE "box_thanks" (
 	"created_at" date default current_date
 );
 
+-- Stretch
 CREATE TABLE "user_box_thanks" (
     "id" SERIAL PRIMARY KEY,
 	"box_thanks_id" integer references "box_thanks",
@@ -74,17 +94,20 @@ CREATE TABLE "user_box_thanks" (
 );
 
 -- Sample data
+
+-- TODO: Ken
 INSERT INTO "box_ribbon" ("media_url")
-VALUES ('https://m.media-amazon.com/images/I/81GcbpZPU5L.jpg'),
-('https://i5.walmartimages.com/seo/PMU-Pull-String-Bows-Gift-Wedding-Birthdays-Anniversaries-Ribbon-Flowers-Basket-Decoration-Large-Bow-Wrapping-5-Inch-20-Loops-Gold-Pkg-25_f6c34141-3c12-456a-98e8-0afeb2ce33ed.b8639a1a56c9df6e20754fa95fc2a344.jpeg'),
-('https://eagawards.com/cdn/shop/products/Silver-Shovel-Bow_2048x.png?v=1690481975');
+VALUES ('./boxes/black-blue-ribbon.png'),
+('./boxes/black-gold-bow.png');
+-- End TODO
 
-INSERT INTO "memento_box" ("box_color", "delivery_date", "collaborator_note", "user_id", "box_ribbon_id", "recipient_name", "recipient_email")
-VALUES ('dark', '2024-08-19', 'Happy birthday, friend!', 1, 2, 'Jason', 'jason@email.com');
+-- INSERT INTO "box_ribbon" ("media_url")
+-- VALUES ('https://m.media-amazon.com/images/I/81GcbpZPU5L.jpg'),
+-- ('https://i5.walmartimages.com/seo/PMU-Pull-String-Bows-Gift-Wedding-Birthdays-Anniversaries-Ribbon-Flowers-Basket-Decoration-Large-Bow-Wrapping-5-Inch-20-Loops-Gold-Pkg-25_f6c34141-3c12-456a-98e8-0afeb2ce33ed.b8639a1a56c9df6e20754fa95fc2a344.jpeg'),
+-- ('https://eagawards.com/cdn/shop/products/Silver-Shovel-Bow_2048x.png?v=1690481975');
 
-INSERT INTO "collaborator" ("box_id", "user_id", "email", "first_name", "last_name")
-VALUES (1, 1, 'alex@smith.com', 'Alex', 'Smith'),
-(1, 1, 'alex@martinez.com', 'Alex', 'Martinez'),
-(1, 1, 'max@jones.com', 'Max', 'Jones'),
-(1, 1, 'eliot@matthews.com', 'Eliot', 'Matthews');
+-- TODO: Matt
+-- INSERT INTO "occasions" ...
+
+-- End TODO
 
