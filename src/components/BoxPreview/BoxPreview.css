@@ -9,13 +9,16 @@
   
   .image-container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .image-container img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto 20px auto;
+    margin: 0 auto;
   }
   
   .overlay {
@@ -25,41 +28,13 @@
     padding: 10px;
     border-radius: 5px;
     transform: translate(-50%, -50%);
-    pointer-events: none; 
+    pointer-events: none;
+    white-space: nowrap;
+    display: none;
   }
   
-  .image-container area {
-    cursor: pointer;
-  }
-  
-  .overlay.photos {
-    top: 177.5px; 
-    left: 165px;  
-  }
-  
-  .overlay.gift {
-    top: 345px; 
-    left: 165px;  
-  }
-  
-  .overlay.music {
-    top: 460px;  
-    left: 165px;  
-  }
-  
-  .overlay.videos {
-    top: 165px;  
-    left: 382.5px; 
-  }
-  
-  .overlay.voice-notes {
-    top: 302.5px; 
-    left: 387.5px; 
-  }
-  
-  .overlay.letters {
-    top: 435px;  
-    left: 387.5px; 
+  .image-container:hover .overlay {
+    display: block;
   }
   
   .box-content h4 {
@@ -75,5 +50,17 @@
   
   .box-content ul li {
     margin: 5px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .overlay {
+      font-size: 0.8em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .overlay {
+      font-size: 0.6em;
+    }
   }
   
