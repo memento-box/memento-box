@@ -93,6 +93,7 @@ CREATE TABLE "user_box_thanks" (
 	"user_id" integer references "user"
 );
 
+
 -- Sample data
 
 -- TODO: Ken
@@ -100,6 +101,23 @@ INSERT INTO "box_ribbon" ("media_url")
 VALUES ('./boxes/black-blue-ribbon.png'),
 ('./boxes/black-gold-bow.png');
 -- End TODO
+
+-- INSERT INTO "box_ribbon" ("media_url")
+-- VALUES ('https://m.media-amazon.com/images/I/81GcbpZPU5L.jpg'),
+-- ('https://i5.walmartimages.com/seo/PMU-Pull-String-Bows-Gift-Wedding-Birthdays-Anniversaries-Ribbon-Flowers-Basket-Decoration-Large-Bow-Wrapping-5-Inch-20-Loops-Gold-Pkg-25_f6c34141-3c12-456a-98e8-0afeb2ce33ed.b8639a1a56c9df6e20754fa95fc2a344.jpeg'),
+-- ('https://eagawards.com/cdn/shop/products/Silver-Shovel-Bow_2048x.png?v=1690481975');
+
+-- TODO: Matt
+-- INSERT INTO "occasions" ...
+INSERT INTO "occasions" ("name") VALUES
+    ('Birthday'),
+    ('Wedding'),
+    ('Anniversary'),
+    ('Graduation'),
+    ('Get Well Soon'),
+    ('Thank You'),
+    ('Retirement'),
+    ('In Memory Of');
 
 -- INSERT INTO "box_ribbon" ("media_url")
 -- VALUES ('https://m.media-amazon.com/images/I/81GcbpZPU5L.jpg'),
