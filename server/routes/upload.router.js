@@ -88,6 +88,39 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
 });
 
 /************************** POST PHOTO **************************/
+router.post("/image", rejectUnauthenticated, (req, res) => {
+  const user = req.user;
+
+  const { box_id, public_id, secure_url } = req.body;
+
+  const queryText = `
+    INSERT INTO "box_item",
+    VALUES 
+      "box_id" = $1,
+      "user_id" = $2,
+      "media_url" = $3,
+      "media_type" = $4,
+      "public_id" = $5;
+  `;
+
+  const queryValues = {
+    box_id: box_id,
+    user_id: user,
+    media_url: secure_url,
+    media_type: mediaType.image,
+    public_id: public_id,
+  };
+
+  pool
+    .query(queryText, queryValues)
+    .then((res) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log("Error in POST IMAGE NOTE :", err);
+      res.sendStatus(500);
+    });
+});
 
 /************************** POST VIDEO **************************/
 
