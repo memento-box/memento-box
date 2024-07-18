@@ -13,116 +13,68 @@ const BoxPreview = ({ box }) => {
   };
 
   const renderContent = () => {
-    switch(box) {
-      case 'box1':
-        return (
-          <div className="box-content">
-            <div className="image-container">
-              <img src="/RecipientBoxOpen.png" alt="Black Angled Box" useMap="#image-map" />
-              <map name="image-map">
-                <area 
-                  alt="Video Camera" 
-                  title="Video Camera" 
-                  coords="50,50,150,150" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('video-camera')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-                <area 
-                  alt="Camera" 
-                  title="Camera" 
-                  coords="200,200,300,300" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('camera')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-                <area 
-                  alt="Microphone" 
-                  title="Microphone" 
-                  coords="350,350,450,450" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('microphone')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-                <area 
-                  alt="Letters" 
-                  title="Letters" 
-                  coords="500,500,600,600" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('letters')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-              </map>
-              {hoveredItem === 'video-camera' && <div className="overlay video-camera">Videos</div>}
-              {hoveredItem === 'camera' && <div className="overlay camera">Photos</div>}
-              {hoveredItem === 'microphone' && <div className="overlay microphone">Voice Notes</div>}
-              {hoveredItem === 'letters' && <div className="overlay letters">Letters</div>}
+    return (
+      <div className="box-content">
+        <div className="image-container">
+          <img src="/RecipientBoxOpen.png" alt="Box" useMap="#image-map" />
+          <map name="image-map">
+            <area 
+              alt="Camera" 
+              title="Photos" 
+              coords="100,70,230,285" 
+              shape="rect" 
+              onMouseEnter={() => handleMouseEnter('Photos')} 
+              onMouseLeave={handleMouseLeave}
+            />
+            <area 
+              alt="Gift" 
+              title="Gift" 
+              coords="100,290,230,400" 
+              shape="rect" 
+              onMouseEnter={() => handleMouseEnter('Gift')} 
+              onMouseLeave={handleMouseLeave}
+            />
+            <area 
+              alt="Cassette Tape" 
+              title="Music" 
+              coords="90,410,240,510" 
+              shape="rect" 
+              onMouseEnter={() => handleMouseEnter('Music')} 
+              onMouseLeave={handleMouseLeave}
+            />
+            <area 
+              alt="Video Camera" 
+              title="Videos" 
+              coords="255,70,510,260" 
+              shape="rect" 
+              onMouseEnter={() => handleMouseEnter('Videos')} 
+              onMouseLeave={handleMouseLeave}
+            />
+            <area 
+              alt="Microphone" 
+              title="Voice Notes" 
+              coords="255,275,520,330" 
+              shape="rect" 
+              onMouseEnter={() => handleMouseEnter('Voice Notes')} 
+              onMouseLeave={handleMouseLeave}
+            />
+            <area 
+              alt="Letters" 
+              title="Letters" 
+              coords="255,360,520,510" 
+              shape="rect" 
+              onMouseEnter={() => handleMouseEnter('Letters')} 
+              onMouseLeave={handleMouseLeave}
+            />
+          </map>
+          {hoveredItem && (
+            <div className={`overlay ${hoveredItem.toLowerCase().replace(' ', '-')}`}>
+              {hoveredItem}
             </div>
-            <h4>Items inside the Black Angled Box:</h4>
-            <ul>
-              <li>Photos</li>
-              <li>Letters</li>
-              <li>Voice Notes</li>
-              <li>Videos</li>
-            </ul>
-          </div>
-        );
-      case 'box2':
-        return (
-          <div className="box-content">
-            <div className="image-container">
-              <img src="/RecipientBoxOpen.png" alt="White Ribbon Box" useMap="#image-map" />
-              <map name="image-map">
-                <area 
-                  alt="Video Camera" 
-                  title="Video Camera" 
-                  coords="50,50,150,150" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('video-camera')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-                <area 
-                  alt="Camera" 
-                  title="Camera" 
-                  coords="200,200,300,300" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('camera')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-                <area 
-                  alt="Microphone" 
-                  title="Microphone" 
-                  coords="350,350,450,450" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('microphone')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-                <area 
-                  alt="Letters" 
-                  title="Letters" 
-                  coords="500,500,600,600" 
-                  shape="rect" 
-                  onMouseEnter={() => handleMouseEnter('letters')} 
-                  onMouseLeave={handleMouseLeave}
-                />
-              </map>
-              {hoveredItem === 'video-camera' && <div className="overlay video-camera">Videos</div>}
-              {hoveredItem === 'camera' && <div className="overlay camera">Photos</div>}
-              {hoveredItem === 'microphone' && <div className="overlay microphone">Voice Notes</div>}
-              {hoveredItem === 'letters' && <div className="overlay letters">Letters</div>}
-            </div>
-            <h4>Items inside the White Ribbon Box:</h4>
-            <ul>
-              <li>Photos</li>
-              <li>Letters</li>
-              <li>Voice Notes</li>
-              <li>Videos</li>
-            </ul>
-          </div>
-        );
-      default:
-        return null;
-    }
+          )}
+        </div>
+      </div>
+    );
   };
 
   return (

@@ -1,4 +1,3 @@
-/* BoxPreview.css */
 .box-preview {
     padding: 20px;
     background-color: #f9f9f9;
@@ -26,31 +25,41 @@
     padding: 10px;
     border-radius: 5px;
     transform: translate(-50%, -50%);
-    pointer-events: none; /* Prevent the overlay from interfering with hover events */
+    pointer-events: none; 
   }
   
   .image-container area {
     cursor: pointer;
   }
   
-  .overlay.video-camera {
-    top: 20%;
-    left: 20%;
+  .overlay.photos {
+    top: 177.5px; 
+    left: 165px;  
   }
   
-  .overlay.camera {
-    top: 40%;
-    left: 40%;
+  .overlay.gift {
+    top: 345px; 
+    left: 165px;  
   }
   
-  .overlay.microphone {
-    top: 60%;
-    left: 60%;
+  .overlay.music {
+    top: 460px;  
+    left: 165px;  
+  }
+  
+  .overlay.videos {
+    top: 165px;  
+    left: 382.5px; 
+  }
+  
+  .overlay.voice-notes {
+    top: 302.5px; 
+    left: 387.5px; 
   }
   
   .overlay.letters {
-    top: 80%;
-    left: 80%;
+    top: 435px;  
+    left: 387.5px; 
   }
   
   .box-content h4 {
