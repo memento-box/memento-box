@@ -48,8 +48,9 @@ router.get('/collaborators', (req, res) => {
 
   router.get('/greeting', (req, res) => {
     queryText = `
-      SELECT "memento_box"."collaborator_note" AS "greeting" FROM "memento_box"
-      WHERE "memento_box"."id" = 1;
+      SELECT "occasion"."name" AS "greeting" FROM "occasion"
+      JOIN "memento_box" ON "memento_box"."occasion_id" = "occaasion"."id"
+      WHERE "memento_box"."id" = $1;
     `;
     pool
         .query(queryText, [req.body.boxID])
