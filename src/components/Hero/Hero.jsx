@@ -8,8 +8,10 @@ function Hero() {
                 <h6>Introducing the Memento Box</h6>
                 <button>Learn more</button>
             </div>
+            <div className='box-wrapper' >
                 <img src="/boxes/white-red-ribbon.png" id="closedBox"/>
                 <img src="/RecipientBoxOpen.png" id="hoverBox"/>
+            </div>
         </div>
     )
 };
