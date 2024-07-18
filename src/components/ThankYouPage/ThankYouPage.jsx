@@ -5,21 +5,21 @@ import axios from 'axios';
 import './ThankYouPage.css';
 
 function ThankYouPage() {
-    let [collabs, setCollabs] = useState([{first_name: 'Lons', last_name: 'N', id: '1'}, {first_name: 'Sarah',last_name: 'M', id: '2'}, {first_name: 'Sean', last_name: 'H', id: '3'}, {first_name: 'Zoe', last_name: 'L', id: '4'}]);
+    let [collabs, setCollabs] = useState([{first_name: 'David', id: '4'}, {first_name: 'Erik', id: '5'}, {first_name: 'Michael', id: '6'}]);
     let [message, setMessage] = useState();
     let [isChecked, setIsChecked] = useState([]);
     const { id } = useParams();
 
-    function getCollabs() {
-        axios.get('/api/thanks/collaborators', {boxID: id}).then((response) => {
-            setCollabs(response.data);
-        }).catch((error) => {
-            console.log('Error getting collaborators', error)
-        })
-    }
+    // function getCollabs() {
+    //     axios.get(`/api/thanks/collaborators/${id}`).then((response) => {
+    //         setCollabs(response.data);
+    //     }).catch((error) => {
+    //         console.log('Error getting collaborators', error)
+    //     })
+    // }
 
     useEffect (() => {
-        getCollabs()
+        // getCollabs()
     }, [])
 
     function handleSubmit(event) {

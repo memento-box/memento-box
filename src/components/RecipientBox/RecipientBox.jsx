@@ -16,7 +16,7 @@ function RecipientBox() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [greeting, setGreeting] = useState('Happy Birthday');
-  const [collabs, setCollabs] = useState(['Lons', 'Sarah', 'Sean', 'Zoe']);
+  const [collabs, setCollabs] = useState(['David', 'Erik', 'Michael']);
   const history = useHistory();
   const { id } = useParams();
 
