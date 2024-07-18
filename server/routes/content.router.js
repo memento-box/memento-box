@@ -46,6 +46,47 @@ router.get("/voice/:id", rejectUnauthenticated, (req, res) => {
     });
 });
 
+/************************** DELETE VOICE **************************/
+router.delete("/voice/:id", rejectUnauthenticated, async (req, res) => {
+  const user = req.user.id;
+  const item = req.params.id;
+
+  try {
+    const boxItemResponse = await pool.query(`
+      SELECT "user_id", "box_id"
+      FROM "box_item"
+      WHERE "id" = $1;
+    `, [item]);
+
+    const { user_id: itemOwner, box_id } = boxItemResponse.rows[0];
+
+    const mementoBoxResponse = await pool.query(`
+      SELECT "user_id"
+      FROM "memento_box"
+      WHERE "box_id" = $1;
+    `, [box_id]);
+
+    const isAdmin = mementoBoxResponse.rows.some(row => row.user_id === user);
+
+    if (user !== itemOwner && !isAdmin) {
+      return res.status(403).json({
+        message: "You cannot delete another user's content without admin status"
+      });
+    }
+
+    await pool.query(`
+      DELETE FROM "box_item"
+      WHERE "id" = $1;
+    `, [item]);
+
+    res.sendStatus(200);
+  } catch (err) {
+    console.error("Error deleting voice note:", err);
+    res.sendStatus(500);
+  }
+});
+
+
 /************************** GET PHOTO **************************/
 
 /************************** GET VIDEO **************************/
