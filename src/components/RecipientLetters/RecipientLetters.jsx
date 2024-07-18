@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RecipientLetters.css';
-import letterIcon from '/icons/letter.png'; 
+import letterIcon from '/icons/letter.png';
 
 function RecipientLetters({ onBack }) {
   const [selectedLetter, setSelectedLetter] = useState(null);
@@ -8,8 +8,8 @@ function RecipientLetters({ onBack }) {
 
   useEffect(() => {
     const fetchLetters = async () => {
-      const letterFiles = ['letter1.txt', 'letter2.txt', 'letter3.txt', 'letter4.txt'];
-      const letterSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const letterFiles = ['letter1.txt', 'letter2.txt', 'letter3.txt'];
+      const letterSenders = ['David', 'Erik', 'Michael'];
 
       const fetchedLetters = await Promise.all(
         letterFiles.map(async (file, index) => {

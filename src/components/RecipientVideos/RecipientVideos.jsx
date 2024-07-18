@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RecipientVideos.css';
-import videoIcon from '/icons/video-player.png'; // Adjust the path if necessary
+import videoIcon from '/icons/video-player.png';
 
 function RecipientVideos({ onBack }) {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -8,13 +8,12 @@ function RecipientVideos({ onBack }) {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const videoFiles = ['video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4'];
-      const videoSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const videoFiles = ['video1.mp4', 'video2.mp4', 'video3.mp4'];
+      const videoSenders = ['David', 'Erik', 'Michael'];
       const videoCaptions = [
         "Tortoises can live over 100 years. Happy Birthday!",
         "There are over 300 species of turtles. Happy Birthday!",
-        "Turtles are reptiles. Happy Birthday!",
-        "Some turtles can breathe through their butts. Happy Birthday!"
+        "Turtles are reptiles. Happy Birthday!"
       ];
 
       const fetchedVideos = videoFiles.map((file, index) => ({

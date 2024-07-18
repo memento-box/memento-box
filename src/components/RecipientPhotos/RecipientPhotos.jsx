@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RecipientPhotos.css';
-import cameraIcon from '/icons/camera.png'; // Adjust the path if necessary
+import cameraIcon from '/icons/camera.png';
 
 function RecipientPhotos({ onBack }) {
   const [selectedPhoto, setSelectedPhoto] = useState(null);
@@ -9,13 +9,12 @@ function RecipientPhotos({ onBack }) {
 
   useEffect(() => {
     const fetchPhotos = async () => {
-      const photoFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg'];
-      const photoSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const photoFiles = ['photo1.jpg', 'photo2.jpg', 'photo3.jpg'];
+      const photoSenders = ['David', 'Erik', 'Michael'];
       const photoCaptions = [
         "Turtles have existed for around 215 million years. Happy Birthday!",
         "A turtle's shell is made up of 50 bones fused together. Happy Birthday!",
-        "Sea turtles can hold their breath for 5 hours underwater. Happy Birthday!",
-        "Turtles have excellent night vision. Happy Birthday!"
+        "Sea turtles can hold their breath for 5 hours underwater. Happy Birthday!"
       ];
 
       const fetchedPhotos = photoFiles.map((file, index) => ({
