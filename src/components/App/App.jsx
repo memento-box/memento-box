@@ -31,9 +31,10 @@ import RecipientVoiceNotes from "../RecipientVoiceNotes/RecipientVoiceNotes";
 import RecipientGifts from "../RecipientGifts/RecipientGifts";
 import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
+import ThankYouPage from "../ThankYouPage/ThankYouPage";
 
 // Need to create these consolelog team
-// import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
+import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
 // import ContactUs from '../ContactUs/ContactUs';
 import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
 // import MyBoxes from '../User/MyBoxes';
@@ -159,7 +160,7 @@ function App() {
           {/* Routes for console-log */}
 
           <Route exact path="/box-setup-information">
-            {/* <BoxSetupInformation /> */}
+            <BoxSetupInformation />
           </Route>
 
           <Route exact path="/box-setup-design">
@@ -178,7 +179,7 @@ function App() {
           </ProtectedRoute>
 
           {/* Routes for three-toed-turtles */}
-          <Route exact path="/recipientbox">
+          <Route exact path="/recipientbox/:id">
             <RecipientBox />
           </Route>
           <Route exact path="/recipient/photos">
@@ -198,6 +199,9 @@ function App() {
           </Route>
           <Route exact path="/recipient/letters">
             <RecipientLetters />
+          </Route>
+          <Route exact path="/thankyou/:id">
+            <ThankYouPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

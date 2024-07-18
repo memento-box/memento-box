@@ -47,7 +47,7 @@ function Nav() {
               Info Page
             </Link>
 
-            <Link className="navLink" to="/recipientbox">
+            <Link className="navLink" to="/recipientbox/1">
               Recipient Box
             </Link>
 

@@ -1,7 +1,10 @@
+import { useHistory } from 'react-router-dom';
 import './Hero.css'
 import { HashLink } from 'react-router-hash-link';
 
 function Hero() {
+ 
+
     return(
         <div id="hero">
             <div id="text">
