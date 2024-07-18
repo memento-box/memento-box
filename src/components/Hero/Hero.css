@@ -7,22 +7,26 @@
     grid-column: 1;
     grid-row: 1;
 }
-#closedBox {
-    z-index: 3;
-    position: relative;
-    width: 790px;
-    height: 800px;
+
+.box-wrapper {
     grid-column: 2;
     grid-row: 1;
+    position: relative;
+}
+
+#closedBox {
+    z-index: 3;
+    position: absolute;
+    width: 790px;
+    height: 800px;
+    transition: transform 0.3s ease;
 }
 #hoverBox {
     z-index: 0;
-    position: relative;
+    position: absolute;
     width: 790px;
     height: 800px;
-    grid-column: 2;
-    grid-row: 1;
 }
-#closedBox:hover {
+.box-wrapper:hover #closedBox {
     transform: translate(500px, 0);
 }
