@@ -35,6 +35,11 @@ const Videos = () => {
 
     const serverUpload =(video) => {
         console.log(video);
+        axios.post('/api/upload/video', video.url).then((r) => {
+          console.log('success', r);
+        }).catch((e) => {
+          console.log('Error in uploading videos to server', e);
+        })
     }
 
     const deleteVideo = (video) => { //TERNERARY OPERATOR FOR DELETE TOKEN IF IT EXISTS

@@ -90,7 +90,10 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
 /************************** POST PHOTO **************************/
 
 /************************** POST VIDEO **************************/
-
+router.post("/video", rejectUnauthenticated, (req, res) => {
+    console.log(req.body);
+    res.sendStatus(201);
+});
 
 
 /************************** POST (PHOTO) LETTER **************************/
