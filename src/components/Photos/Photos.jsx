@@ -1,52 +1,137 @@
 
+import { useState } from "react";
 
-import { Divider, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
-import UploadButton from "../UploadButton/UploadButton.jsx";
-import "./Photos.css";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
+import { Cloudin}
 
-export default function Photos() {
-  const [notes, setNotes] = useState([]); // State for notes to be rendered
+import "./styles.css";
 
-  const uploadFileType = "image/*";
+export default function App() {
+  const [publicId, setPublicId] = useState("");
+  // Replace with your own cloud name
+  const [cloudName] = useState("hzxyensd5");
+  // Replace with your own upload preset
+  const [uploadPreset] = useState("aoh4fpwm");
 
-  const fetchNotes = () => {
-    // API call to retrieve relevant voice notes
-    setNotes([]);
-  };
+  // Upload Widget Configuration
+  // Remove the comments from the code below to add
+  // additional functionality.
+  // Note that these are only a few examples, to see
+  // the full list of possible parameters that you
+  // can add see:
+  //   https://cloudinary.com/documentation/upload_widget_reference
 
-  useEffect(() => {
-    // Fetch voice notes on component load
-    fetchNotes();
-  }, []);
+  const [uwConfig] = useState({
+    cloudName,
+    uploadPreset
+    // cropping: true, //add a cropping step
+    // showAdvancedOptions: true,  //add advanced options (public_id and tag)
+    // sources: [ "local", "url"], // restrict the upload sources to URL and local files
+    // multiple: false,  //restrict upload to a single file
+    // folder: "user_images", //upload files to the specified folder
+    // tags: ["users", "profile"], //add the given tags to the uploaded files
+    // context: {alt: "user_uploaded"}, //add the given context data to the uploaded files
+    // clientAllowedFormats: ["images"], //restrict uploading to image files only
+    // maxImageFileSize: 2000000,  //restrict file size to less than 2MB
+    // maxImageWidth: 2000, //Scales the image down to a width of 2000 pixels before uploading
+    // theme: "purple", //change to a purple theme
+  });
+
+  // Create a Cloudinary instance and set your cloud name.
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName
+    }
+  });
+
+  const myImage = cld.image(publicId);
 
   return (
-    <div className="box-edit-container">
-      <EditingSidebar />
-      <Typography variant="h4" sx={{ marginLeft: "30px", marginTop: "80px" }}>
-        Image Notes
-      </Typography>
-      <div className="notes-actions">
-        <UploadButton uploadFileType={uploadFileType} />
-       
-      </div>
-      <Divider />
-      <div className="notes-display">
-        {notes.length === 0 ? (
-          <Typography sx={{ margin:"auto", marginTop:"10px"}}> Added image notes will display here! </Typography>
-        ) : (
-          notes.map((note) => (
-            <div>
-              {/* add headphone icon */}
-              <Typography>{note.fileName}</Typography> {/* title */}
-              {/* add play/pause */}
-              {/* add visualization here */}
-              {/* add length here */}
-            </div>
-          ))
-        )}
+    <div className="App">
+      <h3>Cloudinary Upload Widget Example</h3>
+      <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} />
+      <p>
+        <a
+          href="https://cloudinary.com/documentation/upload_widget"
+          target="_blank"
+        >
+          Upload Widget User Guide
+        </a>
+      </p>
+      <p>
+        <a
+          href="https://cloudinary.com/documentation/upload_widget_reference"
+          target="_blank"
+        >
+          Upload Widget Reference
+        </a>
+      </p>
+      <div style={{ width: "800px" }}>
+        <AdvancedImage
+          style={{ maxWidth: "100%" }}
+          cldImg={myImage}
+          plugins={[responsive(), placeholder()]}
+        />
       </div>
     </div>
   );
 }
+
+// import { Divider, Typography } from "@mui/material";
+// import { useEffect, useState } from "react";
+// import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
+// import UploadButton from "../UploadButton/UploadButton.jsx";
+// import axios from "axios";
+// import "./Photos.css";
+
+// export default function Photos() {
+//   const [images, setImages] = useState([]); // State for images to be rendered
+
+//   const uploadFileType = "image/*";
+
+//   const fetchImages = () => {
+//     // API call to retrieve relevant images
+//     axios.get('/api/images')
+//       .then(response => {
+//         setImages(response.data);
+//       })
+//       .catch(error => {
+//         console.error("Error fetching images:", error);
+//       });
+//   };
+
+
+//   useEffect(() => {
+//     // Fetch images on component load
+//     fetchImages();
+//   }, []);
+
+//   return (
+//     <div className="box-edit-container">
+//       <EditingSidebar />
+//       <Typography variant="h4" sx={{ marginLeft: "30px", marginTop: "80px" }}>
+//         Image Uploads
+//       </Typography>
+//       <div className="images-actions">
+//         <UploadButton uploadFileType={uploadFileType} reload={fetchImages} />
+       
+//       </div>
+//       <Divider />
+//       <div className="images-display">
+//         {images.length === 0 ? (
+//           <Typography sx={{ margin:"auto", marginTop:"10px"}}> Added images </Typography>
+//         ) : (
+//           images.map((image) => (
+//             <div key={image.id} className="image-item">
+//               <img src={image.media_url} alt={image.fileName} className="image-preview" />
+              
+//               <Typography>{image.fileName}</Typography> 
+              
+//             </div>
+//           ))
+//         )}
+//       </div>
+//     </div>
+//   );
+// }
