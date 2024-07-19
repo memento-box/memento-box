@@ -28,6 +28,10 @@ const BoxSetupInformation = () => {
     setOccation(event.target.value);
   };
 
+  const goback = () => {
+    history.psh("/box-setup-design");
+  };
+
   const handleCollaboratorChange = (index, field, value) => {
     const newCollaborators = [...collaborators];
     newCollaborators[index][field] = value;

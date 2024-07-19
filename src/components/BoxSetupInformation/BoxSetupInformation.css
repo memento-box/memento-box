@@ -65,8 +65,9 @@
   width: 300px;
 }
 
-.collaborate .coll-title {
+.coll-title {
   display: flex;
+  grid-column: 430px;
   margin-bottom: 20px;
 }
 .collaborate .coll-title h4,
