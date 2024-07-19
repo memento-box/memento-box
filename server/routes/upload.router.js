@@ -94,33 +94,14 @@ router.post("/video", rejectUnauthenticated, (req, res) => {
 
     const upload = req.body
     const user = req.user
-    console.log(user.id);
-
-    //res.sendStatus(201);
-  
-
-
-
-  const queryText = `
-    INSERT INTO "box_item"
-    VALUES (
-      "user_id" = $1,
-      "media_url" = $2,
-      "media_type" = $3,
-      "public_id" = $4);
-  `;
-  //"box_id" = $1,
-  const queryValues = {
+    
+    const queryText = `INSERT INTO "box_item" ("user_id", "media_url", "media_type") VALUES ($1, $2, $3);`;
+    const queryValues = [ user.id, upload.url, mediaType.video ];
     //box_id: box_id,
-    user_id: user.id,
-    media_url: upload.url,
-    media_type: upload.resource_type,
-    public_id: upload.public_id,
-  };
 
   pool
-    .query(queryText, [queryValues])
-    .then((res) => {
+    .query(queryText, queryValues)
+    .then((r) => {
       res.sendStatus(201);
     })
     .catch((e) => {

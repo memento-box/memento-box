@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, React } from "react";
 import ReactPlayer from 'react-player';
+import EditingSidebar from "../EditingSidebar/EditingSidebar";
 
 
 
@@ -9,7 +10,7 @@ const Videos = () => {
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME; //VITE needed for import
     const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 
-    const [fileUpload, setFileUpload] = useState([]);
+    //onst [fileUpload, setFileUpload] = useState([]);
     const [fileMap, setFileMap] = useState([])
 
     const videoUpload = async (e) => { //Uploads video to cloudinary and returns media url
@@ -66,12 +67,13 @@ const Videos = () => {
 
     return (
         <div id="container">
+         {/* <EditingSidebar /> */}
            Video Upload: 
 
         {/*Form to upload videos to Cloudinary*/}
         <form>
             <input type='file' accept='video/*' onChange={videoUpload}/>
-            <button type='submit'>Upload Video</button>
+            
         </form>
 
         {/*Temporary mapping until video urls connect to databse*/}
@@ -94,5 +96,7 @@ const Videos = () => {
     )
 
 }
+
+//<button type='submit'>Upload Video</button>
 
 export default Videos;
