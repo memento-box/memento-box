@@ -1,18 +1,19 @@
-
+import React from "react";
 import { useState } from "react";
-
+import { Typography } from "@mui/material";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
-import { Cloudin}
+import  CloudinaryUploadWidget from "../CloudinaryUploadWidget/CloudinaryUploadWidget.jsx";
+// import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
 
-import "./styles.css";
+// import "./Photos.css";
 
-export default function App() {
+ function Photos() {
   const [publicId, setPublicId] = useState("");
   // Replace with your own cloud name
-  const [cloudName] = useState("hzxyensd5");
+  const [cloudName] = useState("ddwxzpezz");
   // Replace with your own upload preset
-  const [uploadPreset] = useState("aoh4fpwm");
+  const [uploadPreset] = useState("MEMENTO_BOX_ERIK_SILCOX");
 
   // Upload Widget Configuration
   // Remove the comments from the code below to add
@@ -49,7 +50,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <h3>Cloudinary Upload Widget Example</h3>
+      {/* <EditingSidebar /> */}
+      <Typography variant="h4" sx={{ marginLeft: "30px", marginTop: "80px" }}>
+      Cloudinary Upload Widget
+      </Typography>
+     
       <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} />
       <p>
         <a
@@ -77,6 +82,29 @@ export default function App() {
     </div>
   );
 }
+
+export default Photos;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // import { Divider, Typography } from "@mui/material";
 // import { useEffect, useState } from "react";
@@ -134,4 +162,38 @@ export default function App() {
 //       </div>
 //     </div>
 //   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+// export default function UploadImage() {
+
+//   const [loading , setLoading] = useState(false)
+//   const [url, setUrl] = useState('')
+
+//   const uploadImage = async (event) => {
+//     const file = event.target.files[0];
+//     const base64 = await convertBase64(file);
+//     setLoading(true);
+//     axios
+//     .post("http://localhost:5000/uploadImage", { image, base64 })
+//     .then((res) => {
+//       setUrl(res.data);
+//       alert("Image uploaded successfully");
+//     })
+//     .then(() => setLoading(false))
+//     .catch(console.log);
+//   };
+
+//   return (
+//     <div>UploadImage</div>
+//   )
 // }
