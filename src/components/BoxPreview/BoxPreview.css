@@ -1,79 +1,74 @@
 .box-preview {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 80%;
-    margin: 0 auto;
-  }
-  
-  .image-container {
-    position: relative;
-  }
-  
-  .image-container img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px auto;
-  }
-  
-  .overlay {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    transform: translate(-50%, -50%);
-    pointer-events: none; 
-  }
-  
-  .image-container area {
-    cursor: pointer;
-  }
-  
-  .overlay.photos {
-    top: 177.5px; 
-    left: 165px;  
-  }
-  
-  .overlay.gift {
-    top: 345px; 
-    left: 165px;  
-  }
-  
-  .overlay.music {
-    top: 460px;  
-    left: 165px;  
-  }
-  
-  .overlay.videos {
-    top: 165px;  
-    left: 382.5px; 
-  }
-  
-  .overlay.voice-notes {
-    top: 302.5px; 
-    left: 387.5px; 
-  }
-  
-  .overlay.letters {
-    top: 435px;  
-    left: 387.5px; 
-  }
-  
-  .box-content h4 {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .box-content ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
-  }
-  
-  .box-content ul li {
-    margin: 5px 0;
-  }
-  
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  pointer-events: none; 
+}
+
+.overlay.photos {
+  top: 177.5px; 
+  left: 210px;  
+}
+
+.overlay.gift {
+  top: 365px; 
+  left: 225px;  
+}
+
+.overlay.music {
+  top: 480px;  
+  left: 220px;  
+}
+
+.overlay.videos {
+  top: 165px;  
+  left: 440px; 
+}
+
+.overlay.voice-notes {
+  top: 302.5px; 
+  left: 440px; 
+}
+
+.overlay.letters {
+  top: 435px;  
+  left: 440px; 
+}
+
+.box-content h4 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.box-content ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.box-content ul li {
+  margin: 5px 0;
+}

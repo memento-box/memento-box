@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './RecipientVoiceNotes.css';
-import audioIcon from '/icons/audio.png'; // Adjust the path if necessary
+import audioIcon from '/icons/audio.png';
 
 function RecipientVoiceNotes({ onBack }) {
   const [selectedNote, setSelectedNote] = useState(null);
@@ -8,8 +8,8 @@ function RecipientVoiceNotes({ onBack }) {
 
   useEffect(() => {
     const fetchVoiceNotes = async () => {
-      const noteFiles = ['note1.mp3', 'note2.mp3', 'note3.mp3', 'note4.mp3'];
-      const noteSenders = ['Lons', 'Sarah', 'Sean', 'Zoe'];
+      const noteFiles = ['note1.mp3', 'note2.mp3', 'note3.mp3'];
+      const noteSenders = ['David', 'Erik', 'Michael'];
 
       const fetchedNotes = noteFiles.map((file, index) => {
         return { sender: noteSenders[index], file };

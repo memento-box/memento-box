@@ -24,7 +24,7 @@ function LandingPage() {
       <h2>{heading}</h2>
       <Hero />
       <div id="video-wrapper">
-        <ReactPlayer url={url} controls={true} />
+        <ReactPlayer url={url} controls={true} id="video" />
       </div>
       <div className="grid">
         <div className="grid-col grid-col_8">
