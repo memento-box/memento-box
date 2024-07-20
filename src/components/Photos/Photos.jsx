@@ -1,7 +1,7 @@
 import { Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
-import UploadButton from "../UploadButton/UploadButton.jsx";
+import ImageUploadButton from "../ImageUploadButton/ImageUploadButton.jsx";
 import axios from "axios";
 import "./Photos.css";
 
@@ -34,7 +34,7 @@ export default function Photos() {
         Image Uploads
       </Typography>
       <div className="images-actions">
-        <UploadButton uploadFileType={uploadFileType} reload={fetchImages} />
+        <ImageUploadButton uploadFileType={uploadFileType} reload={fetchImages} />
        
       </div>
       <Divider />
