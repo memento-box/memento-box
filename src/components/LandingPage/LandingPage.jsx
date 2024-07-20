@@ -5,6 +5,7 @@ import './LandingPage.css';
 import MementoBoxInfo from '../MementoBoxInfo/MementoBoxInfo';
 import Hero from '../Hero/Hero';
 import PreviewToggle from '../PreviewToggle/PreviewToggle';
+import StartYourBox from '../StartYourBox/StartYourBox';
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
@@ -44,6 +45,9 @@ function LandingPage() {
         </div>
       </div>
       {selectedBox && <PreviewToggle box={selectedBox} closePreview={closePreview} />}
+      <div>
+        <StartYourBox />
+      </div>
     </div>
   );
 }
