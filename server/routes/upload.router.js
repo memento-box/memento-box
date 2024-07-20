@@ -45,17 +45,22 @@ const mediaType = { // Refers to table in database
 };
 /************************** POST VOICE NOTE **************************/
 router.post("/voice", rejectUnauthenticated, (req, res) => {
-  const user = req.user;
-  const { box_id, public_id, secure_url } = req.body;
+  const user = req.user.id;
+  console.log("userId:", user);
+
+  const { box_id, /*public_id,*/ secure_url } = req.body;
+  console.log("req.body", req.body);
+
   const queryText = `
     INSERT INTO "box_item",
-    VALUES
+    VALUES 
       "box_id" = $1,
       "user_id" = $2,
       "media_url" = $3,
       "media_type" = $4,
       "public_id" = $5;
   `;
+
   const queryValues = {
     box_id: box_id,
     user_id: user,
@@ -63,9 +68,10 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
     media_type: mediaType.voice,
     public_id: public_id,
   };
+
   pool
     .query(queryText, queryValues)
-    .then((res) => {
+    .then((result) => {
       res.sendStatus(201);
     })
     .catch((err) => {
@@ -120,6 +126,7 @@ router.get("/images", rejectUnauthenticated, async (req, res) => {
 });
 
 /************************** POST VIDEO **************************/
+
 /************************** POST (PHOTO) LETTER **************************/
 /************************** POST (TEXT) LETTER **************************/
 module.exports = router;
