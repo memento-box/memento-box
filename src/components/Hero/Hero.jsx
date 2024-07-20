@@ -1,4 +1,3 @@
-import { useHistory } from 'react-router-dom';
 import './Hero.css'
 import { HashLink } from 'react-router-hash-link';
 
