@@ -4,9 +4,10 @@ import { GiLoveSong } from "react-icons/gi";
 import { FaVideo } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+// import { submitForm } from "./formActions"; // Import the action
 import "../BoxSetupInformation/BoxSetupInformation.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { useHistory } from "react-router-dom";
 
 const BoxSetupInformation = () => {
   const history = useHistory();
@@ -28,10 +29,6 @@ const BoxSetupInformation = () => {
     setOccation(event.target.value);
   };
 
-  const goback = () => {
-    history.psh("/box-setup-design");
-  };
-
   const handleCollaboratorChange = (index, field, value) => {
     const newCollaborators = [...collaborators];
     newCollaborators[index][field] = value;
@@ -40,6 +37,10 @@ const BoxSetupInformation = () => {
 
   const addCollaborator = () => {
     setCollaborators([...collaborators, { name: "", email: "" }]);
+  };
+
+  const nextSteps = () => {
+    history.push("/box-setup-design");
   };
 
   const validate = () => {
@@ -66,13 +67,7 @@ const BoxSetupInformation = () => {
         collaborators,
         message,
       };
-      dispatch({
-        type: "ADD_BOX",
-        payload: {
-          formData,
-        },
-      });
-      history.push("/box-setup-design");
+      dispatch(submitForm(formData));
     }
   };
 
@@ -160,7 +155,7 @@ const BoxSetupInformation = () => {
                   )}
                 </div>
               ))}
-              <div className="next-steps">
+              <div className=" next-steps">
                 <button type="button" onClick={addCollaborator}>
                   +Add more
                 </button>
@@ -200,7 +195,9 @@ const BoxSetupInformation = () => {
             </div>
           </div>
           <div className="next-steps">
-            <button type="submit">Next step</button>
+            <button type="submit" onClick={nextSteps}>
+              Next step
+            </button>
           </div>
         </div>
       </form>

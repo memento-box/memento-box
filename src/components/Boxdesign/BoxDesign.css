@@ -1,29 +1,34 @@
-/* src/ImageSlider.css */
-
-.box-Design {
+.box-design {
   width: 1392px;
   margin: 0px auto;
   height: 100vh;
 }
-.box-Design .boxtitle {
-  margin-top: 100px;
+.box-design .box-title {
   font-size: 30px;
   font-family: "Poppins", sans-serif;
+  margin-top: 100px;
 }
-
-.box-Design h5 {
+.step-two {
+  margin-left: -750px;
+}
+.step-two h5 {
   font-size: 20px;
-  font-family: "Poppins", sans-serif;
-  margin-bottom: 20px;
+  font-family: "Poppins";
+  margin-left: -150;
 }
-.box-Design h6 {
+.step-two h6 {
+  font-family: "Poppins";
+  margin-top: 30px;
   font-size: 15px;
-  font-family: "Poppins", sans-serif;
 }
 
-
-{
-  margin-left: 150px;
+.content {
+  display: flex;
+  margin-top: 150px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 50px;
   margin-top: 30px;
   width: 80%;
   padding-left: 40px;
@@ -32,77 +37,133 @@
   border-right: 1px solid rgba(193, 193, 193, 0.582);
   font-family: "Poppins", sans-serif;
   box-shadow: 1px 1px rgb(158, 158, 158);
+  /* box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); */
 }
-}
 
-
-
-.box-setup-title h3 {
-  font-family: "Poppins", sans-serif;
-  margin-left: 120px;
-  font-size: 30px;
+.carousel {
+  display: flex;
+  height: 700px;
+  width: 100%;
+  max-width: 800px;
   margin-top: 100px;
 }
-.box-setup-content {
-  margin-left: 150px;
-  margin-top: 30px;
+/* .carousel img {
   width: 80%;
+  height: 60%;
+} */
 
-  padding-left: 40px;
-  border-left: 1px solid rgb(193, 193, 193);
-  border-bottom: 1px solid rgb(193, 193, 193);
-  border-right: 1px solid rgba(193, 193, 193, 0.582);
-  font-family: "Poppins", sans-serif;
-  box-shadow: 1px 1px rgb(158, 158, 158);
+.carousel_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-left: 150px;
+  width: 80%;
+  height: 80%;
 }
 
-.slider-image {
-  width: 50%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-.photo-content img {
-  width: 500px;
+.carousel_wrapper img {
+  width: 80%;
+  height: 80%;
+  box-shadow: 0 4px 8px rgba(7, 6, 6, 0.2); /* Add box shadow to the corners */
 }
 
-.arrow {
+.carousel_card {
+  display: flex;
+  flex: 1;
   position: absolute;
-  top: 90%;
-  transform: translateY(-100%);
-  font-size: 2rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: opacity 0s ease-in-out, transform 0s ease-in-out; /* Ensure instant change */
+}
+
+.carousel_card-active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.card_image {
+  width: 800px;
+  height: 700px; /* Ensure the image takes up the full height of the container */
+  object-fit: cover; /* Scale the image to cover the container */
+}
+
+.carousel_arrow_left,
+.carousel_arrow_right {
+  position: absolute;
+  font-size: 40px;
+  top: 50%;
+  transform: translate(0, -50%);
+  /* background-color: rgb(71, 71, 71); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  padding: 0.5rem;
+  padding-bottom: 7px;
   cursor: pointer;
-  z-index: 2;
-  user-select: none;
 }
 
-.next {
-  right: 10px;
+.carousel_arrow_left {
+  left: -37px;
 }
 
-.prev {
-  left: 10px;
+.carousel_arrow_right {
+  right: 90px;
+}
+
+.carousel_pagination {
+  position: absolute;
+  bottom: 130px;
+  left: 40%;
+  transform: translate(-50%, 0);
+}
+
+.pagination_dot {
+  height: 10px;
+  width: 10px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.pagination_dot:hover {
+  transform: scale(1.2);
+}
+
+.pagination_dot-active {
+  background-color: steelblue;
 }
 .next-btn {
+  width: 100%;
+  margin-top: -200px;
   display: flex;
   justify-content: space-between;
-
+  align-items: center;
 }
 .next-btn button {
-  margin-bottom: 20px;
-
   background-color: black;
-  padding: 10px;
-  width: 150px;
-  border-radius: 15px;
   color: white;
-  font-size: 20px;
-  cursor: pointer;
+  border-radius: 20px;
   margin-bottom: 30px;
-
-
+  font-size: 20px;
+  width: 250px;
+  padding: 7px;
+  cursor: pointer;
+}
+.next-btn button:nth-of-type(1) {
+  margin-right: -500px;
+  width: 150px;
+  padding: 7px;
+}
+.next-btn button:nth-of-type(2) {
+  margin-right: 10px;
 }

@@ -74,9 +74,10 @@
 a {
   font-size: 20px;
   margin-top: 20px;
+  margin-left: 50px;
 }
 .collabarate .coll-title h4 {
-  margin-right: 50px;
+  margin-right: 60px;
 }
 .collaborate .coll-title a:visited {
   margin-bottom: 20px;

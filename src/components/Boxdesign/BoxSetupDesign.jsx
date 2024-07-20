@@ -1,84 +1,74 @@
 import { useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useHistory } from "react-router-dom";
+import "../Boxdesign/BoxDesign.css";
+import { imgSliders } from "./imgSlider";
+import { SlArrowRight, SlArrowLeft } from "react-icons/sl"; // Ensure you have this library installed
 
-import "./BoxDesign.css";
-
-const NextArrow = ({ onClick }) => {
-  return (
-    <div className="arrow next" onClick={onClick}>
-      ❱
-    </div>
-  );
-};
-
-const PrevArrow = ({ onClick }) => {
-  return (
-    <div className="arrow prev" onClick={onClick}>
-      ❰
-    </div>
-  );
-};
 const BoxSetupDesign = () => {
-  const history = useHistory();
+  const [current, setCurrent] = useState(0);
 
-  const imgSlider = [
-    "/boxes/black-blue-ribbon.png",
-
-    "/boxes/black-gold-bow.png",
-
-    "/boxes/black-gold-ribbon.png",
-
-    "/boxes/black-red-ribbon.png",
-
-    "/boxes/black-ribbon.png",
-
-    "/boxes/black-w&g-angled.png",
-    "/boxes/black-w&g-ribbon.png",
-
-    "/boxes/black-white-ribbon.png",
-  ];
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+  const slideRight = () => {
+    setCurrent(current === imgSliders.length - 1 ? 0 : current + 1);
   };
 
-  const backto = () => {
-    history.push("/box-setup-information");
+  const slideLeft = () => {
+    setCurrent(current === 0 ? imgSliders.length - 1 : current - 1);
   };
 
   return (
-    <div className="box-Design">
-      <div className="boxtitle">
+    <div className="box-design">
+      <div className="box-title">
         <h4>Memento Box setup</h4>
       </div>
-      <div>
-        <h5>Step 1 of 2: Information</h5>
-        <h6>Select your favorite box color</h6>
-      </div>
-
-      <Slider {...settings}>
-        {imgSlider.map((image, index) => (
-          <div key={index} className="photo-content">
-            <img src={image} alt={`Slide ${index}`} className="slider-image" />
+      <div className="content">
+        <div className="step-two">
+          <h5>Step2 of 2: Box design</h5>
+          <h6>By clicking the arrows: choose your favorite box</h6>
+        </div>
+        <div className="carousel">
+          <div className="carousel_wrapper">
+            {imgSliders.map((image, index) => (
+              <div
+                key={index}
+                className={
+                  index === current
+                    ? "carousel_card carousel_card-active"
+                    : "carousel_card"
+                }
+              >
+                <img className="card_image" src={image.img} alt="" />
+                <div className="card_overlay">
+                  <h2 className="card_title">{image.title}</h2>
+                </div>
+              </div>
+            ))}
+            <div className="carousel_arrow_left" onClick={slideLeft}>
+              <SlArrowLeft />
+            </div>
+            <div className="carousel_arrow_right" onClick={slideRight}>
+              <SlArrowRight style={{ height: "100px" }} />
+            </div>
+            <div className="carousel_pagination">
+              {imgSliders.map((_, index) => (
+                <div
+                  key={index}
+                  className={
+                    index === current
+                      ? "pagination_dot pagination_dot-active"
+                      : "pagination_dot"
+                  }
+                  onClick={() => setCurrent(index)}
+                ></div>
+              ))}
+            </div>
           </div>
-        ))}
-      </Slider>
-      <div className="next-btn">
-        <button onClick={backto}> back</button>
-        <button type="submit">Next step</button>
+        </div>
+        <div className="next-btn">
+          <button> back </button>
+          <button>Finish and get started</button>
+        </div>
       </div>
     </div>
   );
 };
+
 export default BoxSetupDesign;
