@@ -3,7 +3,8 @@ import axios from "axios";
 import { useState } from 'react';
 
 
-export default function UploadButton({reload, uploadFileType}) {
+
+export default function ImageUploadButton({reload, uploadFileType}) {
   const [imageUrl, setImageUrl] = useState(false);
   const [publicId, setPublicId] = useState(false)
 
@@ -18,8 +19,14 @@ export default function UploadButton({reload, uploadFileType}) {
 
         const serverResponse = await getSignedUrl();
         console.log(serverResponse.data)
-
+        
         const {api_key, cloud_name, signature, timestamp, upload_preset} = serverResponse.data;
+        console.log( api_key, "api_key", signature, "signature", cloud_name, "cloud_name")
+        
+        if (!api_key || !cloud_name || !signature || !timestamp || !upload_preset) {
+          throw new Error("Missing Cloudinary configuration details.");
+        }
+
         console.log('timestamp', timestamp)
         console.log('signature', signature)
         console.log('cloud_name', cloud_name)

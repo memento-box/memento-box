@@ -5,7 +5,7 @@ const {
 const router = express.Router();
 const pool = require("../modules/pool");
 const cloudinary = require("cloudinary").v2;
-require("dotenv").config;
+require("dotenv").config();
 // Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -17,6 +17,7 @@ router.get("/signed-url", rejectUnauthenticated, async (req, res) => {
   const timestamp = Math.round(new Date().getTime() / 1000);
   const cloud_name = cloudinary.config().cloud_name;
   const api_key = cloudinary.config().api_key;
+  console.log(api_key, "api_key router")
   const api_secret = cloudinary.config().api_secret;
   const upload_preset = process.env.CLOUDINARY_UPLOAD_PRESET;
   const signature = cloudinary.utils.api_sign_request(
@@ -73,7 +74,7 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
     });
 });
 /************************** POST PHOTO **************************/
-router.post("/image", rejectUnauthenticated, (req, res) => {
+router.post("/upload/image", rejectUnauthenticated, (req, res) => {
   const user = req.user;
   const { box_id, public_id, secure_url } = req.body;
   const queryText = `
@@ -102,6 +103,22 @@ router.post("/image", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+//Get Images
+router.get("/images", rejectUnauthenticated, async (req, res) => {
+  const queryText = `
+    SELECT * FROM "box_item" WHERE "media_type" = $1;
+  `;
+  const queryValues = [mediaType.photo];
+  
+  try {
+    const result = await pool.query(queryText, queryValues);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching images:", err);
+    res.sendStatus(500);
+  }
+});
+
 /************************** POST VIDEO **************************/
 /************************** POST (PHOTO) LETTER **************************/
 /************************** POST (TEXT) LETTER **************************/

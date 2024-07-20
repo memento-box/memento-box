@@ -5,6 +5,7 @@ import ImageUploadButton from "../ImageUploadButton/ImageUploadButton.jsx";
 import axios from "axios";
 import "./Photos.css";
 
+
 export default function Photos() {
   const [images, setImages] = useState([]); // State for images to be rendered
 
@@ -13,7 +14,7 @@ export default function Photos() {
 
   const fetchImages = () => {
     // API call to retrieve relevant images
-    axios.get('/api/images')
+    axios.get('/api/upload/images')
       .then(response => {
         setImages(response.data);
       })
