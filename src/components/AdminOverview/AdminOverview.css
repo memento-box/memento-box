@@ -44,6 +44,7 @@
 
 .bottom {
     grid-area: bottom;
+    min-height: 30vh;
 }
 
 .collaborators-list {

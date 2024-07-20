@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 
 const initialState = {
     photos:[],
@@ -6,7 +7,14 @@ const initialState = {
     voiceNotes:[],
 };
 
-const contentReducer = (state={...initialState}, action) => {
+const initialCountState = {
+    photos:0,
+    videos:0,
+    letters:0,
+    voiceNotes:0,
+}
+
+const itemReducer = (state={...initialState}, action) => {
     let content = action.payload;
     switch (action.type) {
         case 'SET_PHOTOS':
@@ -21,5 +29,21 @@ const contentReducer = (state={...initialState}, action) => {
             return state;
     }
 };
+
+const countReducer = (state ={...initialCountState}, action) => {
+    
+    switch (action.type) {
+        case 'SET_COUNT':
+            console.log(action.payload[0]);
+            const {photo, video, letter, voice} = action.payload[0].result;
+            return {...state, photos:photo, videos:video, letters:letter, voiceNotes:voice};
+        default:
+            return state;
+    }
+}
+const contentReducer = combineReducers({
+    item:itemReducer,
+    count:countReducer,
+})
 
 export default contentReducer;
