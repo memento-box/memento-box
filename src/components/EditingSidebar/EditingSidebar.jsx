@@ -36,7 +36,7 @@ export default function EditingSidebar() {
           </ListItemIcon>
           <ListItemText primary="Photos" />
         </ListItem>
-        <ListItem button onClick={()=>{history.push('/videoUpload')}}>
+        <ListItem button onClick={()=>{history.push('/videoupload')}}>
           <ListItemIcon>
             <VideoLibrary />
           </ListItemIcon>
