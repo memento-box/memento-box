@@ -22,7 +22,6 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
       <Hero />
       <div id="video-wrapper">
         <ReactPlayer url={url} controls={true} id="video" />
