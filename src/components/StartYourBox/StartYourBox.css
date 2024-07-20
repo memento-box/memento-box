@@ -1,8 +1,12 @@
 #confetti {
     background-image: url('/confetti/confetti-exploded.png');
+    justify-content: center;
 }
 button {
     border-radius: 15px;
     border: transparent;
     background-color: #F8A820;
+    padding: 15px;
+    font-weight: bold;
+    font-size: large;
 }

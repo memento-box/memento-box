@@ -3,16 +3,19 @@
     grid-template-columns: 400px 800px 200px;
     grid-template-rows: 200px 200px 200px;
     max-width: 95vw;
+    padding-left: 15vw;
 }
 #text {
     grid-column: 1;
     grid-row: 1;
+    padding-top: 15%;
 }
 
 .box-wrapper {
     grid-column: 2;
     grid-row: 1;
     position: relative;
+    align-items: 75vw;
 }
 
 #closedBox {

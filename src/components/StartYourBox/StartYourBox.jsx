@@ -10,7 +10,7 @@ function StartYourBox() {
     return(
         <div id='confetti'>
             <h1>Start Building Your Box!</h1>
-            <button>Get Started</button>
+            <button onClick={handleClick}>Get Started</button>
         </div>
     )
 };
