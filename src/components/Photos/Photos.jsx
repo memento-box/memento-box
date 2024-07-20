@@ -8,6 +8,7 @@ import "./Photos.css";
 export default function Photos() {
   const [images, setImages] = useState([]); // State for images to be rendered
 
+
   const uploadFileType = "image/*";
 
   const fetchImages = () => {
