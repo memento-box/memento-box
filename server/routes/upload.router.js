@@ -90,6 +90,23 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
 /************************** POST PHOTO **************************/
 
 /************************** POST VIDEO **************************/
+
+router.get('/video', rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
+  const user = req.user;  
+  const queryText = 'SELECT * FROM "box_item" WHERE "user_id" = $1 AND "media_type" = 2;';
+
+  pool.query(queryText, [user.id]).then((r) => {
+    console.log(r.rows)
+    res.send(r.rows);
+  }).catch((e) => {
+    console.log('Error in server-side video GET', e);
+    res.sendStatus(500);
+  })
+    
+})
+
+
 router.post("/video", rejectUnauthenticated, (req, res) => {
 
     const upload = req.body

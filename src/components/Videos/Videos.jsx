@@ -10,23 +10,30 @@ const Videos = () => {
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME; //VITE needed for import
     const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 
-    //onst [fileUpload, setFileUpload] = useState([]);
+    const [fileUpload, setFileUpload] = useState([]);
     const [fileMap, setFileMap] = useState([])
+
+    const videoGet = () => {
+        axios.get('/api/upload/video').then((r) => {
+          console.log(r)
+          setFileMap(r.data);
+        }).catch((e) => {
+          console.log('Error in client-side Video GET request', e);
+        })
+    }
 
     const videoUpload = async (e) => { //Uploads video to cloudinary and returns media url
       
-      const uploadCloud = e.target.files[0];
-
       const formData = new FormData();
-      formData.append('file', uploadCloud);
+      formData.append('file', fileUpload);
       formData.append('upload_preset', uploadPreset);
       let apiUrl = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`; //appending cloud names & presets to url
 
       axios.post(apiUrl, formData)
-      .then((r) => {  //creating an array for the video urls
+      .then((r) => {  //uses hook to set media url for mapping on Videos page
         console.log(r.data);
-        const videoData = r.data
-        setFileMap([...fileMap, videoData])
+        serverUpload(r.data)
+        
       })
       .catch((e) => {
         console.log("Something went wrong with your video upload", e)
@@ -34,16 +41,17 @@ const Videos = () => {
 
     }
 
-    const serverUpload =(video) => {
-        console.log(video);
-        axios.post('/api/upload/video', video).then((r) => {
+    const serverUpload =(videoData) => { //uploads video & description to box 
+
+        axios.post('/api/upload/video', videoData).then((r) => {
           console.log('success', r);
+          videoGet();
         }).catch((e) => {
           console.log('Error in uploading videos to server', e);
         })
     }
 
-    const deleteVideo = (video) => { //TERNERARY OPERATOR FOR DELETE TOKEN IF IT EXISTS
+    const deleteVideo = (video) => { //NEED TERNERARY OPERATOR FOR DELETE TOKEN IF IT EXISTS
         
         const formData = new FormData();
         formData.append('token', video.delete_token)
@@ -71,9 +79,9 @@ const Videos = () => {
            Video Upload: 
 
         {/*Form to upload videos to Cloudinary*/}
-        <form>
-            <input type='file' accept='video/*' onChange={videoUpload}/>
-            
+        <form onSubmit={videoUpload}>
+            <input type='file' accept='video/*' onChange={(e) => setFileUpload(e.target.files[0])}/>
+            <button type='submit'>Upload Video</button>
         </form>
 
         {/*Temporary mapping until video urls connect to databse*/}
@@ -81,9 +89,9 @@ const Videos = () => {
             fileMap.length > 0 ? (
                 fileMap.map((file) => {
                     return <>
-                    <ReactPlayer url={file.url} controls />
+                    <ReactPlayer url={file.media_url} controls />
                     <button onClick={() => deleteVideo(file)}>Delete Video</button>
-                    <button onClick={() => serverUpload(file)}>Add Video To Box</button>
+                    
                     </>
                 })
             ) : (<p>No Videos To Display</p>)
@@ -97,6 +105,6 @@ const Videos = () => {
 
 }
 
-//<button type='submit'>Upload Video</button>
+
 
 export default Videos;
