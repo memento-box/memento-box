@@ -12,6 +12,7 @@ const Videos = () => {
 
     const [fileUpload, setFileUpload] = useState([]);
     const [fileMap, setFileMap] = useState([])
+    const [deleteTok, setDeleteTok] = useState([])
 
     const videoGet = () => {
         axios.get('/api/upload/video').then((r) => {
@@ -32,6 +33,7 @@ const Videos = () => {
       axios.post(apiUrl, formData)
       .then((r) => {  //uses hook to set media url for mapping on Videos page
         console.log(r.data);
+        
         serverUpload(r.data)
         
       })
@@ -51,7 +53,17 @@ const Videos = () => {
         })
     }
 
-    const deleteVideo = (video) => { //NEED TERNERARY OPERATOR FOR DELETE TOKEN IF IT EXISTS
+    const deleteVideo = (file) => {
+      axios.delete(`api/upload/video/${file.id}`).then((r) => {
+        videoGet();
+      }).catch((e) => {
+        console.log("Error in client-side DELETE request", e);
+      })
+    }
+
+    // New Data Flow removes the ability to upload delete_token via this method, code left for reference
+    /*
+    const deleteVideo = (video) => { 
         
         const formData = new FormData();
         formData.append('token', video.delete_token)
@@ -65,8 +77,10 @@ const Videos = () => {
           .catch((e) => {
           console.log("Something went wrong with deleting your video", e)
         })
+      }
+        */
 
-    }
+
 
     useEffect(() => {
       
@@ -91,7 +105,6 @@ const Videos = () => {
                     return <>
                     <ReactPlayer url={file.media_url} controls />
                     <button onClick={() => deleteVideo(file)}>Delete Video</button>
-                    
                     </>
                 })
             ) : (<p>No Videos To Display</p>)

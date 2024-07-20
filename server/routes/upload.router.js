@@ -127,6 +127,18 @@ router.post("/video", rejectUnauthenticated, (req, res) => {
     }); 
 });
 
+router.delete('/video/:id', rejectUnauthenticated, (req, res) => {
+  const userId = req.params.id
+  console.log(userId);
+  
+  const queryText = `DELETE FROM "box_item" WHERE "id" = $1;`;
+  pool.query(queryText, [userId]).then((r) => {
+    res.sendStatus(200)
+  }).catch((e) => {
+    console.log('Error in server-side DELETE request for video', e);
+  })
+})
+
 
 /************************** POST (PHOTO) LETTER **************************/
 
