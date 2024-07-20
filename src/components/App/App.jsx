@@ -188,7 +188,7 @@ function App() {
           <Route exact path="/recipient/videos">
             <RecipientVideos />
           </Route>
-          <Route exact path="/recipient/voicenotes">
+          <Route exact path=" ">
             <RecipientVoiceNotes />
           </Route>
           <Route exact path="/recipient/gifts">
