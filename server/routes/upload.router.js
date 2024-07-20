@@ -54,6 +54,39 @@ const mediaType = { // Refers to table in database
 
 /************************** POST VOICE NOTE **************************/
 router.post("/voice", rejectUnauthenticated, (req, res) => {
+  const user = req.user.id;
+  console.log("userId:", user);
+
+  const { box_id, /*public_id,*/ secure_url } = req.body;
+  console.log("req.body", req.body);
+
+  const queryText = `
+    INSERT INTO "box_item" (box_id, user_id, media_url, media_type)
+    VALUES ($1, $2, $3, $4);
+  `;// --,"public_id" = $5
+
+  const queryValues = [
+    box_id,
+    user,
+    secure_url,
+    mediaType.voice,
+    // public_id: public_id,
+  ];
+  console.log("queryValues:", queryValues);
+
+  pool
+    .query(queryText, queryValues)
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log("Error in POST VOICE NOTE :", err);
+      res.sendStatus(500);
+    });
+});
+
+/************************** POST PHOTO **************************/
+router.post("/image", rejectUnauthenticated, (req, res) => {
   const user = req.user;
 
   const { box_id, public_id, secure_url } = req.body;
@@ -72,7 +105,7 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
     box_id: box_id,
     user_id: user,
     media_url: secure_url,
-    media_type: mediaType.voice,
+    media_type: mediaType.image,
     public_id: public_id,
   };
 
@@ -82,14 +115,61 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
       res.sendStatus(201);
     })
     .catch((err) => {
-      console.log("Error in POST VOICE NOTE :", err);
+      console.log("Error in POST IMAGE NOTE :", err);
       res.sendStatus(500);
     });
 });
 
-/************************** POST PHOTO **************************/
-
 /************************** POST VIDEO **************************/
+
+router.get('/video', rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
+  const user = req.user;  
+  const queryText = 'SELECT * FROM "box_item" WHERE "user_id" = $1 AND "media_type" = 2;';
+
+  pool.query(queryText, [user.id]).then((r) => {
+    console.log(r.rows)
+    res.send(r.rows);
+  }).catch((e) => {
+    console.log('Error in server-side video GET', e);
+    res.sendStatus(500);
+  })
+    
+})
+
+
+router.post("/video", rejectUnauthenticated, (req, res) => {
+
+    const upload = req.body
+    const user = req.user
+    
+    const queryText = `INSERT INTO "box_item" ("user_id", "media_url", "media_type") VALUES ($1, $2, $3);`;
+    const queryValues = [ user.id, upload.url, mediaType.video ];
+    //box_id: box_id,
+
+  pool
+    .query(queryText, queryValues)
+    .then((r) => {
+      res.sendStatus(201);
+    })
+    .catch((e) => {
+      console.log("Error in server-side Video upload", e);
+      res.sendStatus(500);
+    }); 
+});
+
+router.delete('/video/:id', rejectUnauthenticated, (req, res) => {
+  const userId = req.params.id
+  console.log(userId);
+  
+  const queryText = `DELETE FROM "box_item" WHERE "id" = $1;`;
+  pool.query(queryText, [userId]).then((r) => {
+    res.sendStatus(200)
+  }).catch((e) => {
+    console.log('Error in server-side DELETE request for video', e);
+  })
+})
+
 
 /************************** POST (PHOTO) LETTER **************************/
 

@@ -1,5 +1,3 @@
-// src/components/Nav/Nav.jsx
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
@@ -10,17 +8,16 @@ import { useLocation } from 'react-router-dom';
 function Nav() {
   const user = useSelector((store) => store.user);
   const location = useLocation();
-  const [isEdit,setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
     const editPaths = ['/imageUpload', '/videoUpload', '/letterUpload', '/voiceUpload'];
-    if(editPaths.includes(location.pathname)) {
+    if (editPaths.includes(location.pathname)) {
       setIsEdit(true);
     } else {
       setIsEdit(false);
     }
-  }, [location])
-
+  }, [location]);
 
   return (
     <div className={isEdit ? "edit-nav" : "nav"}>
@@ -36,7 +33,12 @@ function Nav() {
           </Link>
         )}
 
-        {/* If a user is logged in, show these links */}
+        {/* Always show Recipient Box link for testing/development purposes */}
+        <Link className="navLink" to="/recipientbox/1">
+          Recipient Box
+        </Link>
+
+        {/* If a user is logged in, show these additional links */}
         {user.id && (
           <>
             <Link className="navLink" to="/user">
@@ -45,10 +47,6 @@ function Nav() {
 
             <Link className="navLink" to="/info">
               Info Page
-            </Link>
-
-            <Link className="navLink" to="/recipientbox">
-              Recipient Box
             </Link>
 
             <LogOutButton className="navLink" />
