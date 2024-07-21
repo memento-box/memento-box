@@ -10,26 +10,24 @@ function RecipientPhotos({ onBack }) {
   useEffect(() => {
     const fetchPhotos = async () => {
       const photoFiles = [
-        'photo1.jpg', 'photo2.jpg', 'photo3.jpg', 'photo4.jpg', 
-        'photo5.jpg', 'photo6.jpg', 'photo7.jpg', 'photo8.jpg', 
-        'photo9.jpg', 'photo10.jpg'
-      ]; // Added more photos for testing
+        'gardening1.jpg', 'gardening2.jpg', 
+        'travel.jpg', 'travel2.jpg', 
+        'turtle1.jpg', 'turtle2.jpg', 
+        'turtle3.jpg', 'turtle4.jpg'
+      ];
       const photoSenders = [
         'Fatima', 'Charlie', 'Guillermo', 'Sasha', 
-        'Priyanka', 'David', 'Erik', 'Michael', 
-        'Anna', 'John'
+        'Priyanka', 'David', 'Erik', 'Michael'
       ];
       const photoCaptions = [
+        "Gardening can be so relaxing. Happy Birthday!",
+        "A beautiful garden to celebrate a beautiful day. Happy Birthday!",
+        "Exploring new places brings joy. Happy Birthday!",
+        "Wishing you more adventures. Happy Birthday!",
         "Turtles have existed for around 215 million years. Happy Birthday!",
         "A turtle's shell is made up of 50 bones fused together. Happy Birthday!",
         "Sea turtles can hold their breath for 5 hours underwater. Happy Birthday!",
-        "Turtles can live for more than 100 years. Happy Birthday!",
-        "Some turtles can live up to a year without food. Happy Birthday!",
-        "Turtles have a strong sense of direction. Happy Birthday!",
-        "Some turtles can recognize their owners. Happy Birthday!",
-        "Turtles have excellent night vision. Happy Birthday!",
-        "Turtles are found on every continent except Antarctica. Happy Birthday!",
-        "Some turtles can swim up to 20 mph. Happy Birthday!"
+        "Turtles can live for more than 100 years. Happy Birthday!"
       ];
 
       const fetchedPhotos = photoFiles.map((file, index) => ({
