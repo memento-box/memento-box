@@ -26,12 +26,21 @@ body {
     margin-bottom: 20px;
 }
 
+.videos-list-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .videos-list {
     width: 300px;
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-family: 'Poppins', sans-serif;
+    padding-right: 10px; /* Optional: Add padding for better UI */
+    border: 1px solid #ccc; /* Optional: Add border for better visibility */
 }
 
 .video-item {
@@ -59,14 +68,34 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.video-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center-align the content */
+    width: 100%;
+}
+
 .video-container {
     width: 100%;
-    max-width: 800px;
-    max-height: 450px;
+    max-width: 600px; /* Adjust the width as needed */
+    max-height: 340px; /* Adjust the height as needed */
     overflow: hidden;
+    padding-top: 20px; /* Added padding for better UI */
 }
 
 video {
     width: 100%;
     height: auto;
+}
+
+.video-sender {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
