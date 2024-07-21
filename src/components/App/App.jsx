@@ -16,7 +16,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
+import AccountInfo from "../AccountInfo/AccountInfo";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -31,14 +31,17 @@ import RecipientVoiceNotes from "../RecipientVoiceNotes/RecipientVoiceNotes";
 import RecipientGifts from "../RecipientGifts/RecipientGifts";
 import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
+import ThankYouPage from "../ThankYouPage/ThankYouPage";
 
 // Need to create these consolelog team
-// import BoxSetupInformation from '../BoxSetupInformation/BoxSetupInformation';
+import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
 // import ContactUs from '../ContactUs/ContactUs';
 import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
 // import MyBoxes from '../User/MyBoxes';
 
 import "./App.css";
+import PreviewSend from "../PreviewSend/PreviewSend";
+import AdminOverview from "../AdminOverview/AdminOverview";
 
 // Setting the root element for the modal for accessibility
 Modal.setAppElement("#react-root");
@@ -83,11 +86,11 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows AccountInfo page, else shows LoginPage
             exact
             path="/info"
           >
-            <InfoPage />
+            <AccountInfo />
           </ProtectedRoute>
 
           <Route exact path="/login">
@@ -156,10 +159,22 @@ function App() {
             <VoiceRecording />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact
+            path="/previewSend">
+              <PreviewSend />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/adminOverview">
+              <AdminOverview/>
+          </ProtectedRoute>
+
           {/* Routes for console-log */}
 
           <Route exact path="/box-setup-information">
-            {/* <BoxSetupInformation /> */}
+            <BoxSetupInformation />
           </Route>
 
           <Route exact path="/box-setup-design">
@@ -178,7 +193,7 @@ function App() {
           </ProtectedRoute>
 
           {/* Routes for three-toed-turtles */}
-          <Route exact path="/recipientbox">
+          <Route exact path="/recipientbox/:id">
             <RecipientBox />
           </Route>
           <Route exact path="/recipient/photos">
@@ -187,7 +202,7 @@ function App() {
           <Route exact path="/recipient/videos">
             <RecipientVideos />
           </Route>
-          <Route exact path="/recipient/voicenotes">
+          <Route exact path=" ">
             <RecipientVoiceNotes />
           </Route>
           <Route exact path="/recipient/gifts">
@@ -198,6 +213,9 @@ function App() {
           </Route>
           <Route exact path="/recipient/letters">
             <RecipientLetters />
+          </Route>
+          <Route exact path="/thankyou/:id">
+            <ThankYouPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

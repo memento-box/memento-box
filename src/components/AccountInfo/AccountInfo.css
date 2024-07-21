@@ -1,0 +1,22 @@
+#wrapper {
+display: grid;
+height: 696px;
+}
+.acctInfoContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+#acctInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    align-items: flex-start;
+}
+.orderHistory {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    align-items: flex-start;
+}

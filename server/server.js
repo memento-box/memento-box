@@ -12,6 +12,7 @@ const contentRouter = require('./routes/content.router');
 const userRouter = require('./routes/user.router');
 const uploadRouter = require('./routes/upload.router');
 const userInfoRouter = require('./routes/userInfo.router');
+const thanksRouter = require('./routes/thanks.router');
 
 // Express Middleware
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/upload', uploadRouter);
 app.use('/api/userInfo', userInfoRouter);
+app.use('/api/thanks', thanksRouter);
 app.use('/api/content', contentRouter);
 
 // Listen Server & Port

@@ -6,6 +6,7 @@ import RecipientVoiceNotes from '../RecipientVoiceNotes/RecipientVoiceNotes';
 import RecipientGifts from '../RecipientGifts/RecipientGifts';
 import RecipientMixtape from '../RecipientMixtape/RecipientMixtape';
 import RecipientLetters from '../RecipientLetters/RecipientLetters';
+import { useHistory, useParams } from 'react-router-dom';
 import './RecipientBox.css';
 
 Modal.setAppElement('#react-root');
@@ -15,7 +16,9 @@ function RecipientBox() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [greeting, setGreeting] = useState('Happy Birthday');
-  const [collabs, setCollabs] = useState(['Lons', 'Sarah', 'Sean', 'Zoe']);
+  const [collabs, setCollabs] = useState(['Fatima', 'Charlie', 'Guillermo', 'Sasha', 'Priyanka']);
+  const history = useHistory();
+  const { id } = useParams();
 
   const openModal = (content) => {
     setModalContent(content);
@@ -34,6 +37,10 @@ function RecipientBox() {
   const handleImageMapClick = (event, content) => {
     event.preventDefault();
     openModal(content);
+  };
+
+  const thanksClick = () => {
+    history.push(`/thankyou/${id}`);
   };
 
   return (
@@ -80,6 +87,9 @@ function RecipientBox() {
       >
         {modalContent}
       </Modal>
+      <div id='thanks'>
+        <p onClick={thanksClick}>Say thank you</p>
+      </div>
     </div>
   );
 }

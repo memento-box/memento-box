@@ -1,0 +1,47 @@
+.occasions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.occasion-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s; 
+}
+
+.occasion-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+    background-color: #f0f0f0; 
+}
+
+.occasion-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.get-started-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.get-started-text {
+    margin-right: 8px;
+}
+
+.get-started-icon {
+    font-size: 30px;
+}

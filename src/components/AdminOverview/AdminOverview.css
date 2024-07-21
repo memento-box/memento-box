@@ -1,0 +1,60 @@
+.admin-overview-grid {
+    display: grid;
+    grid-template-areas:
+        "title title"
+        "subtitle subtitle"
+        "top-left top-right"
+        "divider divider"
+        "bottom bottom";
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.overview-title {
+    grid-area: title;
+}
+
+.overview-subtitle {
+    grid-area: subtitle;
+}
+
+.top-left {
+    grid-area: top-left;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.top-right {
+    grid-area: top-right;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.important-dates {
+    display: flex;
+    flex-direction: column;
+}
+
+.divider {
+    grid-area: divider;
+    margin-top: 20px;
+}
+
+.bottom {
+    grid-area: bottom;
+    min-height: 30vh;
+}
+
+.collaborators-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.collaborator {
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
