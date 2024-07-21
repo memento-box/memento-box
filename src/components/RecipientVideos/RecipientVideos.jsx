@@ -9,27 +9,6 @@ function RecipientVideos({ onBack }) {
   useEffect(() => {
     const fetchVideos = async () => {
       const videoFiles = [
-<<<<<<< HEAD
-        'gardening1.mp4', 'gardening2.mp4', 'memento-Intro.mp4', 
-        'travel1.mp4', 'travel2.mp4', 'turtle1.mp4', 
-        'turtle2.mp4', 'turtle3.mp4', 'turtle4.mp4'
-      ];
-      const videoSenders = [
-        'Fatima', 'Charlie', 'Guillermo', 'Sasha', 
-        'Priyanka', 'David', 'Erik', 'Michael', 
-        'Anna', 'John'
-      ];
-      const videoCaptions = [
-        "Gardening brings peace to the mind.",
-        "Gardening is a great way to relax.",
-        "Introduction to our memento project.",
-        "Traveling opens up new horizons.",
-        "Exploring new places is fun.",
-        "Turtles have existed for around 215 million years.",
-        "A turtle's shell is made up of 50 bones fused together.",
-        "Sea turtles can hold their breath for 5 hours underwater.",
-        "Turtles can live for more than 100 years."
-=======
         'gardening1.mp4', 'gardening2.mp4', 'travel1.mp4', 
         'travel2.mp4', 'turtle1.mp4', 'turtle2.mp4', 
         'turtle3.mp4', 'turtle4.mp4'
@@ -37,7 +16,6 @@ function RecipientVideos({ onBack }) {
       const videoSenders = [
         'Fatima', 'Charlie', 'Guillermo', 'Sasha', 
         'Priyanka', 'Fatima', 'Charlie', 'Guillermo'
->>>>>>> Update video component to display sender's name below the video and ensure visibility
       ];
 
       const fetchedVideos = videoFiles.map((file, index) => ({
