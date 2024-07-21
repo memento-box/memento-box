@@ -1,9 +1,21 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
+/** CONTENT COUNT **/
+function* fetchCount(action) {
+    const boxId = action.payload;
+    try {
+        const response = yield call(axios.get, `/api/content/count/${boxId}`);
+        console.log('Saga:',response.data);
+        yield put({type:'SET_COUNT', payload:response.data});
+    } catch(err) {
+        console.log('Error in fetch count (saga):', err);
+    };
+};
+
 /** VOICE NOTES **/
 function* fetchVoice(action) {
-    const fetchVoiceFromId = action.payload.id;
+    const fetchVoiceFromId = action.payload;
     try {
         const response = yield call(axios.get, `/api/content/voice/${fetchVoiceFromId}`);
         yield put({type:'SET_VOICE_NOTES', payload:response.data});
@@ -64,4 +76,5 @@ export default function* contentSaga () {
     yield takeLatest('FETCH_VIDEOS', fetchVideos);
     yield takeLatest('FETCH_LETTERS', fetchLetters);
     yield takeLatest('FETCH_BOX_CONTENT', fetchContent);
+    yield takeLatest('FETCH_COUNT', fetchCount);
 };

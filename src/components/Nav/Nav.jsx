@@ -11,7 +11,7 @@ function Nav() {
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
-    const editPaths = ['/imageUpload', '/videoUpload', '/letterUpload', '/voiceUpload'];
+    const editPaths = ['/imageUpload', '/videoUpload', '/letterUpload', '/voiceUpload', '/previewSend', '/adminOverview'];
     if (editPaths.includes(location.pathname)) {
       setIsEdit(true);
     } else {
