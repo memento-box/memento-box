@@ -9,8 +9,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
     const queryText = `
         SELECT
-            u.id as user_id, u.first_name, u.last_name, u.email, u.birthday, u.created_at as user_created_at,
-            mb.id as box_id, mb.box_color, mb.delivery_date, mb.collaborator_note, mb.created_at as box_created_at,
+            u.id as user_id, u.first_name, u.last_name, u.birthday, u.created_at as user_created_at,
+            mb.id as box_id, mb.delivery_date, mb.collaborator_note, mb.created_at as box_created_at,
             mb.recipient_name, mb.recipient_email, br.media_url as box_ribbon_media_url
         FROM "user" u
         LEFT JOIN memento_box mb ON u.id = mb.user_id

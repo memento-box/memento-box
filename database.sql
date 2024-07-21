@@ -122,8 +122,8 @@ VALUES ('./boxes/black-blue-ribbon.png'),
 -- ('https://eagawards.com/cdn/shop/products/Silver-Shovel-Bow_2048x.png?v=1690481975');
 
 -- TODO: Matt
--- INSERT INTO "occasions" ...
-INSERT INTO "occasions" ("name") VALUES
+-- INSERT INTO "occasion" ...
+INSERT INTO "occasion" ("name") VALUES
     ('Birthday'),
     ('Wedding'),
     ('Anniversary'),
