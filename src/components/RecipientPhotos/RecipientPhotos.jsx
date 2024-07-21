@@ -10,24 +10,22 @@ function RecipientPhotos({ onBack }) {
   useEffect(() => {
     const fetchPhotos = async () => {
       const photoFiles = [
-        'gardening1.jpg', 'gardening2.jpg', 
-        'travel.jpg', 'travel2.jpg', 
-        'turtle1.jpg', 'turtle2.jpg', 
-        'turtle3.jpg', 'turtle4.jpg'
+        'gardening1.jpg', 'gardening2.jpg', 'travel.jpg', 'travel2.jpg', 
+        'turtle1.jpg', 'turtle2.jpg', 'turtle3.jpg', 'turtle4.jpg'
       ];
       const photoSenders = [
         'Fatima', 'Charlie', 'Guillermo', 'Sasha', 
         'Priyanka', 'David', 'Erik', 'Michael'
       ];
       const photoCaptions = [
-        "Gardening can be so relaxing. Happy Birthday!",
-        "A beautiful garden to celebrate a beautiful day. Happy Birthday!",
-        "Exploring new places brings joy. Happy Birthday!",
-        "Wishing you more adventures. Happy Birthday!",
-        "Turtles have existed for around 215 million years. Happy Birthday!",
-        "A turtle's shell is made up of 50 bones fused together. Happy Birthday!",
-        "Sea turtles can hold their breath for 5 hours underwater. Happy Birthday!",
-        "Turtles can live for more than 100 years. Happy Birthday!"
+        "Gardening brings peace to the mind. - Fatima",
+        "Gardening is a tranquil activity. - Charlie",
+        "Travel broadens the mind. - Guillermo",
+        "Travel brings new experiences. - Sasha",
+        "Turtles have existed for around 215 million years. - Priyanka",
+        "A turtle's shell is made up of 50 bones fused together. - David",
+        "Sea turtles can hold their breath for 5 hours underwater. - Erik",
+        "Turtles can live for more than 100 years. - Michael"
       ];
 
       const fetchedPhotos = photoFiles.map((file, index) => ({
@@ -49,10 +47,6 @@ function RecipientPhotos({ onBack }) {
 
   const handleImageLoad = () => {
     setIsLoading(false);
-    const caption = document.getElementById(`caption-${selectedPhoto.sender}`);
-    if (caption) {
-      caption.style.display = 'block';
-    }
   };
 
   return (
@@ -69,7 +63,7 @@ function RecipientPhotos({ onBack }) {
               style={{ display: isLoading ? 'none' : 'block' }}
               className="photo-image"
             />
-            <p id={`caption-${selectedPhoto.sender}`} className="photo-caption">{`${selectedPhoto.caption} - ${selectedPhoto.sender}`}</p>
+            <p className="photo-caption">{selectedPhoto.caption}</p>
           </div>
         </div>
       ) : (
