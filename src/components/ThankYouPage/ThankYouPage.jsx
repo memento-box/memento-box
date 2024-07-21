@@ -8,6 +8,7 @@ function ThankYouPage() {
     let [collabs, setCollabs] = useState([{first_name: 'Fatima', id: '1'}, {first_name: 'Charlie', id: '2'}, {first_name: 'Guillermo', id: '3'}, {first_name: 'Sasha', id: '4'}, {first_name: 'Priyanka', id: '5'}]);
     let [message, setMessage] = useState();
     let [isChecked, setIsChecked] = useState([]);
+    let [sendNotif, setSendNotif] = useState(false)
     const { id } = useParams();
 
     // function getCollabs() {
@@ -34,12 +35,16 @@ function ThankYouPage() {
     function handleSubmit(event) {
         event.preventDefault;
         if (isChecked.length === 0) {
-            alert('Please select someone to send the message!')
+            alert('Please select someone to send a message!')
         } else if (message.trim().length == 0) {
             alert('Please type a message to send!')
         } else {
         console.log(message, isChecked);
         setMessage('');
+        setSendNotif(true)
+        setTimeout(() => {
+            setSendNotif(false)
+          }, 1000);
         }
     }
 
@@ -69,6 +74,7 @@ function ThankYouPage() {
             </div> 
             <input type='submit' value='Send'/>
         </form>
+        <p id='notif'>{sendNotif ? 'Success!' : ''}</p>
     </div>
   );
 }
