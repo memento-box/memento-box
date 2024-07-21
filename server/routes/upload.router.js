@@ -4,6 +4,7 @@ const {
 } = require("../modules/authentication-middleware");
 const router = express.Router();
 const pool = require("../modules/pool");
+const query = require("express/lib/middleware/query");
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config;
 /**
@@ -139,7 +140,19 @@ router.delete('/video/:id', rejectUnauthenticated, (req, res) => {
   })
 })
 
+router.put('/video/:id', rejectUnauthenticated, (req, res) => {
+  const userId = req.params.id
+  const upload = req.body.upload
+  
+  const queryText = `UPDATE "box_item" SET "description" = $1 WHERE "id" = $2;`;
+  pool.query(queryText, [upload, userId]).then((r) => {
+    res.sendStatus(200)
+  }).catch((e) => {
+    console.log('Error in server-side PUT request', e);
+  })
 
+  
+})
 /************************** POST (PHOTO) LETTER **************************/
 
 /************************** POST (TEXT) LETTER **************************/
