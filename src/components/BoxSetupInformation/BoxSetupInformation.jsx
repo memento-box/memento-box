@@ -74,7 +74,7 @@ const BoxSetupInformation = () => {
   return (
     <div className="box-setup-information">
       <div className="box-setup-title">
-        <h3> Mement Box setup</h3>
+        <h3> Memento Box Setup</h3>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="box-setup-content">
