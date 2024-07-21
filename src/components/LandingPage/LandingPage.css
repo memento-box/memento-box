@@ -1,57 +1,27 @@
-/* --------------------------------------------------------------------------------
-Grid
--------------------------------------------------------------------------------- */
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+}
+
+#video-wrapper {
+  padding-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 .grid {
   display: flex;
-  flex: 0 1 auto;
-  /* defaults to 'row' */
-  flex-direction: row;
   flex-wrap: wrap;
-  /* defaults to 'flex-start' */
-  justify-content: flex-start;
-  align-items: flex-start;
+  width: 100%;
+  margin: 20px 0;
 }
 
 .grid-col {
-  flex: 0 0 auto;
-  padding: 0 0.5rem 0.5rem;
+  padding: 0 0.5rem;
   box-sizing: border-box;
-}
-
-.grid-col_1 {
-  flex-basis: 8.33333333%;
-  max-width: 8.33333333%;
-}
-
-.grid-col_2 {
-  flex-basis: 16.66666667%;
-  max-width: 16.66666667%;
-}
-
-.grid-col_3 {
-  flex-basis: 25%;
-  max-width: 25%;
-}
-
-.grid-col_4 {
-  flex-basis: 33.33333333%;
-  max-width: 33.33333333%;
-}
-
-.grid-col_5 {
-  flex-basis: 41.66666667%;
-  max-width: 41.66666667%;
-}
-
-.grid-col_6 {
-  flex-basis: 50%;
-  max-width: 50%;
-}
-
-.grid-col_7 {
-  flex-basis: 58.33333333%;
-  max-width: 58.33333333%;
 }
 
 .grid-col_8 {
@@ -59,60 +29,87 @@ Grid
   max-width: 66.66666667%;
 }
 
-.grid-col_9 {
-  flex-basis: 75%;
-  max-width: 75%;
+.box-preview-heading {
+  text-align: center;
+  margin: 20px 0;
 }
 
-.grid-col_10 {
-  flex-basis: 83.33333333%;
-  max-width: 83.33333333%;
+.box-preview-heading h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-.grid-col_11 {
-  flex-basis: 91.66666667%;
-  max-width: 91.66666667%;
-}
-
-.grid-col_12 {
-  flex-basis: 100%;
-  max-width: 100%;
-}
-
-#video-wrapper {
-  padding-top: 50px;
+.box-preview-heading p {
+  font-size: 16px;
+  color: #555;
 }
 
 .clickable-boxes {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 60px;
 }
 
-.box {
+.card {
   cursor: pointer;
   text-align: center;
-  width: 350px; 
-  height: 350px; 
-  box-sizing: border-box; 
+  width: 350px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height: 380px;
 }
 
-.box img {
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
   max-width: 100%;
-  max-height: 80%; 
+  max-height: 70%;
+  margin-top: 100px; 
+  margin-left: 50px;
+}
+
+.card-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 2px solid #333;
+}
+
+.wedding-card {
+  background-color: #F5B7B1; 
+}
+
+.birthday-card {
+  background-color: #95D2B3; 
 }
 
 p {
   margin-top: 10px;
-  text-align: center; 
+  text-align: center;
+  font-size: 16px;
+  color: #555;
 }
 
 h3 {
   margin-top: 10px;
-  text-align: center; 
+  text-align: center;
+  font-size: 18px;
+  color: #333;
 }
-

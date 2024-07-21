@@ -8,7 +8,6 @@ import StartYourBox from '../StartYourBox/StartYourBox';
 import Occasions from '../Occasions/Occasions'; // Import the Occasions component
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
   const [selectedBox, setSelectedBox] = useState(null);
   const [boxImage, setBoxImage] = useState(null); 
 
@@ -26,7 +25,7 @@ function LandingPage() {
     <div className="container">
       <Hero />
       <div id="video-wrapper">
-        <ReactPlayer url="public/videos/memento-Intro.mp4" controls={true} />
+        <ReactPlayer url="/videos/memento-Intro.mp4" controls={true} />
       </div>
       <div className="grid">
         <div className="grid-col grid-col_8">
@@ -36,16 +35,18 @@ function LandingPage() {
       <div className="box-preview-heading">
         <h2>Memento Celebrates Any Occasion!</h2>
       </div>
-      <Occasions /> {/* Add the Occasions component here */}
+      <Occasions /> 
       <div className="box-preview-heading">
         <h2>Explore Previous Box Creations</h2>
         <p>Click on a box to see the wonderful items inside!</p>
       </div>
       <div className="clickable-boxes">
-        <div className="box" onClick={() => handleBoxClick('box1', '/boxes/black-w&g-angled.png')}>
+        <div className="card wedding-card" onClick={() => handleBoxClick('box1', '/boxes/black-w&g-angled.png')}>
+          <div className="card-title">To Mr. and Mrs. Smith</div> 
           <img src="/boxes/black-w&g-angled.png" alt="Box 1" />
         </div>
-        <div className="box" onClick={() => handleBoxClick('box2', '/boxes/white-blue-ribbon.png')}>
+        <div className="card birthday-card" onClick={() => handleBoxClick('box2', '/boxes/white-blue-ribbon.png')}>
+          <div className="card-title">Katie's Birthday</div> 
           <img src="/boxes/white-blue-ribbon.png" alt="Box 2" />
         </div>
       </div>

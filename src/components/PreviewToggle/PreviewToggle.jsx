@@ -1,10 +1,11 @@
+// PreviewToggle.jsx
 import React from 'react';
 import BoxPreview from '../BoxPreview/BoxPreview';
 import './PreviewToggle.css';
 
 const PreviewToggle = ({ box, boxImage, closePreview }) => {
   const handleClickOutside = (e) => {
-    if (e.target.className.includes('preview-overlay')) {
+    if (e.target.className === 'preview-overlay') {
       closePreview();
     }
   };
