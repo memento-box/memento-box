@@ -1,0 +1,71 @@
+
+user {
+	id integer pk increments unique
+	first_name varchar(25)
+	last_name varchar(25)
+	email varchar(400)
+	birthday date
+	password varchar(50)
+	created_at datetime
+}
+
+memento_box {
+	id integer pk increments unique
+	box_color varchar(25)
+	delivery_date date
+	collaborator_note varchar(300) null
+	user_id integer *> user.id
+	created_at datetime
+	box_ribbon_id integer *> box_ribbon.id
+	recipient_name varchar(50)
+	recipient_email varchar(50)
+}
+
+box_ribbon {
+	media_url varchar(2048)
+	id integer pk increments unique
+}
+
+media_type {
+	id integer pk increments unique
+	type varchar(200)
+}
+
+collaborator {
+	id integer pk increments unique
+	box_id integer > memento_box.id
+	user_id integer *> user.id
+	invitation_code varchar(1028)
+	email varchar(400)
+	accepted bool
+	first_name varchar(25)
+	last_name varchar(25)
+	created_at datetime
+}
+
+box_item {
+	id integer pk increments unique
+	box_id integer *> memento_box.id
+	physical_gift integer(200)
+	user_id integer *> user.id
+	media_url varchar(2048)
+	title varchar(200)
+	description varchar(1000)
+	media_type integer *> media_type.id
+    box_code varchar(1028)
+	created_at datetime
+}
+
+box_thanks {
+    id integer pk increments unique
+    message varchar(1000)
+    box_id *> memento_box.id
+    created_at datetime
+}
+
+user_box_thanks {
+    id integer pk increments unique
+    box_thanks_id *> box_thanks.id
+    user_id *> user.id
+}
+
