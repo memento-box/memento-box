@@ -5,6 +5,7 @@ import './LandingPage.css';
 import MementoBoxInfo from '../MementoBoxInfo/MementoBoxInfo';
 import Hero from '../Hero/Hero';
 import PreviewToggle from '../PreviewToggle/PreviewToggle';
+import StartYourBox from '../StartYourBox/StartYourBox';
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
@@ -23,10 +24,10 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
       <Hero />
       <div id="video-wrapper">
         <ReactPlayer url="public/videos/memento-Intro.mp4" controls={true} />
+        <ReactPlayer url={url} controls={true} id="video" />
       </div>
       <div className="grid">
         <div className="grid-col grid-col_8">
@@ -46,6 +47,9 @@ function LandingPage() {
         </div>
       </div>
       {selectedBox && <PreviewToggle box={selectedBox} boxImage={boxImage} closePreview={closePreview} />}
+      <div>
+        <StartYourBox />
+      </div>
     </div>
   );
 }

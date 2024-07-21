@@ -1,0 +1,19 @@
+#confetti {
+    align-content: center;
+    height: 546px;
+    width: 100vw;
+    text-align: center;
+}
+button {
+    border-radius: 15px;
+    border: transparent;
+    background-color: #F8A820;
+    padding: 15px;
+    font-weight: bold;
+    font-size: large;
+}
+#confetti:hover {
+    background-image: url('/confetti/confetti-exploded.png'); 
+    background-size: 100%;
+    background-repeat: no-repeat;
+}

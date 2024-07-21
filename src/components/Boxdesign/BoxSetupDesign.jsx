@@ -1,70 +1,74 @@
 import { useState } from "react";
-import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import "../Boxdesign/BoxDesign.css";
+import { imgSliders } from "./imgSlider";
+import { SlArrowRight, SlArrowLeft } from "react-icons/sl"; // Ensure you have this library installed
 
-import "./BoxDesign.css";
 const BoxSetupDesign = () => {
-  const [slide, setSlide] = useState(0);
+  const [current, setCurrent] = useState(0);
 
-  const imgSlider = [
-    "/boxes/black-blue-ribbon.png",
-
-    "/boxes/black-gold-bow.png",
-
-    "/boxes/black-gold-ribbon.png",
-
-    "/boxes/black-red-ribbon.png",
-
-    "/boxes/black-ribbon.png",
-
-    "/boxes/black-w&g-angled.png",
-    "/boxes/black-w&g-ribbon.png",
-
-    "/boxes/black-white-ribbon.png",
-  ];
-  const nextSlide = () => {
-    setSlide(slide === imgSlider.length - 1 ? 0 : slide + 1);
+  const slideRight = () => {
+    setCurrent(current === imgSliders.length - 1 ? 0 : current + 1);
   };
 
-  const prevSlide = () => {
-    setSlide(slide === 0 ? imgSlider.length - 1 : slide - 1);
+  const slideLeft = () => {
+    setCurrent(current === 0 ? imgSliders.length - 1 : current - 1);
   };
 
   return (
     <div className="box-design">
-      <div className="carousel">
-        <BsArrowLeftCircleFill
-          onClick={prevSlide}
-          className="arrow arrow-left"
-        />
-        {imgSlider.map((item, idx) => {
-          return (
-            <img
-              src={item}
-              alt={item}
-              key={idx}
-              className={slide === idx ? "slide" : "slide slide-hidden"}
-            />
-          );
-        })}
-        <BsArrowRightCircleFill
-          onClick={nextSlide}
-          className="arrow arrow-right"
-        />
-        <span className="indicators">
-          {imgSlider.map((_, idx) => {
-            return (
-              <button
-                key={idx}
+      <div className="box-title">
+        <h4>Memento Box setup</h4>
+      </div>
+      <div className="content">
+        <div className="step-two">
+          <h5>Step2 of 2: Box design</h5>
+          <h6>By clicking the arrows: choose your favorite box</h6>
+        </div>
+        <div className="carousel">
+          <div className="carousel_wrapper">
+            {imgSliders.map((image, index) => (
+              <div
+                key={index}
                 className={
-                  slide === idx ? "indicator" : "indicator indicator-inactive"
+                  index === current
+                    ? "carousel_card carousel_card-active"
+                    : "carousel_card"
                 }
-                onClick={() => setSlide(idx)}
-              ></button>
-            );
-          })}
-        </span>
+              >
+                <img className="card_image" src={image.img} alt="" />
+                <div className="card_overlay">
+                  <h2 className="card_title">{image.title}</h2>
+                </div>
+              </div>
+            ))}
+            <div className="carousel_arrow_left" onClick={slideLeft}>
+              <SlArrowLeft />
+            </div>
+            <div className="carousel_arrow_right" onClick={slideRight}>
+              <SlArrowRight style={{ height: "100px" }} />
+            </div>
+            <div className="carousel_pagination">
+              {imgSliders.map((_, index) => (
+                <div
+                  key={index}
+                  className={
+                    index === current
+                      ? "pagination_dot pagination_dot-active"
+                      : "pagination_dot"
+                  }
+                  onClick={() => setCurrent(index)}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="next-btn">
+          <button> back </button>
+          <button>Finish and get started</button>
+        </div>
       </div>
     </div>
   );
 };
+
 export default BoxSetupDesign;
