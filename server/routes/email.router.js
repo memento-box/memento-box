@@ -1,13 +1,25 @@
 const express = require('express');
 const axios = require('axios');
+const pool = require('../modules/pool');
 const router = express.Router();
 
 // GET for data to send in email
 router.get('/:id', (req, res) => {
     console.log('in email.router.js gift GET');
     const query = `
-    SELECT `
-})
+    SELECT "occasion"."name" AS "occasion", "memento_box"."recipient_name" AS "recipientName", "memento_box"."id", "memento_box"."recipient_email" AS "recipientEmail", CONCAT("user"."first_name", ' ', "user"."last_name") AS "senderName" FROM "memento_box"
+    LEFT JOIN "user" ON "memento_box"."user_id" = "user"."id"
+    LEFT JOIN "occasion" ON "memento_box"."occasion_id" = "occasion"."id";
+    `;
+    pool.query(query, [req.params.id])
+        .then(result => {
+            res.send(result.rows);
+        })
+        .catch(error => {
+            console.log('Error fetching box details (email.router.js)', error);
+            res.sendStatus(500)
+        })
+});
 
 // POST for MailChimp transactional email to gift recipient
 router.post('/gift', (req, res) => {
