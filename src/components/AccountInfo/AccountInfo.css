@@ -1,11 +1,16 @@
 #wrapper {
 display: grid;
+height: 696px;
 }
-#border {
-    justify-self: center;
+/* #border {
+    justify-content: start;
     margin-top: 40px;
     border: 2px solid;
     border-radius: 15px;
     width: 75vw;
-    height: 696px;
+    
+} */
+#acctInfo {
+    justify-content: flex-start;
+    margin-bottom: 50px;
 }
