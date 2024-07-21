@@ -11,8 +11,10 @@ const Videos = () => {
     const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 
     const [fileUpload, setFileUpload] = useState([]);
-    const [fileMap, setFileMap] = useState([])
-    const [deleteTok, setDeleteTok] = useState([])
+    const [fileMap, setFileMap] = useState([]);
+    const [indexdisplay, setIndexdisplay] = useState([]);
+    const [textUpload, setTextUpload] = useState([]);
+    
 
     const videoGet = () => {
         axios.get('/api/upload/video').then((r) => {
@@ -53,6 +55,16 @@ const Videos = () => {
         })
     }
 
+    const descriptionUpload = (file) => {
+      const uploadObject = {'upload': textUpload};
+
+      axios.put(`api/upload/video/${file.id}`, uploadObject).then((r) => {
+        console.log('Success');
+      }).catch((e) => {
+        console.log('Error in client-side PUT request', e);
+      })
+    }
+
     const deleteVideo = (file) => {
       axios.delete(`api/upload/video/${file.id}`).then((r) => {
         videoGet();
@@ -83,7 +95,7 @@ const Videos = () => {
 
 
     useEffect(() => {
-      
+      videoGet();
     }, []);
 
 
@@ -95,16 +107,26 @@ const Videos = () => {
         {/*Form to upload videos to Cloudinary*/}
         <form onSubmit={videoUpload}>
             <input type='file' accept='video/*' onChange={(e) => setFileUpload(e.target.files[0])}/>
-            <button type='submit'>Upload Video</button>
+            <button type='submit'>Add Video To Box</button>
         </form>
 
         {/*Temporary mapping until video urls connect to databse*/}
         {
             fileMap.length > 0 ? (
-                fileMap.map((file) => {
+                fileMap.map((file, index) => {
                     return <>
                     <ReactPlayer url={file.media_url} controls />
-                    <button onClick={() => deleteVideo(file)}>Delete Video</button>
+                    <button onClick={() => deleteVideo(file)}>Remove From Box</button>
+                    <button onClick={() => setIndexdisplay(index)}>Add Description</button>
+                    
+                     
+                     { indexdisplay === index ?  (
+                     <form onSubmit={() => descriptionUpload(file)}>
+                      <input type='text' value={textUpload} onChange={(e) => setTextUpload(e.target.value)}/>
+                      <button type='submit'>Upload Description</button>
+                     </form>
+                     ) : ('') }
+
                     </>
                 })
             ) : (<p>No Videos To Display</p>)
@@ -117,7 +139,15 @@ const Videos = () => {
     )
 
 }
+/*
+{index = indexdisplay ? 
+  (
+  <form>
+    <input type='text' />
+    <button>Add Description To Box</button>
+  </form>
+  ) : ''}
 
-
+*/
 
 export default Videos;
