@@ -1,10 +1,9 @@
-/* BoxPreview.css */
 .box-preview-container {
   position: relative;
   width: 790px;
   height: 800px;
-  margin: auto; /* Centering the container */
-  overflow: hidden; /* Ensure content does not overflow */
+  margin: auto; 
+  overflow: hidden; 
 }
 
 .box-preview {
@@ -16,17 +15,17 @@
 .box-images {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px); 
 }
 
 .closed-box {
   position: absolute;
   width: 100%;
   height: 100%;
-  transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
-  transform-origin: left center; /* Adjust the origin to slide out from the left */
-  cursor: pointer; /* Show pointer cursor to indicate clickability */
-  z-index: 1; /* Ensure it is on top */
+  transition: transform 0.5s ease-in-out; 
+  transform-origin: left center; 
+  cursor: pointer; 
+  z-index: 1; 
 }
 
 .open-box-image {
@@ -35,21 +34,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0; /* Initially hidden until box is opened */
-  transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
-  z-index: 0; /* Ensure it is below the closed box */
+  opacity: 0; 
+  transition: opacity 0.5s ease-in-out; 
 }
 
-/* Lid sliding effect */
 .slide-out {
-  transform: translateX(100%); /* Slide the lid off-screen to the right */
+  transform: translateX(100%); 
 }
 
 .box-opened .open-box-image {
-  opacity: 1; /* Show the opened box image */
+  opacity: 1; 
 }
 
-/* Overlay styling only visible when the box is opened */
 .overlay {
   position: absolute;
   color: #fff;
@@ -58,11 +54,10 @@
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 5px;
-  pointer-events: auto; /* Allow overlays to be clickable */
-  display: none; /* Initially hidden */
+  pointer-events: auto; 
+  display: none; 
 }
 
-/* Example styling for specific items, adjust positions as needed */
 .overlay.photos {
   top: 10px;
   left: 10px;
@@ -93,7 +88,23 @@
   left: 310px;
 }
 
-/* Show overlays only when the box is opened */
 .box-opened .overlay {
   display: block;
+}
+
+.box-preview-button-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  top: calc(100% - 100px); 
+}
+
+button {
+  border-radius: 15px;
+  border: transparent;
+  background-color: #F8A820;
+  padding: 15px;
+  font-weight: bold;
+  font-size: large;
 }

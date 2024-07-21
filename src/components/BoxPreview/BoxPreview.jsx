@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './BoxPreview.css';
 import PreviewItems from '../PreviewItems/PreviewItems';
+import { useHistory } from 'react-router-dom';
 
 const BoxPreview = ({ boxImage }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
   const [isBoxOpened, setIsBoxOpened] = useState(false);
+  const history = useHistory();
 
   const handleMouseEnter = (item) => {
     if (isBoxOpened) {
@@ -31,6 +33,10 @@ const BoxPreview = ({ boxImage }) => {
 
   const handleClosePreview = () => {
     setSelectedItem(null);
+  };
+
+  const handleButtonClick = () => {
+    history.push("/box-setup-information");
   };
 
   return (
@@ -124,6 +130,10 @@ const BoxPreview = ({ boxImage }) => {
             {item}
           </div>
         ))}
+         {/* Button always displayed */}
+      <div className="box-preview-button-container">
+        <button onClick={handleButtonClick}>Get Started</button>
+      </div>
       </div>
 
       {/* PreviewItems Modal */}
@@ -131,6 +141,7 @@ const BoxPreview = ({ boxImage }) => {
         <PreviewItems item={selectedItem} onClose={handleClosePreview} />
       )}
     </div>
+    
   );
 };
 
