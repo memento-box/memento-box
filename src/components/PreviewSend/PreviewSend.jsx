@@ -22,6 +22,22 @@ const history = useHistory();
     console.log(boxId);
   })
 
+  const sendEmail = () => {
+    event.preventDefault();
+    console.log('box:', email.id);
+    // Sending box info to email POST
+    dispatch ({ type: 'SEND_GIFT', payload: {
+        box_id: email.id,
+        occasionGreeting: "",
+        senderName: email.senderName,
+        recipientName: email.recipientName,
+        boxUrl: `http://localhost:5173/#/recipientbox/${email.id}`,
+        recipientEmail: email.recipientEmail,
+        scheduledTime: dateTime
+    },} );
+    // DO WE WANT TO REDIRECT SOMEWHERE?
+}
+
   const handleDateChange = (newValue) => {
     setDateTime(newValue);
   };
@@ -63,6 +79,7 @@ const history = useHistory();
           variant="contained"
           component="span"
           sx={{ borderRadius: "50px", backgroundColor: "black" }}
+          onClick={() => sendEmail}
         >
           Schedule to Send
         </Button>
