@@ -12,6 +12,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
 /************************** SIGNED URL **************************/
 router.get("/signed-url", rejectUnauthenticated, async (req, res) => {
   const timestamp = Math.round(new Date().getTime() / 1000);
