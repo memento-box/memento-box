@@ -2,15 +2,21 @@
 display: grid;
 height: 696px;
 }
-/* #border {
-    justify-content: start;
-    margin-top: 40px;
-    border: 2px solid;
-    border-radius: 15px;
-    width: 75vw;
-    
-} */
-#acctInfo {
-    justify-content: flex-start;
-    margin-bottom: 50px;
+.acctInfoContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+}
+#acctInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    align-items: flex-start;
+}
+.orderHistory {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    align-items: flex-start;
 }

@@ -45,21 +45,32 @@ function AccountInfo() {
     return(
         <div id='wrapper'>
             <div id='border'>
-                <div id='acctInfo'>
-                    <h3>Your Info</h3>
-                    <p>Name: {fName} {lName}</p>
-                    <p>Email: {email}</p>
+                <h3>Your Info</h3>
+                <div className='acctInfoContainer'>
+                    <div id='acctInfoWrapper'>
+                        <div className='acctInfoItem'>
+                            <p>Name: {fName} {lName}</p>
+                        </div>
+                        <div className='acctInfoItem'>
+                            <p>Email: {email}</p>
+                        </div>
+                        
+                    </div>
                 </div>
-                <div id="orderHistory">
+                <div>
                     <h3>Order History</h3>
-                    {
-                        orderHist.map((order) => (
-                            <div key={order[2]} className='order'>
-                                <p>{order[1]} on {moment(order[0]).format('LL')}</p>
-                            </div>
-                            
-                        ))
-                    }
+                    <div className='acctInfoContainer'>
+                        <div className='orderHistory'>
+                            {
+                                orderHist.map((order) => (
+                                    <div key={order[2]} className='order'>
+                                        <p>{order[1]} on {moment(order[0]).format('LL')}</p>
+                                    </div>
+                                    
+                                ))
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
 
