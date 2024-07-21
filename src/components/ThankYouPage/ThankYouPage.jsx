@@ -41,7 +41,18 @@ function ThankYouPage() {
         } else {
         console.log(message, isChecked);
         setMessage('');
-        setSendNotif(true)
+        axios.post(`/api/thanks/messages`, {message: message, boxID: id}).then((response) => {
+            for (let item of isChecked) {
+            axios.post(`/api/thanks/userboxthanks`, {user: item, boxthanksID: response.data.rows[0].id}).then((response) => {
+                setSendNotif(true)
+                
+            }).catch((error) => {
+                console.log('Error posting to user box thanks', error)
+            })
+        }
+        }).catch((error) => {
+            console.log('Error sending message', error)
+        })
         setTimeout(() => {
             setSendNotif(false)
           }, 1000);
