@@ -1,4 +1,3 @@
-// LandingPage.jsx
 import React, { useState } from 'react';
 import ReactPlayer from 'react-player';
 import './LandingPage.css';
@@ -6,6 +5,7 @@ import MementoBoxInfo from '../MementoBoxInfo/MementoBoxInfo';
 import Hero from '../Hero/Hero';
 import PreviewToggle from '../PreviewToggle/PreviewToggle';
 import StartYourBox from '../StartYourBox/StartYourBox';
+import Occasions from '../Occasions/Occasions'; // Import the Occasions component
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
@@ -34,7 +34,11 @@ function LandingPage() {
         </div>
       </div>
       <div className="box-preview-heading">
-        <h3>Explore Previous Box Creations</h3>
+        <h2>Memento Celebrates Any Occasion!</h2>
+      </div>
+      <Occasions /> {/* Add the Occasions component here */}
+      <div className="box-preview-heading">
+        <h2>Explore Previous Box Creations</h2>
         <p>Click on a box to see the wonderful items inside!</p>
       </div>
       <div className="clickable-boxes">
