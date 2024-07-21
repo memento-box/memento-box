@@ -1,74 +1,98 @@
-.box-preview {
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 80%;
-  margin: 0 auto;
-}
-
-.image-container {
+/* BoxPreview.css */
+.box-preview-container {
   position: relative;
+  width: 790px;
+  height: 800px;
+  margin: auto; /* Centering the container */
+  overflow: hidden; /* Ensure content does not overflow */
 }
 
-.image-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px auto;
+.box-preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
+.box-images {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.closed-box {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+  transform-origin: left center; /* Adjust the origin to slide out from the left */
+  cursor: pointer; /* Show pointer cursor to indicate clickability */
+  z-index: 1; /* Ensure it is on top */
+}
+
+.open-box-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Initially hidden until box is opened */
+  transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+}
+
+/* Lid sliding effect */
+.slide-out {
+  transform: translateX(100%); /* Slide the lid off-screen to the left */
+}
+
+.box-opened .open-box-image {
+  opacity: 1; /* Show the opened box image */
+}
+
+/* Overlay styling only visible when the box is opened */
 .overlay {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 5px;
-  transform: translate(-50%, -50%);
-  pointer-events: none; 
+  pointer-events: auto; /* Allow overlays to be clickable */
+  display: none; /* Initially hidden */
 }
 
+/* Example styling for specific items, adjust positions as needed */
 .overlay.photos {
-  top: 177.5px; 
-  left: 210px;  
+  top: 10px;
+  left: 10px;
 }
 
 .overlay.gift {
-  top: 365px; 
-  left: 225px;  
+  top: 70px;
+  left: 70px;
 }
 
 .overlay.music {
-  top: 480px;  
-  left: 220px;  
+  top: 130px;
+  left: 130px;
 }
 
 .overlay.videos {
-  top: 165px;  
-  left: 440px; 
+  top: 190px;
+  left: 190px;
 }
 
 .overlay.voice-notes {
-  top: 302.5px; 
-  left: 440px; 
+  top: 250px;
+  left: 250px;
 }
 
 .overlay.letters {
-  top: 435px;  
-  left: 440px; 
+  top: 310px;
+  left: 310px;
 }
 
-.box-content h4 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.box-content ul {
-  list-style-type: none;
-  padding: 0;
-  text-align: center;
-}
-
-.box-content ul li {
-  margin: 5px 0;
+/* Show overlays only when the box is opened */
+.box-opened .overlay {
+  display: block;
 }
