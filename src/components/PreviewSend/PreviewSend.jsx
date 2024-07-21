@@ -1,15 +1,26 @@
 import { Button, Divider, TextField, Typography } from "@mui/material";
 import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
 import "./PreviewSend.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LocalizationProvider, DateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { format } from "date-fns";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function PreviewSend() {
 const history = useHistory();
   const [dateTime, setDateTime] = useState(null);
+  const dispatch = useDispatch();
+  const email = useSelector(store => store.email.email);
+
+  // HOW ARE WE TRACKING THE BOX THAT'S BEING BUILT?
+  // I.E. WHERE CAN WE PULL THE BOX ID FROM?  SHOULD THIS PAGE BE /previewSend/:id ?
+  // The API send will not work without feeding the box id into the GET somehow; the GET is pulling the data needed for the email POST.
+  useEffect((boxId) => {
+    dispatch({ type: 'FETCH_EMAIL_DETAILS', payload: boxId});
+    console.log(boxId);
+  })
 
   const handleDateChange = (newValue) => {
     setDateTime(newValue);

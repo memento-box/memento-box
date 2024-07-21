@@ -1,6 +1,20 @@
 import { put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
+// GET DATA FOR EMAIL POST ON LOAD OF PREVIEWSEND
+
+function* fetchEmailDetails(action) {
+    try {
+      // Get the details:
+      const boxId = action.payload;
+      console.log(boxId);
+      const detailsResponse = yield axios.get(`/api/email/${boxId}`);
+      yield put({ type: 'SET_EMAIL_DETAILS', payload: detailsResponse.data })
+    } catch (error) {
+      console.log('fetchEmailDetails error (email.saga.js', error);
+    }
+  }
+
 // GIFT EMAIL TO RECIPIENT: POST REQUEST
 function* sendGift(action) {
     console.log('in sendGift (email.saga.js)');
@@ -16,6 +30,7 @@ function* sendGift(action) {
 /** EMAIL SAGA **/
 function* emailSaga () {
     yield takeLatest('SEND_GIFT', sendGift);
+    yield takeLatest('FETCH_EMAIL_DETAILS', fetchEmailDetails);
 };
 
 export default emailSaga;

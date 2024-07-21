@@ -2,6 +2,13 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
+// GET for data to send in email
+router.get('/:id', (req, res) => {
+    console.log('in email.router.js gift GET');
+    const query = `
+    SELECT `
+})
+
 // POST for MailChimp transactional email to gift recipient
 router.post('/gift', (req, res) => {
     console.log('in email.router.js gift POST', req.body);
