@@ -1,4 +1,4 @@
-import { Email, GraphicEq, Person, Photo, Preview, VideoLibrary } from "@mui/icons-material";
+import { Email, GraphicEq, Person, Photo, VideoLibrary } from "@mui/icons-material";
 import {
   Box,
   Drawer,
@@ -24,11 +24,11 @@ export default function EditingSidebar() {
         Build & Edit
       </Typography>
       <List>
-        <ListItem button>
+        <ListItem button onClick={()=>{history.push('/adminOverview')}}>
           <ListItemIcon>
             <Person />
           </ListItemIcon>
-          <ListItemText primary="Admin Overview (WIP)" />
+          <ListItemText primary="Admin Overview" />
         </ListItem>
         <ListItem button onClick={()=>{history.push('/imageUpload')}}>
           <ListItemIcon>
@@ -53,12 +53,6 @@ export default function EditingSidebar() {
             <Email />
           </ListItemIcon>
           <ListItemText primary="Letters" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <Preview />
-          </ListItemIcon>
-          <ListItemText primary="Preview (WIP)" />
         </ListItem>
       </List>
     </Box>

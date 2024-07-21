@@ -40,6 +40,8 @@ import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
 // import MyBoxes from '../User/MyBoxes';
 
 import "./App.css";
+import PreviewSend from "../PreviewSend/PreviewSend";
+import AdminOverview from "../AdminOverview/AdminOverview";
 
 // Setting the root element for the modal for accessibility
 Modal.setAppElement("#react-root");
@@ -155,6 +157,18 @@ function App() {
             path="/voiceUpload"
           >
             <VoiceRecording />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/previewSend">
+              <PreviewSend />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/adminOverview">
+              <AdminOverview/>
           </ProtectedRoute>
 
           {/* Routes for console-log */}
