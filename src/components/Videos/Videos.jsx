@@ -9,7 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Typography, Divider } from "@mui/material";
-//import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 
 
@@ -24,12 +24,14 @@ const Videos = () => {
     const [fileMap, setFileMap] = useState([]);
     const [indexdisplay, setIndexdisplay] = useState([]);
     const [textUpload, setTextUpload] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
     
     //GET VIDEOS FROM DATABASE
     const videoGet = () => {
         axios.get('/api/upload/video').then((r) => {
           console.log(r)
-          setFileMap(r.data);  
+          setFileMap(r.data); 
+          setIsLoading(false);
         }).catch((e) => {
           console.log('Error in client-side Video GET request', e);
         })
@@ -38,6 +40,8 @@ const Videos = () => {
     //UPLOAD VIDEOS TO CLOUDINARY
     const videoUpload = async (e) => { //Uploads video to cloudinary and returns media url
       
+      setIsLoading(true);
+
       const formData = new FormData();
       formData.append('file', fileUpload);
       formData.append('upload_preset', uploadPreset);
@@ -71,6 +75,7 @@ const Videos = () => {
 
       axios.put(`api/upload/video/${file.id}`, uploadObject).then((r) => {
         console.log('Success');
+        setIndexdisplay(null)
       }).catch((e) => {
         console.log('Error in client-side PUT request', e);
       })
@@ -106,8 +111,11 @@ const Videos = () => {
         {/*Form to upload videos to Cloudinary*/}
         <form onSubmit={videoUpload}>
             <input type='file' accept='video/*' onChange={(e) => setFileUpload(e.target.files[0])}/>
+            { isLoading ?
+            <LoadingButton loading variant="outlined" sx={{borderRadius:"50px", backgroundColor:"grey", marginBottom: "10px"}}>Add Video To Box</LoadingButton>
+            :
             <Button type='submit' sx={{borderRadius:"50px",color: "white", backgroundColor:"black", marginBottom: "10px"}} startIcon={<CloudUploadIcon />}>Add Video To Box</Button>
-           {/*} <LoadingButton loading variant="outlined">Submit</LoadingButton> */}
+            }
         </form>
 
         <Divider />
@@ -124,7 +132,7 @@ const Videos = () => {
                      
                      { indexdisplay === index ?  (
                      <form onSubmit={() => descriptionUpload(file)}>
-                      <input type='text' value={textUpload} onChange={(e) => setTextUpload(e.target.value)}/>
+                      <input type='text' style={{width: "400px", height: "75px"}}value={textUpload} onChange={(e) => setTextUpload(e.target.value)}/>
                       <button type='submit'>Upload Description</button>
                      </form>
                      ) : ('') }
