@@ -3,6 +3,14 @@ import { useState, useEffect, React } from "react";
 import ReactPlayer from 'react-player';
 import EditingSidebar from "../EditingSidebar/EditingSidebar";
 
+//--------------MUI Imports-------------------//
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { Typography, Divider } from "@mui/material";
+//import LoadingButton from '@mui/lab/LoadingButton';
+
 
 
 const Videos = () => {
@@ -10,21 +18,24 @@ const Videos = () => {
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME; //VITE needed for import
     const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
 
+
+    //HOOKS
     const [fileUpload, setFileUpload] = useState([]);
     const [fileMap, setFileMap] = useState([]);
     const [indexdisplay, setIndexdisplay] = useState([]);
     const [textUpload, setTextUpload] = useState([]);
     
-
+    //GET VIDEOS FROM DATABASE
     const videoGet = () => {
         axios.get('/api/upload/video').then((r) => {
           console.log(r)
-          setFileMap(r.data);
+          setFileMap(r.data);  
         }).catch((e) => {
           console.log('Error in client-side Video GET request', e);
         })
     }
 
+    //UPLOAD VIDEOS TO CLOUDINARY
     const videoUpload = async (e) => { //Uploads video to cloudinary and returns media url
       
       const formData = new FormData();
@@ -35,9 +46,7 @@ const Videos = () => {
       axios.post(apiUrl, formData)
       .then((r) => {  //uses hook to set media url for mapping on Videos page
         console.log(r.data);
-        
         serverUpload(r.data)
-        
       })
       .catch((e) => {
         console.log("Something went wrong with your video upload", e)
@@ -45,6 +54,7 @@ const Videos = () => {
 
     }
 
+    //UPLOAD VIDEOS TO SERVER FROM CLOUDINARY
     const serverUpload =(videoData) => { //uploads video & description to box 
 
         axios.post('/api/upload/video', videoData).then((r) => {
@@ -55,6 +65,7 @@ const Videos = () => {
         })
     }
 
+    //UPLOAD DESCRIPTION TO VIDEO IN DATABASE
     const descriptionUpload = (file) => {
       const uploadObject = {'upload': textUpload};
 
@@ -65,6 +76,7 @@ const Videos = () => {
       })
     }
 
+    //DETELE VIDEO FROM DATABASE
     const deleteVideo = (file) => {
       axios.delete(`api/upload/video/${file.id}`).then((r) => {
         videoGet();
@@ -73,27 +85,11 @@ const Videos = () => {
       })
     }
 
-    // New Data Flow removes the ability to upload delete_token via this method, code left for reference
-    /*
-    const deleteVideo = (video) => { 
-        
-        const formData = new FormData();
-        formData.append('token', video.delete_token)
-        let destroyUrl = `https://api.cloudinary.com/v1_1/${cloudName}/delete_by_token` //deletes using upload token within 10 min
-       
-        axios.post(destroyUrl, formData)
-         .then((r) => {  
-          console.log('Success', r)
-  
-        })
-          .catch((e) => {
-          console.log("Something went wrong with deleting your video", e)
-        })
-      }
-        */
+    /* NOTE: Cloudinary only allows deleting video from media library with EITHER: signed uploads or a delete_token 
+    (valid for 10 minutes). Current Delete route only removes from the databse, not Cloudinary
+    */
 
-
-
+    //ON RELOAD
     useEffect(() => {
       videoGet();
     }, []);
@@ -101,23 +97,29 @@ const Videos = () => {
 
     return (
         <div id="container">
-         {/* <EditingSidebar /> */}
-           Video Upload: 
+         <EditingSidebar />
+         <div style={{textAlign: "center"}}>
+         <Typography variant="h4" sx={{ marginLeft: "30px", marginTop: "40px", marginBottom: "40px" }}>
+        Videos
+      </Typography>
 
         {/*Form to upload videos to Cloudinary*/}
         <form onSubmit={videoUpload}>
             <input type='file' accept='video/*' onChange={(e) => setFileUpload(e.target.files[0])}/>
-            <button type='submit'>Add Video To Box</button>
+            <Button type='submit' sx={{borderRadius:"50px",color: "white", backgroundColor:"black", marginBottom: "10px"}} startIcon={<CloudUploadIcon />}>Add Video To Box</Button>
+           {/*} <LoadingButton loading variant="outlined">Submit</LoadingButton> */}
         </form>
 
-        {/*Temporary mapping until video urls connect to databse*/}
+        <Divider />
         {
             fileMap.length > 0 ? (
                 fileMap.map((file, index) => {
-                    return <>
+                    return  <div key={file.id}>
+                    <div style={{display: "flex", justifyContent: "center"}}>
                     <ReactPlayer url={file.media_url} controls />
-                    <button onClick={() => deleteVideo(file)}>Remove From Box</button>
-                    <button onClick={() => setIndexdisplay(index)}>Add Description</button>
+                    </div>
+                    <Button variant="outlined" size="small" sx={{margin:"10px"}} startIcon={<DeleteIcon />} onClick={() => deleteVideo(file)}>Remove From Box</Button>
+                    <Button variant="outlined" size="small" startIcon={<EditIcon />} onClick={() => setIndexdisplay(index)}>Add Description</Button>
                     
                      
                      { indexdisplay === index ?  (
@@ -127,27 +129,16 @@ const Videos = () => {
                      </form>
                      ) : ('') }
 
-                    </>
+                    </div>
                 })
-            ) : (<p>No Videos To Display</p>)
+            ) : ("")
         }
-        
 
         
-
+        </div>
         </div>
     )
 
 }
-/*
-{index = indexdisplay ? 
-  (
-  <form>
-    <input type='text' />
-    <button>Add Description To Box</button>
-  </form>
-  ) : ''}
-
-*/
 
 export default Videos;
