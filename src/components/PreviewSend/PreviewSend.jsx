@@ -22,20 +22,47 @@ const history = useHistory();
     console.log(boxId);
   })
 
+  let occasionGreeting = "A gift for you";
+  
+  if(email.occasion === "Birthday") {
+    occasionGreeting = "Happy Birthday"
+  }
+    else if(email.occasion === "Wedding") {
+      occasionGreeting = "Congratulations on your marriage"
+    }
+    else if(email.occasion === "Anniversary") {
+      occasionGreeting = "Happy anniversary"
+    }
+    else if(email.occasion === "Graduation") {
+      occasionGreeting = "Congraduation"
+    }
+    else if(email.occasion === "Get Well Soon") {
+      occasionGreeting = "Get well soon"
+    }
+    else if(email.occasion === "Thank You") {
+      occasionGreeting = "Thanks"
+    }
+    else if(email.occasion === "Retirement") {
+      occasionGreeting = "Congratulations on your retirement"
+    }
+    else if(email.occasion === "In Memory Of") {
+      occasionGreeting = "With deepest condolences"
+    }
+
   const sendEmail = () => {
     event.preventDefault();
     console.log('box:', email.id);
     // Sending box info to email POST
     dispatch ({ type: 'SEND_GIFT', payload: {
         box_id: email.id,
-        occasionGreeting: "",
+        occasionGreeting: occasionGreeting,
         senderName: email.senderName,
         recipientName: email.recipientName,
         boxUrl: `http://localhost:5173/#/recipientbox/${email.id}`,
         recipientEmail: email.recipientEmail,
         scheduledTime: dateTime
     },} );
-    // DO WE WANT TO REDIRECT SOMEWHERE?
+    // DO WE WANT TO REDIRECT SOMEWHERE AFTER THE BUTTON IS CLICKED?
 }
 
   const handleDateChange = (newValue) => {
@@ -79,11 +106,10 @@ const history = useHistory();
           variant="contained"
           component="span"
           sx={{ borderRadius: "50px", backgroundColor: "black" }}
-          onClick={() => sendEmail}
+          onClick={() => sendEmail()}
         >
           Schedule to Send
         </Button>
-        {/** ADD ONCLICK TO TRIGGER EMAIL **/}
       </div>
       <Divider />
       <div className="preview-display">{/** ADD PREVIEW HERE **/}</div>
