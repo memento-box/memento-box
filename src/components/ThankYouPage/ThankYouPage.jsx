@@ -5,27 +5,38 @@ import axios from 'axios';
 import './ThankYouPage.css';
 
 function ThankYouPage() {
-    let [collabs, setCollabs] = useState([{first_name: 'David', id: '4'}, {first_name: 'Erik', id: '5'}, {first_name: 'Michael', id: '6'}]);
+    let [collabs, setCollabs] = useState([{first_name: 'Fatima', id: '1'}, {first_name: 'Charlie', id: '2'}, {first_name: 'Guillermo', id: '3'}, {first_name: 'Sasha', id: '4'}, {first_name: 'Priyanka', id: '5'}]);
     let [message, setMessage] = useState();
     let [isChecked, setIsChecked] = useState([]);
     const { id } = useParams();
 
     // function getCollabs() {
+    //     let collabData;
     //     axios.get(`/api/thanks/collaborators/${id}`).then((response) => {
-    //         setCollabs(response.data);
+    //         collabData = response.data
+    //         console.log(collabData)
+    //         axios.get(`/api/thanks/boxsender/${id}`).then((response) => {
+    //             collabData.unshift(response.data[0]);
+    //             setCollabs(collabData);
+    //         }).catch((error) => {
+    //             console.log('Error getting collaborators', error)
+    //         })
     //     }).catch((error) => {
     //         console.log('Error getting collaborators', error)
-    //     })
+    //     })  
     // }
 
     useEffect (() => {
-        // getCollabs()
+        // getCollabs();
+
     }, [])
 
     function handleSubmit(event) {
         event.preventDefault;
         if (isChecked.length === 0) {
             alert('Please select someone to send the message!')
+        } else if (message.trim().length == 0) {
+            alert('Please type a message to send!')
         } else {
         console.log(message, isChecked);
         setMessage('');

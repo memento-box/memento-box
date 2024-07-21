@@ -46,6 +46,21 @@ router.get('/collaborators/:id', (req, res) => {
       });
   });
 
+  router.get('/boxsender/:id', (req, res) => {
+    queryText = `
+      SELECT "user"."first_name", "user"."last_name", "user"."id" FROM "user"
+      JOIN "memento_box" ON "memento_box"."user_id" = "user"."id"
+      WHERE "memento_box"."id" = $1;
+    `;
+    pool
+        .query(queryText, [req.params.id])
+        .then((dbRes) => {res.status(200).send(dbRes.rows)})
+        .catch((err) => {
+          console.log('Fetching box sender failed:', err);
+          res.sendStatus(500);
+        });
+    });
+
   router.get('/greeting', (req, res) => {
     queryText = `
       SELECT "occasion"."name" AS "greeting" FROM "occasion"
