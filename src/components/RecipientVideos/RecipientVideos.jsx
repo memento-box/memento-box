@@ -8,12 +8,26 @@ function RecipientVideos({ onBack }) {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const videoFiles = ['video1.mp4', 'video2.mp4', 'video3.mp4'];
-      const videoSenders = ['David', 'Erik', 'Michael'];
+      const videoFiles = [
+        'gardening1.mp4', 'gardening2.mp4', 'memento-Intro.mp4', 
+        'travel1.mp4', 'travel2.mp4', 'turtle1.mp4', 
+        'turtle2.mp4', 'turtle3.mp4', 'turtle4.mp4'
+      ];
+      const videoSenders = [
+        'Fatima', 'Charlie', 'Guillermo', 'Sasha', 
+        'Priyanka', 'David', 'Erik', 'Michael', 
+        'Anna', 'John'
+      ];
       const videoCaptions = [
-        "Tortoises can live over 100 years. Happy Birthday!",
-        "There are over 300 species of turtles. Happy Birthday!",
-        "Turtles are reptiles. Happy Birthday!"
+        "Gardening brings peace to the mind.",
+        "Gardening is a great way to relax.",
+        "Introduction to our memento project.",
+        "Traveling opens up new horizons.",
+        "Exploring new places is fun.",
+        "Turtles have existed for around 215 million years.",
+        "A turtle's shell is made up of 50 bones fused together.",
+        "Sea turtles can hold their breath for 5 hours underwater.",
+        "Turtles can live for more than 100 years."
       ];
 
       const fetchedVideos = videoFiles.map((file, index) => ({
