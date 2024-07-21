@@ -37,11 +37,12 @@
   height: 100%;
   opacity: 0; /* Initially hidden until box is opened */
   transition: opacity 0.5s ease-in-out; /* Smooth transition for opacity */
+  z-index: 0; /* Ensure it is below the closed box */
 }
 
 /* Lid sliding effect */
 .slide-out {
-  transform: translateX(100%); /* Slide the lid off-screen to the left */
+  transform: translateX(100%); /* Slide the lid off-screen to the right */
 }
 
 .box-opened .open-box-image {
