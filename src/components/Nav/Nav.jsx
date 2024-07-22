@@ -56,7 +56,7 @@ function Nav() {
           <Hamburger toggled={open} toggle={setOpen} color='#000000' rounded />
         {open && (
             <div className='menu'>
-                <Link className="navLink" to="/user">
+                <Link className="navLink" to="/home">
                   Home
                 </Link>
                 <br />

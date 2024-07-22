@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './RegisterForm.css';
 
-function RegisterForm() {
+function RegisterForm({ onRegisterSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -25,6 +25,10 @@ function RegisterForm() {
         last_name: lastName,
         birthday: birthday,
       },
+    }).then(() => {
+      if (onRegisterSuccess) {
+        onRegisterSuccess(); // Trigger success handler
+      }
     });
   }; // end registerUser
 
