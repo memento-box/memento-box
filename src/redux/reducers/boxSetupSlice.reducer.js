@@ -1,5 +1,3 @@
-// src/redux/reducers/boxSetupSlice.js
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -17,15 +15,10 @@ const boxSetupSlice = createSlice({
   name: 'boxSetup',
   initialState: {
     occasions: [],
-    boxSetupData: {}, // Add this line
     loading: false,
     error: null,
   },
-  reducers: {
-    updateBoxSetupData: (state, action) => {
-      state.boxSetupData = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchOccasions.pending, (state) => {
@@ -39,14 +32,17 @@ const boxSetupSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(submitBoxSetup.fulfilled, (state, action) => {
-        // Handle submission success, if needed
+      .addCase(submitBoxSetup.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(submitBoxSetup.fulfilled, (state) => {
+        state.loading = false;
       })
       .addCase(submitBoxSetup.rejected, (state, action) => {
+        state.loading = false;
         state.error = action.error.message;
       });
   },
 });
 
-export const { updateBoxSetupData } = boxSetupSlice.actions;
 export default boxSetupSlice.reducer;

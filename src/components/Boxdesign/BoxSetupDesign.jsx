@@ -10,6 +10,7 @@ const BoxSetupDesign = () => {
   const [current, setCurrent] = useState(0);
   const [showAlert, setShowAlert] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const slideRight = () => {
     setCurrent(current === imgSliders.length - 1 ? 0 : current + 1);
@@ -25,11 +26,16 @@ const BoxSetupDesign = () => {
 
   const handleFinish = () => {
     const selectedBox = imgSliders[current];
+    dispatch({
+      type: "UPDATE_BOX_SETUP_DATA",
+      payload: { boxDesign: selectedBox },
+    });
     setShowAlert(true);
   };
+
   const handleAlertClose = () => {
     setShowAlert(false);
-    history.replace("/adminOverview"); 
+    history.replace("/adminOverview");
   };
 
   return (
