@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .footer-content {
   width: 100%;
   background-color: rgba(28, 28, 29, 1);
@@ -19,19 +14,25 @@
   margin-top: 20px;
 }
 
-.footer-content .subscription .subs,
-.edit-footer-content .subscription .subs{
+.footer-content .subscription .subs, 
+.edit-footer-content .subscription .subs {
+  background-color: black;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #ffffff;
 }
 
-.footer-content .subscription .subs .sub-title,
-.edit-footer-content .subscription .subs .sub-title  {
+.footer-content .subscription .subs .sub-title, 
+.edit-footer-content .subscription .subs .sub-title {
   font-size: 35px;
   font-family: "Poppins";
   font-weight: bold;
   color: white;
 }
-.footer-content .subscription .subs p,
+
+.footer-content .subscription .subs p, 
 .edit-footer-content .subscription .subs p {
   font-family: "Poppins", sans-serif;
   font-size: 20px;
@@ -39,7 +40,8 @@
   color: white;
   display: flex;
 }
-.footer-content .subscription .subs input,
+
+.footer-content .subscription .subs input, 
 .edit-footer-content .subscription .subs input {
   width: 300px;
   margin-top: 20px;
@@ -47,16 +49,15 @@
   font-size: 20px;
 }
 
-.footer-content .subscription .subs button,
+.footer-content .subscription .subs button, 
 .edit-footer-content .subscription .subs button {
   border: none;
   background-color: black;
   color: white;
   margin-left: 20px;
-  border-radius: none;
 }
 
-.footer-content .site-map,
+.footer-content .site-map, 
 .edit-footer-content .site-map {
   padding: 20px;
   display: flex;
@@ -64,61 +65,85 @@
   flex-direction: column;
 }
 
-.footer-content .site-map .site-title,
-.edit-footer-content .site-map .site-title  {
+.footer-content .site-map .site-title, 
+.edit-footer-content .site-map .site-title {
   font-size: 35px;
   font-family: "Poppins";
-  font-weight: bold;
-  color: white;
 }
 
-.footer-content .site-map ul,
-.edit-footer-content .site-map ul {
-  margin-bottom: 10px;
-  list-style-type: none;
+.subscription, .site-map, .follow {
+  flex: 1;
+  text-align: center;
 }
-.footer-content .site-map ul li,
-.edit-footer-content .site-map ul li {
-  margin-bottom: 10px;
+
+.subscription {
+  margin-right: 20px;
 }
-.footer-content .site-map ul li a,
-.edit-footer-content .site-map ul li a {
-  margin-bottom: 10px;
-  color: white;
+
+.site-map {
+  margin: 0 20px;
 }
-.footer-content .follow .follow-title,
+
+.follow {
+  margin-left: 20px;
+}
+
+.sub-title, .site-title, .follow-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #F8A820;
+}
+
+.footer-content .follow .follow-title, 
 .edit-footer-content .follow .follow-title {
   font-size: 35px;
   font-family: "Poppins";
   font-weight: bold;
   color: white;
 }
-.footer-content .follow img,
-.edit-footer-content .follow img {
-  width: 100px;
-  object-fit: cover;
-}
 
-/* footer {
-  margin-top: 80px;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 10;
-} */
-
-/* footer p {
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
   cursor: pointer;
-  color: #555;
-  text-decoration: underline;
-  font-size: 1em;
-  margin: 0;
-  padding-top: 10px;
 }
 
-footer p:hover {
-  color: #000;
-} */
+button:hover {
+  background-color: #0056b3;
+}
+
+.site-map ul {
+  list-style: none;
+  padding: 0;
+}
+
+.site-map ul li {
+  margin: 5px 0;
+}
+
+.site-map a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.site-map a:hover {
+  text-decoration: underline;
+  background-color: #1a2a38;
+  transform: scale(1.05);
+}
+
+.follow img {
+  width: 64px;
+  height: 64px;
+  margin: 0 10px;
+}
+
+.copyright {
+  font-size: 14px;
+  margin-top: 50px;
+  color: #ffffff;
+}
