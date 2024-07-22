@@ -13,6 +13,7 @@ body {
 
 #heading {
     text-align: center;
+    margin: 40px;
     grid-column: 2;
     grid-row: 1;
 }
@@ -37,4 +38,14 @@ body {
 #notif {
     grid-column: 2;
     grid-row: 4;
+}
+
+#sendButton {
+    margin: 20px;
+}
+
+#collabs {
+    display: grid;
+    grid-template-columns: 250px 250px;
+    grid-template-rows: repeat(5, 20px);
 }
