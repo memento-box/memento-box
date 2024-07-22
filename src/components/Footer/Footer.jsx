@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Footer.css";
+import { useLocation } from "react-router-dom";
 
 function Footer() {
   const url =
@@ -8,9 +9,21 @@ function Footer() {
   const handleClick = () => {
     window.open(url, "_blank");
   };
+  const location = useLocation();
+  const [isEdit, setIsEdit] = useState(false);
+
+  useEffect(() => {
+    const editPaths = ['/imageUpload', '/videoUpload', '/letterUpload', '/voiceUpload', '/previewSend', '/adminOverview'];
+    if (editPaths.includes(location.pathname)) {
+      setIsEdit(true);
+    } else {
+      setIsEdit(false);
+    }
+  }, [location]);
+
 
   return (
-    <footer className="footer-content">
+    <footer className={isEdit ? "edit-footer-content" : "footer-content"}>
       <div className="subscription">
         <div className="subs">
           <p className="sub-title"> Subscribe</p>

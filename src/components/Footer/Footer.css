@@ -10,31 +10,45 @@
   justify-content: space-between;
   margin-top: 20px;
 }
-.footer-content .subscription .subs {
+
+.edit-footer-content {
+  margin-left: 240px;
+  background-color: rgba(28, 28, 29, 1);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer-content .subscription .subs,
+.edit-footer-content .subscription .subs{
   padding: 20px;
 }
 
-.footer-content .subscription .subs .sub-title {
+.footer-content .subscription .subs .sub-title,
+.edit-footer-content .subscription .subs .sub-title  {
   font-size: 35px;
   font-family: "Poppins";
   font-weight: bold;
   color: white;
 }
-.footer-content .subscription .subs p {
+.footer-content .subscription .subs p,
+.edit-footer-content .subscription .subs p {
   font-family: "Poppins", sans-serif;
   font-size: 20px;
   margin-top: 0px;
   color: white;
   display: flex;
 }
-.footer-content .subscription .subs input {
+.footer-content .subscription .subs input,
+.edit-footer-content .subscription .subs input {
   width: 300px;
   margin-top: 20px;
   padding: 10px;
   font-size: 20px;
 }
 
-.footer-content .subscription .subs button {
+.footer-content .subscription .subs button,
+.edit-footer-content .subscription .subs button {
   border: none;
   background-color: black;
   color: white;
@@ -42,38 +56,45 @@
   border-radius: none;
 }
 
-.footer-content .site-map {
+.footer-content .site-map,
+.edit-footer-content .site-map {
   padding: 20px;
   display: flex;
   padding-left: 100px;
   flex-direction: column;
 }
 
-.footer-content .site-map .site-title {
+.footer-content .site-map .site-title,
+.edit-footer-content .site-map .site-title  {
   font-size: 35px;
   font-family: "Poppins";
   font-weight: bold;
   color: white;
 }
 
-.footer-content .site-map ul {
+.footer-content .site-map ul,
+.edit-footer-content .site-map ul {
   margin-bottom: 10px;
   list-style-type: none;
 }
-.footer-content .site-map ul li {
+.footer-content .site-map ul li,
+.edit-footer-content .site-map ul li {
   margin-bottom: 10px;
 }
-.footer-content .site-map ul li a {
+.footer-content .site-map ul li a,
+.edit-footer-content .site-map ul li a {
   margin-bottom: 10px;
   color: white;
 }
-.footer-content .follow .follow-title {
+.footer-content .follow .follow-title,
+.edit-footer-content .follow .follow-title {
   font-size: 35px;
   font-family: "Poppins";
   font-weight: bold;
   color: white;
 }
-.footer-content .follow img {
+.footer-content .follow img,
+.edit-footer-content .follow img {
   width: 100px;
   object-fit: cover;
 }
