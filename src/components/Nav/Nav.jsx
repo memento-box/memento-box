@@ -65,6 +65,7 @@ function Nav() {
                 <Link className="navLink" to="/recipientbox/1">
                   Recipient Box
                 </Link>
+                <br />
                 <Link className="navLink" to="/login" onClick={() => dispatch({ type: 'LOGOUT' })}>
                   Logout
                 </Link>

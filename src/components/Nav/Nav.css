@@ -9,7 +9,6 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
-  justify-content: end;
 }
 .edit-nav {
   display: flex;
@@ -24,7 +23,6 @@
   background-position-x: center;
   top: 0;
   width: 100vw;
-  justify-content: end;
 }
 
 .nav a,
