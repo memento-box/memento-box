@@ -31,6 +31,10 @@ import ThankYouPage from "../ThankYouPage/ThankYouPage";
 import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation.jsx";
 import BoxSetupDesign from "../Boxdesign/BoxSetupDesign.jsx";
 
+=======
+import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
+import BoxSetupDesign from "../Boxdesign/BoxSetupDesign.jsx"
+>>>>>>> cf7fd9c7a7fe1cc008832984f37bb39c6ade45b8
 import "./App.css";
 import PreviewSend from "../PreviewSend/PreviewSend";
 import AdminOverview from "../AdminOverview/AdminOverview";
