@@ -1,35 +1,12 @@
 export const imgSliders = [
-  {
-    img: "/img/1.png",
-    text: "Mohmed",
-  },
-  {
-    img: "/img/2.png",
-    text: "Mohmed",
-  },
-  {
-    img: "/img/3.png",
-    text: "Mohmed",
-  },
-  {
-    img: "/img/4.png",
-  },
-  {
-    img: "/img/5.png",
-  },
-  {
-    img: "/img/6.png",
-  },
-  {
-    img: "/img/7.png",
-  },
-  {
-    img: "/img/8.png",
-  },
-  {
-    img: "/img/9.png",
-  },
-  {
-    img: "/img/10.png",
-  },
+  { image: "/img/1.png" },
+  { image: "/img/2.png" },
+  { image: "/img/3.png" },
+  { image: "/img/4.png" },
+  { image: "/img/5.png" },
+  { image: "/img/6.png" },
+  { image: "/img/7.png" },
+  { image: "/img/8.png" },
+  { image: "/img/9.png" },
+  { image: "/img/10.png" },
 ];

@@ -6,14 +6,10 @@ import {
   Switch,
 } from "react-router-dom";
 import Modal from "react-modal";
-
 import { useDispatch, useSelector } from "react-redux";
-
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
 import AccountInfo from "../AccountInfo/AccountInfo";
@@ -32,13 +28,8 @@ import RecipientGifts from "../RecipientGifts/RecipientGifts";
 import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
 import ThankYouPage from "../ThankYouPage/ThankYouPage";
-
-// Need to create these consolelog team
 import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
-// import ContactUs from '../ContactUs/ContactUs';
-import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
-// import MyBoxes from '../User/MyBoxes';
-
+import BoxSetupDesign from "../BoxDesign/BoxSetupDesign.jsx"
 import "./App.css";
 import PreviewSend from "../PreviewSend/PreviewSend";
 import AdminOverview from "../AdminOverview/AdminOverview";

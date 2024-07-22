@@ -1,11 +1,14 @@
-import { useState } from "react";
-import "../Boxdesign/BoxDesign.css";
-import { imgSliders } from "./imgSlider";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { SlArrowRight, SlArrowLeft } from "react-icons/sl"; // Ensure you have this library installed
+import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
+import { imgSliders } from "./imgSlider";
+import "./BoxDesign.css";
+import AlertModal from "./AlertModal.jsx";
 
 const BoxSetupDesign = () => {
   const [current, setCurrent] = useState(0);
+  const [showAlert, setShowAlert] = useState(false);
   const history = useHistory();
 
   const slideRight = () => {
@@ -15,8 +18,18 @@ const BoxSetupDesign = () => {
   const slideLeft = () => {
     setCurrent(current === 0 ? imgSliders.length - 1 : current - 1);
   };
+
   const backto = () => {
     history.push("/box-setup-information");
+  };
+
+  const handleFinish = () => {
+    const selectedBox = imgSliders[current];
+    setShowAlert(true);
+  };
+  const handleAlertClose = () => {
+    setShowAlert(false);
+    history.replace("/adminOverview"); 
   };
 
   return (
@@ -26,12 +39,12 @@ const BoxSetupDesign = () => {
       </div>
       <div className="content">
         <div className="step-two">
-          <h5>Step2 of 2: Box design</h5>
+          <h5>Step 2 of 2: Box design</h5>
           <h6>By clicking the arrows: choose your favorite box</h6>
         </div>
         <div className="carousel">
           <div className="carousel_wrapper">
-            {imgSliders.map((image, index) => (
+            {imgSliders.map((slider, index) => (
               <div
                 key={index}
                 className={
@@ -40,38 +53,28 @@ const BoxSetupDesign = () => {
                     : "carousel_card"
                 }
               >
-                <img className="card_image" src={image.img} alt="" />
-                <div className="card_overlay">
-                  <h2 className="card_title">{image.title}</h2>
-                </div>
+                <img className="carousel_img" src={slider.image} alt="slide" />
               </div>
             ))}
-            <div className="carousel_arrow_left" onClick={slideLeft}>
+            <button className="carousel_arrow_left" onClick={slideLeft}>
               <SlArrowLeft />
-            </div>
-            <div className="carousel_arrow_right" onClick={slideRight}>
-              <SlArrowRight style={{ height: "100px" }} />
-            </div>
-            <div className="carousel_pagination">
-              {imgSliders.map((_, index) => (
-                <div
-                  key={index}
-                  className={
-                    index === current
-                      ? "pagination_dot pagination_dot-active"
-                      : "pagination_dot"
-                  }
-                  onClick={() => setCurrent(index)}
-                ></div>
-              ))}
-            </div>
+            </button>
+            <button className="carousel_arrow_right" onClick={slideRight}>
+              <SlArrowRight />
+            </button>
           </div>
         </div>
-        <div className="next-btn">
-          <button onClick={backto}> back </button>
-          <button>Finish and get started</button>
+        <div className="back-next">
+          <button onClick={backto}>Back</button>
+          <button onClick={handleFinish}>Finish</button>
         </div>
       </div>
+      {showAlert && (
+        <AlertModal
+          message="You have successfully created your box"
+          onClose={handleAlertClose}
+        />
+      )}
     </div>
   );
 };

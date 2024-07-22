@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { fetchOccasions, submitBoxSetup } from "../../redux/reducers/boxSetupSlice.reducer";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import { MdOutlinePhotoSizeSelectActual } from "react-icons/md";
 import { GiLoveSong } from "react-icons/gi";
-import { FaVideo } from "react-icons/fa6";
-import DatePicker from "react-datepicker";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-// import { submitForm } from "./formActions"; // Import the action
-import "../BoxSetupInformation/BoxSetupInformation.css";
-import "react-datepicker/dist/react-datepicker.css";
+import { FaVideo } from "react-icons/fa";
+import "./BoxSetupInformation.css";
 
 const BoxSetupInformation = () => {
   const history = useHistory();
-  const [occation, setOccation] = useState("");
+  const [occasion, setOccasion] = useState("");
   const [celebrating, setCelebrating] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [collaborators, setCollaborators] = useState([{ name: "", email: "" }]);
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
-
+  const occasions = useSelector((state) => state.boxSetup.occasions);
   const dispatch = useDispatch();
 
-  const occations = [
-    { id: 1, typeOccation: "Graduation" },
-    { id: 2, typeOccation: "Happy Birthday" },
-  ];
+  useEffect(() => {
+    const fetchOccasionsData = async () => {
+      try {
+        await dispatch(fetchOccasions());
+      } catch (error) {
+        console.error('Error fetching occasions:', error);
+      }
+    };
+    fetchOccasionsData();
+  }, [dispatch]);
 
   const handleOption = (event) => {
-    setOccation(event.target.value);
+    setOccasion(event.target.value);
   };
 
   const handleCollaboratorChange = (index, field, value) => {
@@ -41,59 +47,55 @@ const BoxSetupInformation = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!occation) newErrors.occation = "Occation is required";
+    if (!occasion) newErrors.occasion = "Occasion is required";
     if (!celebrating) newErrors.celebrating = "Celebrating name is required";
     collaborators.forEach((collaborator, index) => {
-      if (!collaborator.name)
-        newErrors[`collaborator_name_${index}`] = "Name is required";
-      if (!collaborator.email)
-        newErrors[`collaborator_email_${index}`] = "Email is required";
+      if (!collaborator.name) newErrors[`collaborator_name_${index}`] = "Name is required";
+      if (!collaborator.email) newErrors[`collaborator_email_${index}`] = "Email is required";
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
       const formData = {
-        occation,
+        occasion,
         celebrating,
         startDate,
         collaborators,
         message,
       };
-      dispatch({
-        type: "Add_Boxes",
-        payload: formData,
-      });
-      history.push("/box-setup-design", formData);
+      dispatch(submitBoxSetup(formData));
+      history.push("/box-setup-design");
     }
   };
 
   return (
     <div className="box-setup-information">
       <div className="box-setup-title">
-        <h3> Memento Box Setup</h3>
+        <h3>Memento Box Setup</h3>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className="box-setup-content">
-          <h5> Step 1 of 2: Information</h5>
-          <div className="occation">
-            <h4>What's the occation?</h4>
+      <div className="box-setup-content">
+        <h5>Step 1 of 2: Box Information</h5>
+        <form onSubmit={handleSubmit}>
+          <div className="occasion">
+            <h4>What's the occasion?</h4>
             <select
-              id="options"
+              id="occasion"
               className="form-select"
-              value={occation}
+              value={occasion}
               onChange={handleOption}
             >
               <option value="">Select</option>
-              {occations.map((ocation) => (
-                <option key={ocation.id} value={ocation.typeOccation}>
-                  {ocation.typeOccation}
+              {occasions.map((occ) => (
+                <option key={occ.id} value={occ.name}>
+                  {occ.name}
                 </option>
               ))}
             </select>
-            {errors.occation && <p className="error">{errors.occation}</p>}
+            {errors.occasion && <p className="error">{errors.occasion}</p>}
           </div>
           <div className="celebrate">
             <h4>Who are you celebrating?</h4>
@@ -103,12 +105,10 @@ const BoxSetupInformation = () => {
               value={celebrating}
               onChange={(e) => setCelebrating(e.target.value)}
             />
-            {errors.celebrating && (
-              <p className="error">{errors.celebrating}</p>
-            )}
+            {errors.celebrating && <p className="error">{errors.celebrating}</p>}
           </div>
-          <div className="occation-date">
-            <h4>When is the occation?</h4>
+          <div className="occasion-date">
+            <h4>When is the occasion?</h4>
             <DatePicker
               className="date"
               selected={startDate}
@@ -119,14 +119,13 @@ const BoxSetupInformation = () => {
           <div className="collaborate">
             <div className="coll-title">
               <h4>Who is collaborating on this?</h4>
-              <a href="#"> Sync contacts</a>
+              <a href="#">Sync contacts</a>
             </div>
             <div className="coll-contacts">
               {collaborators.map((collaborator, index) => (
                 <div key={index} className="collaborator-inputs">
                   <input
                     type="text"
-                    name="name"
                     placeholder="Name..."
                     value={collaborator.name}
                     onChange={(e) =>
@@ -135,7 +134,6 @@ const BoxSetupInformation = () => {
                   />
                   <input
                     type="text"
-                    name="email"
                     placeholder="Email..."
                     value={collaborator.email}
                     onChange={(e) =>
@@ -143,27 +141,22 @@ const BoxSetupInformation = () => {
                     }
                   />
                   {errors[`collaborator_name_${index}`] && (
-                    <p className="error">
-                      {errors[`collaborator_name_${index}`]}
-                    </p>
+                    <p className="error">{errors[`collaborator_name_${index}`]}</p>
                   )}
                   {errors[`collaborator_email_${index}`] && (
-                    <p className="error">
-                      {errors[`collaborator_email_${index}`]}
-                    </p>
+                    <p className="error">{errors[`collaborator_email_${index}`]}</p>
                   )}
                 </div>
               ))}
-              <div className=" next-steps">
+              <div className="next-steps">
                 <button type="button" onClick={addCollaborator}>
-                  +Add more
+                  + Add more
                 </button>
               </div>
             </div>
           </div>
           <div className="coll-msg">
             <h4>Write a message to those collaborating.</h4>
-            <h4>Feel free to include any prompt to help them spark ideas!</h4>
             <textarea
               placeholder="Type your message here..."
               value={message}
@@ -177,9 +170,7 @@ const BoxSetupInformation = () => {
             <div>
               <ul>
                 <li>
-                  <MdOutlinePhotoSizeSelectActual
-                    style={{ marginRight: "20px" }}
-                  />
+                  <MdOutlinePhotoSizeSelectActual style={{ marginRight: "20px" }} />
                   Send in your favorite photo of the two of you together
                 </li>
                 <li>
@@ -196,8 +187,8 @@ const BoxSetupInformation = () => {
           <div className="next-steps">
             <button type="submit">Next step</button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
