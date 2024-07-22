@@ -14,7 +14,8 @@ const uploadRouter = require('./routes/upload.router');
 const userInfoRouter = require('./routes/userInfo.router');
 const thanksRouter = require('./routes/thanks.router');
 const photoUploadRouter = require('./routes/photoUpload.router');
-const occasionRouter = require('./routes/occasion.router'); 
+const occasionRouter = require('./routes/occasion.router');
+const boxSetupRouter = require('./routes/boxSetup.router'); 
 
 // Express Middleware
 app.use(express.json());
@@ -35,7 +36,8 @@ app.use('/api/userInfo', userInfoRouter);
 app.use('/api/thanks', thanksRouter);
 app.use('/api/content', contentRouter);
 app.use('/api/photoUpload', photoUploadRouter);
-app.use('/api/occasion', occasionRouter); 
+app.use('/api/occasion', occasionRouter);
+app.use('/api/box-setup', boxSetupRouter); 
 
 // Listen Server & Port
 app.listen(PORT, () => {
