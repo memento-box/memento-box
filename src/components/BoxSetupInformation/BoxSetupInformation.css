@@ -36,7 +36,7 @@
 .occation {
   margin-top: 20px;
 }
-.occation .form-select {
+.form-select {
   width: 300px;
   font-size: 15px;
   padding: 7px;
@@ -56,11 +56,12 @@
 .box-setup-content .occation-date h4 {
   margin-top: 20px;
 }
-.box-setup-content .occation-date .date {
+.date {
   font-size: 20px;
+  width: 300px;
   border-radius: 5px;
   border: 1px solid rgb(94, 94, 94);
-  padding: 8px;
+  padding: 7px;
 
   width: 300px;
 }
