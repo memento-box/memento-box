@@ -5,10 +5,10 @@ const router = express.Router();
 // POST route for box setup information
 router.post('/', (req, res) => {
   const {
-    occasion,
-    recipientName,
-    deliveryDate,
-    collaboratorNote,
+    occasionId,
+    celebrating,
+    startDate,
+    message,
     collaborators,
   } = req.body;
 
@@ -16,10 +16,10 @@ router.post('/', (req, res) => {
 
   const queryText = `
     INSERT INTO "memento_box" 
-    ("occasion_id", "recipient_name", "delivery_date", "collaborator_note", "created_at")
-    VALUES ($1, $2, $3, $4, CURRENT_DATE) RETURNING "id";`;
+    ("occasion_id", "recipient_name", "delivery_date", "collaborator_note", "created_at", "user_id")
+    VALUES ($1, $2, $3, $4, CURRENT_DATE, $5) RETURNING "id";`;
 
-  pool.query(queryText, [occasion, recipientName, deliveryDate, collaboratorNote])
+  pool.query(queryText, [occasionId, celebrating, startDate, message, req.user.id])
     .then(result => {
       const newBoxId = result.rows[0].id;
 

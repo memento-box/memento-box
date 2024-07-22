@@ -83,28 +83,23 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
     });
 });
 /************************** POST PHOTO **************************/
-router.post("/upload/image", rejectUnauthenticated, (req, res) => {
-  const user = req.user;
+router.post("/image", rejectUnauthenticated, (req, res) => {
+  const user_id = req.user.id;
   const { box_id, public_id, secure_url } = req.body;
   const queryText = `
-    INSERT INTO "box_item",
-    VALUES
-      "box_id" = $1,
-      "user_id" = $2,
-      "media_url" = $3,
-      "media_type" = $4,
-      "public_id" = $5;
+    INSERT INTO "box_item" (box_id, user_id, media_url, media_type, public_id)
+    VALUES ($1, $2, $3, $4, $5);
   `;
-  const queryValues = {
-    box_id: box_id,
-    user_id: user,
-    media_url: secure_url,
-    media_type: mediaType.image,
-    public_id: public_id,
-  };
+  const queryValues = [
+    box_id,
+    user_id,
+    secure_url,
+    mediaType.photo,
+    public_id,
+  ];
   pool
     .query(queryText, queryValues)
-    .then((res) => {
+    .then(() => {
       res.sendStatus(201);
     })
     .catch((err) => {
@@ -133,8 +128,8 @@ router.get("/images", rejectUnauthenticated, async (req, res) => {
 router.get("/video", rejectUnauthenticated, (req, res) => {
   console.log(req.body)
   const user = req.user;
-  const queryText = 'SELECT * FROM “box_item" WHERE “media_type” = 2;';
-  // WHERE “user_id” = $1 AND
+  const queryText = 'SELECT * FROM "box_item" WHERE "media_type" = 2 AND "user_id" = $1;';
+  // WHERE "user_id" = $1 AND
   pool.query(queryText, [user.id]).then((r) => {
     console.log(r.rows)
     res.send(r.rows);
@@ -146,7 +141,7 @@ router.get("/video", rejectUnauthenticated, (req, res) => {
 router.post("/video", rejectUnauthenticated, (req, res) => {
     const upload = req.body
     const user = req.user
-    const queryText = `INSERT INTO “box_item” (“user_id”, “media_url”, “media_type”) VALUES ($1, $2, $3);`;
+    const queryText = `INSERT INTO "box_item" ("user_id", "media_url", "media_type") VALUES ($1, $2, $3);`;
     const queryValues = [ user.id, upload.url, mediaType.video ];
     //box_id: box_id,
   pool
