@@ -6,9 +6,14 @@ import './LoginPage.css';
 function LoginPage() {
   const history = useHistory();
 
+  // Handle redirect on successful login
+  const handleLoginSuccess = () => {
+    history.push('/home'); // Redirect to the landing page after login
+  };
+
   return (
     <div className="page-container">
-      <LoginForm />
+      <LoginForm onLoginSuccess={handleLoginSuccess} />
     </div>
   );
 }
