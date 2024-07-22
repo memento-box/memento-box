@@ -27,7 +27,7 @@ function Footer() {
             <a href="#" onClick={handleContactClick}>Contact Us</a>
           </li>
         </ul>
-        <p className="copyright">© 2024 Memento</p>
+        <p className="copyright">© 2024 Memento Box</p>
       </div>
       <div className="follow">
         <p className="follow-title">Follow</p>
