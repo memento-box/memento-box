@@ -129,6 +129,34 @@ router.get("/images", rejectUnauthenticated, async (req, res) => {
 
 
 /************************** POST VIDEO **************************/
+router.get('/video', rejectUnauthenticated, (req, res) => {
+  console.log(req.body)
+  const user = req.user;
+  const queryText = 'SELECT * FROM “box_item” WHERE “user_id” = $1 AND “media_type” = 2;';
+  pool.query(queryText, [user.id]).then((r) => {
+    console.log(r.rows)
+    res.send(r.rows);
+  }).catch((e) => {
+    console.log('Error in server-side video GET', e);
+    res.sendStatus(500);
+  })
+})
+router.post("/video", rejectUnauthenticated, (req, res) => {
+    const upload = req.body
+    const user = req.user
+    const queryText = `INSERT INTO “box_item” (“user_id”, “media_url”, “media_type”) VALUES ($1, $2, $3);`;
+    const queryValues = [ user.id, upload.url, mediaType.video ];
+    //box_id: box_id,
+  pool
+    .query(queryText, queryValues)
+    .then((r) => {
+      res.sendStatus(201);
+    })
+    .catch((e) => {
+      console.log("Error in server-side Video upload", e);
+      res.sendStatus(500);
+    });
+});
 
 router.delete('/video/:id', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id
