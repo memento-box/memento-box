@@ -39,10 +39,6 @@ const BoxSetupInformation = () => {
     setCollaborators([...collaborators, { name: "", email: "" }]);
   };
 
-  const nextSteps = () => {
-    history.push("/box-setup-design");
-  };
-
   const validate = () => {
     const newErrors = {};
     if (!occation) newErrors.occation = "Occation is required";
@@ -56,7 +52,6 @@ const BoxSetupInformation = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validate()) {
@@ -67,7 +62,11 @@ const BoxSetupInformation = () => {
         collaborators,
         message,
       };
-      dispatch(submitForm(formData));
+      dispatch({
+        type: "Add_Boxes",
+        payload: formData,
+      });
+      history.push("/box-setup-design", formData);
     }
   };
 
@@ -195,9 +194,7 @@ const BoxSetupInformation = () => {
             </div>
           </div>
           <div className="next-steps">
-            <button type="submit" onClick={nextSteps}>
-              Next step
-            </button>
+            <button type="submit">Next step</button>
           </div>
         </div>
       </form>

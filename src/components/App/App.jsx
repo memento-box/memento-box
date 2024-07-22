@@ -6,10 +6,14 @@ import {
   Switch,
 } from "react-router-dom";
 import Modal from "react-modal";
+
 import { useDispatch, useSelector } from "react-redux";
+
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
+
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
 import AccountInfo from "../AccountInfo/AccountInfo";
@@ -20,10 +24,6 @@ import Photos from "../Photos/Photos";
 import Videos from "../Videos/Videos";
 import Letters from "../Letters/Letters";
 import VoiceRecording from "../VoiceRecording/VoiceRecording";
-import PreviewSend from "../PreviewSend/PreviewSend";
-import AdminOverview from "../AdminOverview/AdminOverview";
-import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
-import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
 import RecipientBox from "../RecipientBox/RecipientBox";
 import RecipientPhotos from "../RecipientPhotos/RecipientPhotos";
 import RecipientLetters from "../RecipientLetters/RecipientLetters";
@@ -32,8 +32,20 @@ import RecipientGifts from "../RecipientGifts/RecipientGifts";
 import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
 import ThankYouPage from "../ThankYouPage/ThankYouPage";
+
+// Need to create these consolelog team
+import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
+// import ContactUs from '../ContactUs/ContactUs';
+import BoxSetupDesign from "../Boxdesign/BoxSetupDesign";
+// import MyBoxes from '../User/MyBoxes';
+
+import "./App.css";
+import PreviewSend from "../PreviewSend/PreviewSend";
+import AdminOverview from "../AdminOverview/AdminOverview";
+
 // Setting the root element for the modal for accessibility
 Modal.setAppElement("#react-root");
+
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
@@ -48,11 +60,36 @@ function App() {
         <Switch>
           {/* Redirect root to /home */}
           <Redirect exact from="/" to="/home" />
-          {/* Public Routes */}
-          <Route exact path="/about">
-            {/* Shows AboutPage at all times (logged in or not) */}
+
+          {/* Visiting localhost:5173/about will show the about page. */}
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/about"
+          >
             <AboutPage />
           </Route>
+
+          {/* For protected routes, the view could show one of several things on the same route.
+            Visiting localhost:5173/user will show the UserPage if the user is logged in.
+            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
+            Even though it seems like they are different pages, the user is always on localhost:5173/user */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/user"
+          >
+            <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows AccountInfo page, else shows LoginPage
+            exact
+            path="/info"
+          >
+            <AccountInfo />
+          </ProtectedRoute>
+
           <Route exact path="/login">
             {/* If the user is logged in, redirect to /home */}
             {user.id ? <Redirect to="/home" /> : <LoginPage />}
@@ -65,40 +102,50 @@ function App() {
             {/* Always shows LandingPage */}
             <LandingPage />
           </Route>
-          {/* Protected Routes */}
-          <ProtectedRoute exact path="/user">
-            {/* If logged in, shows UserPage, else shows LoginPage */}
-            <UserPage />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/info">
-            {/* If logged in, shows AccountInfo page, else shows LoginPage */}
-            <AccountInfo />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/imageUpload">
-            {/* If logged in, shows Photos page else shows LoginPage */}
+
+          {/* Routes for box-turtles */}
+          <ProtectedRoute
+            // logged in shows imageUpload page else shows LoginPage
+            exact
+            path="/imageUpload"
+          >
             <Photos />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/videoUpload">
-            {/* If logged in, shows Videos page else shows LoginPage */}
+
+          <ProtectedRoute
+            // logged in shows videoUpload page else shows LoginPage
+            exact
+            path="/videoUpload"
+          >
             <Videos />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/letterUpload">
-            {/* If logged in, shows Letters page else shows LoginPage */}
+
+          <ProtectedRoute
+            // logged in shows letterUpload page else shows LoginPage
+            exact
+            path="/letterUpload"
+          >
             <Letters />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/voiceUpload">
-            {/* If logged in, shows VoiceRecording page else shows LoginPage */}
+
+          <ProtectedRoute
+            // logged in shows voiceUpload page else shows LoginPage
+            exact
+            path="/voiceUpload"
+          >
             <VoiceRecording />
           </ProtectedRoute>
+
           <ProtectedRoute exact path="/previewSend">
-            {/* If logged in, shows PreviewSend page else shows LoginPage */}
             <PreviewSend />
           </ProtectedRoute>
+
           <ProtectedRoute exact path="/adminOverview">
-            {/* If logged in, shows AdminOverview page else shows LoginPage */}
             <AdminOverview />
           </ProtectedRoute>
-          {/* Box setup and recipient routes */}
+
+          {/* Routes for console-log */}
+
           <Route exact path="/box-setup-information">
             {/* Shows BoxSetupInformation page */}
             <BoxSetupInformation />
@@ -107,39 +154,55 @@ function App() {
             {/* Shows BoxSetupDesign page */}
             <BoxSetupDesign />
           </Route>
+
+          <Route exact path="/contact-us">
+            {/* Dont forget to take it off the comment */}
+            {/* <ContactUs /> */}
+          </Route>
+
+          <ProtectedRoute exact path="/user/my-boxes">
+            {/* Dont forget to take it off the comment */}
+
+            {/* <MyBoxes /> */}
+          </ProtectedRoute>
+
+          {/* Routes for three-toed-turtles */}
           <Route exact path="/recipientbox/:id">
             {/* Shows RecipientBox page */}
             <RecipientBox />
           </Route>
+
           <Route exact path="/recipient/photos">
             {/* Shows RecipientPhotos page */}
             <RecipientPhotos />
           </Route>
+
           <Route exact path="/recipient/videos">
             {/* Shows RecipientVideos page */}
             <RecipientVideos />
           </Route>
-          <Route exact path="/recipient/letters">
-            {/* Shows RecipientLetters page */}
-            <RecipientLetters />
-          </Route>
-          <Route exact path="/recipient/voice-notes">
-            {/* Shows RecipientVoiceNotes page */}
+          <Route exact path=" ">
             <RecipientVoiceNotes />
           </Route>
+
           <Route exact path="/recipient/gifts">
             {/* Shows RecipientGifts page */}
             <RecipientGifts />
           </Route>
+
           <Route exact path="/recipient/mixtape">
             {/* Shows RecipientMixtape page */}
             <RecipientMixtape />
+          </Route>
+          <Route exact path="/recipient/letters">
+            <RecipientLetters />
           </Route>
           <Route exact path="/thankyou/:id">
             {/* Shows ThankYouPage */}
             <ThankYouPage />
           </Route>
-          {/* Catch-all for unmatched routes */}
+
+          {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404 - Not Found</h1>
           </Route>

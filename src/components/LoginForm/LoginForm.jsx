@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
-function LoginForm() {
+function LoginForm({ onLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
@@ -20,6 +20,10 @@ function LoginForm() {
           username: username,
           password: password,
         },
+      }).then(() => {
+        if (onLoginSuccess) {
+          onLoginSuccess(); // Trigger success handler
+        }
       });
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
@@ -71,7 +75,7 @@ function LoginForm() {
               history.push('/registration');
             }}
           >
-             Register
+            Register
           </button>
         </div>
       </form>
