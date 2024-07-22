@@ -64,7 +64,8 @@ function Nav() {
                 <Link className="navLink" to="/recipientbox/1">
                   Recipient Box
                 </Link>
-                <LogOutButton className="navLink" />
+                <button id="btn">Logout</button>
+                {/* <LogOutButton className="navLink" /> */}
                 </div>
                 )}
           </>
