@@ -1,11 +1,10 @@
 footer {
-  margin-top: 80px;
+  margin-top: 140px;
   padding: 20px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f9f9f9;
   position: relative;
   z-index: 10;
 }
