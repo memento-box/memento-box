@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 
 function Nav() {
+  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const location = useLocation();
   const [isEdit, setIsEdit] = useState(false);
@@ -20,6 +20,7 @@ function Nav() {
       setIsEdit(false);
     }
   }, [location]);
+
 
   return (
     <div className={isEdit ? "edit-nav" : "nav"} >
@@ -64,7 +65,11 @@ function Nav() {
                 <Link className="navLink" to="/recipientbox/1">
                   Recipient Box
                 </Link>
-                <LogOutButton className="navLink" />
+                <br />
+                <Link className="navLink" to="/login" onClick={() => dispatch({ type: 'LOGOUT' })}>
+                  Logout
+                </Link>
+                {/* <LogOutButton className="navLink" /> */}
                 </div>
                 )}
           </>
