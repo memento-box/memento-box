@@ -20,15 +20,28 @@ pool
 
 router.post('/messages', (req, res) => {
     queryText = `
-      INSERT INTO "box_thanks" ("message", "thanks_receiver_id", "box_id") VALUES ($1, $2, $3);
+      INSERT INTO "box_thanks" ("message", "box_id") VALUES ($1, $2) RETURNING "id";
     `;
     pool
-        .query(queryText, [req.body.message, req.body.thanksreceiverID, req.body.boxID])
-        .then(() => {res.sendStatus(201)})
+        .query(queryText, [req.body.message, req.body.boxID])
+        .then((dbRes) => {res.status(201).send(dbRes)})
         .catch((err) => {
           console.log('Posting thanks messages failed:', err);
           res.sendStatus(500);
         });
+});
+
+router.post('/userboxthanks', (req, res) => {
+  queryText = `
+    INSERT INTO "user_box_thanks" ("user_id", "box_thanks_id") VALUES ($1, $2);
+  `;
+  pool
+      .query(queryText, [req.body.user, req.body.boxthanksID])
+      .then((dbRes) => {res.status(201).send(dbRes)})
+      .catch((err) => {
+        console.log('Posting thanks messages failed:', err);
+        res.sendStatus(500);
+      });
 });
 
 router.get('/collaborators/:id', (req, res) => {
@@ -45,6 +58,21 @@ router.get('/collaborators/:id', (req, res) => {
         res.sendStatus(500);
       });
   });
+
+  router.get('/boxsender/:id', (req, res) => {
+    queryText = `
+      SELECT "user"."first_name", "user"."last_name", "user"."id" FROM "user"
+      JOIN "memento_box" ON "memento_box"."user_id" = "user"."id"
+      WHERE "memento_box"."id" = $1;
+    `;
+    pool
+        .query(queryText, [req.params.id])
+        .then((dbRes) => {res.status(200).send(dbRes.rows)})
+        .catch((err) => {
+          console.log('Fetching box sender failed:', err);
+          res.sendStatus(500);
+        });
+    });
 
   router.get('/greeting', (req, res) => {
     queryText = `
