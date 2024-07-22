@@ -59,8 +59,8 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
       "box_id" = $1,
       "user_id" = $2,
       "media_url" = $3,
-      "media_type" = $4,
-      "public_id" = $5;
+      "media_type" = $4;
+      -- "public_id" = $5;
   `;
 
   const queryValues = {
@@ -68,7 +68,7 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
     user_id: user,
     media_url: secure_url,
     media_type: mediaType.voice,
-    public_id: public_id,
+    // public_id: public_id,
   };
 
   pool
@@ -129,10 +129,11 @@ router.get("/images", rejectUnauthenticated, async (req, res) => {
 
 
 /************************** POST VIDEO **************************/
-router.get('/video', rejectUnauthenticated, (req, res) => {
+router.get("/video", rejectUnauthenticated, (req, res) => {
   console.log(req.body)
   const user = req.user;
-  const queryText = 'SELECT * FROM “box_item” WHERE “user_id” = $1 AND “media_type” = 2;';
+  const queryText = 'SELECT * FROM “box_item" WHERE “media_type” = 2;';
+  // WHERE “user_id” = $1 AND
   pool.query(queryText, [user.id]).then((r) => {
     console.log(r.rows)
     res.send(r.rows);

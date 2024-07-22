@@ -65,7 +65,7 @@ export default function VoiceRecording() {
           </Typography>
         ) : (
           notes.map((note) => (
-            <div key={note.id} className="notes-item-cont">
+            <div key={note.secure_url} className="notes-item-cont">
               <div className="notes-item">
                 <div>
                   <Typography>
