@@ -1,4 +1,3 @@
-
 import { Divider, Typography, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { useEffect, useState, useCallback } from 'react';
@@ -6,67 +5,52 @@ import DisplayContainer from '../DisplayContainer/DisplayContainer.jsx';
 import EditingSidebar from '../EditingSidebar/EditingSidebar.jsx';
 import PhotoUploadButton from '../PhotoUploadButton/PhotoUploadButton.jsx';
 import './Photos.css';
+import UploadButton from '../UploadButton/UploadButton.jsx';
 
 export default function Photos() {
   const [files, setFiles] = useState([]);
   // const [notes, setNotes] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const uploadFileType = 'image/*';
 
-  // const getNotes = useCallback(async () => {
-  //   try {
-  //     const response = await axios.get('/api/notes');
-  //     setNotes(response.data);
-  //   } catch (err) {
-  //     console.error("Error fetching notes:", err);
-  //     setError("Failed to fetch notes. Please try again later.");
-  //   }
-  // }, []);
+  useEffect(() => {
+    resetState();
+  }, []);
 
-  const getFiles = useCallback(async () => {
+  const endpoint = async (payload) => {
+    try {
+      await axios.post("/api/upload/image", payload);
+      resetState(); // Fetching notes after successful upload
+    } catch (err) {
+      console.log("Error posting voice note:", err);
+    }
+  };
+
+  const resetState = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get('/api/photoUpload/files');
       setFiles(response.data);
     } catch (err) {
       console.error('Error fetching files:', err);
       setError('Failed to fetch files. Please try again later.');
-    }
-  }, []);
-
-  const resetState = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      await Promise.all([getFiles()]); // getNotes() goes second in this array
-    } catch (err) {
-      console.error('Error resetting state:', err);
-      setError('Failed to reset state. Please try again.');
     } finally {
       setIsLoading(false);
     }
-  }, [getFiles]); // getNotes goes second in this array
-
-  useEffect(() => {
-    resetState();
-  }, [resetState]);
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
-
-  if (error) {
-    return <Typography color='error'>{error}</Typography>;
-  }
-
+  }; // getNotes goes second in this array
 
   return (
-    <div className='box-edit-container'>
+    <div className="box-edit-container">
+      {
+        isLoading && <CircularProgress />
+      }
       <EditingSidebar />
-      <Typography variant='h5' sx={{ marginLeft: '30px', marginTop: '80px' }}>
+      <Typography variant="h5" sx={{ marginLeft: '30px', marginTop: '80px' }}>
         Upload Files
       </Typography>
-      <div className='upload-actions'>
-        <PhotoUploadButton uploadFileType={uploadFileType} resetState={resetState} />
+      <div className="upload-actions">
+        <UploadButton uploadFileType={uploadFileType} reload={resetState} endpoint={endpoint}/>
       </div>
       <Divider />
       <div
@@ -84,7 +68,6 @@ export default function Photos() {
   );
 }
 
-
 // Notes code that goes above if needed
 // {notes.length > 0 && (
 //   <div>
@@ -99,4 +82,3 @@ export default function Photos() {
 //     ))}
 //   </div>
 // )}
-
