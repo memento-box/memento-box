@@ -11,8 +11,21 @@
     left: 20px;
     top: 20px;
     cursor: pointer;
-    color: black;
+    color: white;
+    background-color: #f8a820;
+    padding: 5px 15px; 
+    border: 2px solid #e85230;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
   }
+  
+  .back-link:hover {
+    background-color: #e85230;
+  }
+  
   
   h1 {
     margin-bottom: 20px;

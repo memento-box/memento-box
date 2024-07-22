@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl";
-import { imgSliders } from "./imgSlider";
+import { imgSliders } from "./imgSlider.js";
 import "./BoxDesign.css";
 import AlertModal from "./AlertModal.jsx";
 

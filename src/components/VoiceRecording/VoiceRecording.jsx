@@ -2,13 +2,13 @@ import { Divider, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import EditingSidebar from "../EditingSidebar/EditingSidebar.jsx";
 import UploadButton from "../UploadButton/UploadButton.jsx";
-import "./VoiceRecording.css";
+import { AudioRecorder } from "react-audio-voice-recorder";
 import axios from "axios";
+import "./VoiceRecording.css";
 
 export default function VoiceRecording() {
   const [notes, setNotes] = useState([]); // State for notes to be rendered
   const box_id = 1; // NEED TO PULL THIS FROM REDUX, USING 1 FOR TESTING
-
 
   const uploadFileType = "audio/*";
   const endpoint = async (payload) => {
@@ -35,7 +35,49 @@ export default function VoiceRecording() {
     fetchNotes();
   }, []);
 
-  // Function to determine MIME type based on file extension ('audio/*' doesnt work for the audio tag) EX: audio/mp3
+  const getSignedUrl = async () => {
+    const response = await axios.get('/api/upload/signed-url');
+    return response.data;
+  };
+
+  const addAudioElement = async (blob) => {
+    // Convert blob to file
+    const file = new File([blob], "recording.webm", { type: "audio/webm" });
+
+    const { api_key, cloud_name, signature, timestamp, upload_preset } = await getSignedUrl();
+
+    // Create a FormData object and append the file
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('timestamp', timestamp);
+    formData.append('api_key', api_key);
+    formData.append('signature', signature);
+    formData.append('upload_preset', upload_preset);
+
+    try {
+      // Upload the file directly to Cloudinary
+      const uploadRes = await axios.post(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/upload`,
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        }
+      );
+
+      const fileUrl = uploadRes.data.secure_url;
+      console.log('File uploaded successfully:', fileUrl);
+
+      const payload = {
+        box_id,
+        secure_url: fileUrl,
+      };
+
+      await endpoint(payload);
+    } catch (err) {
+      console.error('Error uploading file:', err);
+    }
+  };
+
   const getMimeType = (url) => {
     const extension = url.split(".").pop();
     return `audio/${extension}`;
@@ -53,9 +95,15 @@ export default function VoiceRecording() {
           reload={fetchNotes}
           endpoint={endpoint}
         />
-        <button>Record</button> {/* TODO */}
-        {/* button will pull up small upload form */}
-        {/* button will use recording package and post to Cloudinary */}
+        <AudioRecorder
+          onRecordingComplete={addAudioElement}
+          audioTrackConstraints={{
+            noiseSuppression: true,
+            echoCancellation: true,
+          }}
+          downloadOnSavePress={false}
+          downloadFileExtension="webm"
+        />
       </div>
       <Divider /> {/* Separates upload methods from rendered notes */}
       <div className="notes-display">
@@ -65,7 +113,7 @@ export default function VoiceRecording() {
           </Typography>
         ) : (
           notes.map((note) => (
-            <div key={note.id} className="notes-item-cont">
+            <div key={note.secure_url} className="notes-item-cont">
               <div className="notes-item">
                 <div>
                   <Typography>

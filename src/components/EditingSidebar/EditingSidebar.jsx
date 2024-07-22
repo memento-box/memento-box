@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom";
 const drawerWidth = 240;
 
 export default function EditingSidebar() {
+  const open = true;
 
     const history = useHistory();
 
