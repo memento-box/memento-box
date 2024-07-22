@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 import axios from 'axios';
 import './ThankYouPage.css';
 
@@ -83,7 +84,10 @@ function ThankYouPage() {
             </div>
             ))}
             </div> 
-            <input type='submit' value='Send'/>
+            <Button type='submit'
+            variant='contained'
+            sx={{borderRadius:"50px", backgroundColor:"black"}}
+            > Send </Button>
         </form>
         <p id='notif'>{sendNotif ? 'Success!' : ''}</p>
     </div>
