@@ -1,6 +1,6 @@
 .box-preview-container {
   position: relative;
-  width: 90vw; 
+  width: 70vw; 
   max-width: 790px; 
   height: 100vh; 
   max-height: 800px; 
@@ -92,38 +92,38 @@
   background: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 5px;
-  pointer-events: auto;
-  display: none;
+  pointer-events: none; /* Allows clicking through the overlay */
+  transform: translate(-50%, -50%); /* Centers text over the coordinates */
 }
 
 .overlay.photos {
-  top: 10px;
-  left: 10px;
+  top: 120px; /* Adjusted to center */
+  left: 115px; /* Adjusted to center */
 }
 
 .overlay.gift {
-  top: 70px;
-  left: 70px;
+  top: 217px; /* Adjusted to center */
+  left: 110px; /* Adjusted to center */
 }
 
 .overlay.music {
-  top: 130px;
-  left: 130px;
+  top: 287px; /* Adjusted to center */
+  left: 110px; /* Adjusted to center */
 }
 
 .overlay.videos {
-  top: 190px;
-  left: 190px;
+  top: 120px; /* Adjusted to center */
+  left: 240px; /* Adjusted to center */
 }
 
 .overlay.voice-notes {
-  top: 250px;
-  left: 250px;
+  top: 205px; /* Adjusted to center */
+  left: 240px; /* Adjusted to center */
 }
 
 .overlay.letters {
-  top: 310px;
-  left: 310px;
+  top: 285px; /* Adjusted to center */
+  left: 240px; /* Adjusted to center */
 }
 
 .box-opened .overlay {
@@ -147,12 +147,17 @@ button {
   padding: 15px;
   font-weight: bold;
   font-size: large;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-  background-color: #0e1a28;
+  background-color: #1a2a38;
   color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.button {
+  cursor: pointer;
 }
 
 .dummy-data-container {

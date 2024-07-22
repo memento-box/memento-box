@@ -85,7 +85,7 @@ const BoxPreview = ({ box, boxImage, occasion }) => {
               <area
                 alt="Photos"
                 title="Photos"
-                coords="100,70,230,285"
+                coords="80,70,150,170"
                 shape="rect"
                 onMouseEnter={() => handleMouseEnter('Photos')}
                 onMouseLeave={handleMouseLeave}
@@ -94,7 +94,7 @@ const BoxPreview = ({ box, boxImage, occasion }) => {
               <area
                 alt="Gift"
                 title="Gift"
-                coords="100,290,230,400"
+                coords="70,185,150,250"
                 shape="rect"
                 onMouseEnter={() => handleMouseEnter('Gift')}
                 onMouseLeave={handleMouseLeave}
@@ -103,7 +103,7 @@ const BoxPreview = ({ box, boxImage, occasion }) => {
               <area
                 alt="Music"
                 title="Music"
-                coords="90,410,240,510"
+                coords="70,265,150,330"
                 shape="rect"
                 onMouseEnter={() => handleMouseEnter('Music')}
                 onMouseLeave={handleMouseLeave}
@@ -112,7 +112,7 @@ const BoxPreview = ({ box, boxImage, occasion }) => {
               <area
                 alt="Videos"
                 title="Videos"
-                coords="255,70,510,260"
+                coords="185,70,300,160"
                 shape="rect"
                 onMouseEnter={() => handleMouseEnter('Videos')}
                 onMouseLeave={handleMouseLeave}
@@ -121,7 +121,7 @@ const BoxPreview = ({ box, boxImage, occasion }) => {
               <area
                 alt="Voice Notes"
                 title="Voice Notes"
-                coords="255,275,520,330"
+                coords="185,175,300,200"
                 shape="rect"
                 onMouseEnter={() => handleMouseEnter('Voice Notes')}
                 onMouseLeave={handleMouseLeave}
@@ -130,7 +130,7 @@ const BoxPreview = ({ box, boxImage, occasion }) => {
               <area
                 alt="Letters"
                 title="Letters"
-                coords="255,360,520,510"
+                coords="185,230,300,340"
                 shape="rect"
                 onMouseEnter={() => handleMouseEnter('Letters')}
                 onMouseLeave={handleMouseLeave}
