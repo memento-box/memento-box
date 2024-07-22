@@ -16,7 +16,7 @@
   height: 64px;
   margin: 0 0 30px;
   overflow: hidden;
-  z-index: 2;
+  z-index: 4;
   position: fixed;
   background-image: url('icons/memento-box-logo.png');
   background-size: contain;
