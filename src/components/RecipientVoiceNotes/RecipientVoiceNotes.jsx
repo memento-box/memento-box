@@ -8,12 +8,13 @@ function RecipientVoiceNotes({ onBack }) {
 
   useEffect(() => {
     const fetchVoiceNotes = async () => {
-      const noteFiles = ['note1.mp3', 'note2.mp3', 'note3.mp3'];
-      const noteSenders = ['David', 'Erik', 'Michael'];
+      const noteFiles = ['note1.mp3', 'note2.mp3', 'note3.mp3', 'note4.mp3'];
+      const noteSenders = ['Fatima', 'Charlie', 'Guillermo', 'Sasha'];
 
-      const fetchedNotes = noteFiles.map((file, index) => {
-        return { sender: noteSenders[index], file };
-      });
+      const fetchedNotes = noteFiles.map((file, index) => ({
+        sender: noteSenders[index],
+        file: `/voice-notes/${file}`
+      }));
 
       setVoiceNotes(fetchedNotes);
     };
@@ -32,7 +33,7 @@ function RecipientVoiceNotes({ onBack }) {
           <button className="back-link" onClick={() => setSelectedNote(null)}>Back</button>
           <h1>Voice Note from {selectedNote.sender}</h1>
           <audio controls>
-            <source src={`/voice-notes/${selectedNote.file}`} type="audio/mp3" />
+            <source src={selectedNote.file} type="audio/mp3" />
             Your browser does not support the audio element.
           </audio>
         </div>

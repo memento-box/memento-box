@@ -1,4 +1,3 @@
-// PreviewItems.jsx
 import React, { useEffect, useRef } from 'react';
 import './PreviewItems.css';
 

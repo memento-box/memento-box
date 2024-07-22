@@ -57,12 +57,12 @@ body {
     }
 }
 
-
 .ReactModal__Content {
-    width: 50%; 
-    height: 50%; 
+    width: 60%; 
+    height: 60%; 
     margin: auto;
     font-family: 'Poppins', sans-serif;
+    padding: 20px; /* Add padding */
 }
 
 #thanks {
