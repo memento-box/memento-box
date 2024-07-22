@@ -3,36 +3,40 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 // POST route for box setup information
-router.post('/box-setup', (req, res) => {
+router.post('/', (req, res) => {
   const {
     occasion,
-    celebrating,
-    startDate,
+    recipientName,
+    deliveryDate,
+    collaboratorNote,
     collaborators,
-    message,
   } = req.body;
 
-  const queryText = `INSERT INTO "box_setup" 
-    ("occasion", "celebrating", "start_date", "message")
-    VALUES ($1, $2, $3, $4) RETURNING "id";`;
+  console.log('POST route', req.body);
 
-  pool.query(queryText, [occasion, celebrating, startDate, message])
+  const queryText = `
+    INSERT INTO "memento_box" 
+    ("occasion_id", "recipient_name", "delivery_date", "collaborator_note", "created_at")
+    VALUES ($1, $2, $3, $4, CURRENT_DATE) RETURNING "id";`;
+
+  pool.query(queryText, [occasion, recipientName, deliveryDate, collaboratorNote])
     .then(result => {
       const newBoxId = result.rows[0].id;
 
       const collaboratorQueries = collaborators.map(collaborator => {
-        const collaboratorQueryText = `INSERT INTO "collaborators" 
-          ("box_id", "name", "email")
-          VALUES ($1, $2, $3);`;
+        const collaboratorQueryText = `
+          INSERT INTO "collaborator" 
+          ("box_id", "email", "first_name", "created_at")
+          VALUES ($1, $2, $3, CURRENT_DATE);`;
 
-        return pool.query(collaboratorQueryText, [newBoxId, collaborator.name, collaborator.email]);
+        return pool.query(collaboratorQueryText, [newBoxId, collaborator.email, collaborator.firstName]);
       });
 
       return Promise.all(collaboratorQueries);
     })
     .then(() => res.sendStatus(201))
     .catch(error => {
-      console.error('Error in POST /box-setup:', error);
+      console.error('Error in POST /api/box-setup:', error);
       res.sendStatus(500);
     });
 });

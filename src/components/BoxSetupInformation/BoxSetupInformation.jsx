@@ -5,13 +5,13 @@ import { fetchOccasions, submitBoxSetup } from "../../redux/reducers/boxSetupSli
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { MdOutlinePhotoSizeSelectActual } from "react-icons/md";
-import { GiLoveSong } from "react-icons/gi";
+import { FaMicrophone } from "react-icons/fa6";
 import { FaVideo } from "react-icons/fa";
 import "./BoxSetupInformation.css";
 
 const BoxSetupInformation = () => {
   const history = useHistory();
-  const [occasion, setOccasion] = useState("");
+  const [occasionId, setOccasionId] = useState("");
   const [celebrating, setCelebrating] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [collaborators, setCollaborators] = useState([{ name: "", email: "" }]);
@@ -25,14 +25,14 @@ const BoxSetupInformation = () => {
       try {
         await dispatch(fetchOccasions());
       } catch (error) {
-        console.error('Error fetching occasions:', error);
+        console.error("Error fetching occasions:", error);
       }
     };
     fetchOccasionsData();
   }, [dispatch]);
 
   const handleOption = (event) => {
-    setOccasion(event.target.value);
+    setOccasionId(event.target.value);
   };
 
   const handleCollaboratorChange = (index, field, value) => {
@@ -47,7 +47,7 @@ const BoxSetupInformation = () => {
 
   const validate = () => {
     const newErrors = {};
-    if (!occasion) newErrors.occasion = "Occasion is required";
+    if (!occasionId) newErrors.occasionId = "Occasion is required";
     if (!celebrating) newErrors.celebrating = "Celebrating name is required";
     collaborators.forEach((collaborator, index) => {
       if (!collaborator.name) newErrors[`collaborator_name_${index}`] = "Name is required";
@@ -61,7 +61,7 @@ const BoxSetupInformation = () => {
     event.preventDefault();
     if (validate()) {
       const formData = {
-        occasion,
+        occasionId,
         celebrating,
         startDate,
         collaborators,
@@ -72,6 +72,11 @@ const BoxSetupInformation = () => {
     }
   };
 
+  // Function to handle prompt button clicks
+  const addPromptToMessage = (text) => {
+    setMessage((prevMessage) => `${prevMessage}\n${text}`);
+  };
+
   return (
     <div className="box-setup-information">
       <div className="box-setup-title">
@@ -80,24 +85,24 @@ const BoxSetupInformation = () => {
       <div className="box-setup-content">
         <h5>Step 1 of 2: Box Information</h5>
         <form onSubmit={handleSubmit}>
-          <div className="occasion">
+          <div className="form-group occasion">
             <h4>What's the occasion?</h4>
             <select
               id="occasion"
               className="form-select"
-              value={occasion}
+              value={occasionId}
               onChange={handleOption}
             >
               <option value="">Select</option>
               {occasions.map((occ) => (
-                <option key={occ.id} value={occ.name}>
+                <option key={occ.id} value={occ.id}>
                   {occ.name}
                 </option>
               ))}
             </select>
-            {errors.occasion && <p className="error">{errors.occasion}</p>}
+            {errors.occasionId && <p className="error">{errors.occasionId}</p>}
           </div>
-          <div className="celebrate">
+          <div className="form-group celebrate">
             <h4>Who are you celebrating?</h4>
             <input
               type="text"
@@ -107,7 +112,7 @@ const BoxSetupInformation = () => {
             />
             {errors.celebrating && <p className="error">{errors.celebrating}</p>}
           </div>
-          <div className="occasion-date">
+          <div className="form-group occasion-date">
             <h4>When is the occasion?</h4>
             <DatePicker
               className="date"
@@ -116,7 +121,7 @@ const BoxSetupInformation = () => {
               dateFormat="MM/dd/yyyy"
             />
           </div>
-          <div className="collaborate">
+          <div className="form-group collaborate">
             <div className="coll-title">
               <h4>Who is collaborating on this?</h4>
               <a href="#">Sync contacts</a>
@@ -155,7 +160,7 @@ const BoxSetupInformation = () => {
               </div>
             </div>
           </div>
-          <div className="coll-msg">
+          <div className="form-group coll-msg">
             <h4>Write a message to those collaborating.</h4>
             <textarea
               placeholder="Type your message here..."
@@ -167,25 +172,32 @@ const BoxSetupInformation = () => {
             <div>
               <h4>Prompt suggestions</h4>
             </div>
-            <div>
-              <ul>
-                <li>
-                  <MdOutlinePhotoSizeSelectActual style={{ marginRight: "20px" }} />
-                  Send in your favorite photo of the two of you together
-                </li>
-                <li>
-                  <FaVideo style={{ marginRight: "20px" }} />
-                  Record a video of your birthday message
-                </li>
-                <li>
-                  <GiLoveSong style={{ marginRight: "20px" }} />
-                  Add to a playlist with songs that make you think of them.
-                </li>
-              </ul>
+          </div>
+          <div className="prompt-msg">
+            <div className="prompt-item">
+              <button type="button" onClick={() => addPromptToMessage("Send in your favorite photo of the two of you together.")}>
+                <MdOutlinePhotoSizeSelectActual />
+                Photos
+              </button>
+              <p>Send in your favorite photo of the two of you together.</p>
+            </div>
+            <div className="prompt-item">
+              <button type="button" onClick={() => addPromptToMessage("Record a voice memo talking about your favorite memory of them.")}>
+                <FaMicrophone />
+                Voice Notes
+              </button>
+              <p>Record a voice memo talking about your favorite memory of them.</p>
+            </div>
+            <div className="prompt-item">
+              <button type="button" onClick={() => addPromptToMessage("Record a video of your birthday message.")}>
+                <FaVideo />
+                Video messages
+              </button>
+              <p>Record a video of your birthday message.</p>
             </div>
           </div>
-          <div className="next-steps">
-            <button type="submit">Next step</button>
+          <div className="final-steps">
+            <button type="submit">Next</button>
           </div>
         </form>
       </div>
