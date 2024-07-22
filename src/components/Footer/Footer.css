@@ -1,11 +1,23 @@
 footer {
-  margin-top: 80px;
+  margin-top: 140px;
   padding: 20px;
   text-align: center;
-}
-#wrapper {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
 }
-#contact:hover {
+
+footer p {
+  cursor: pointer;
+  color: #555;
   text-decoration: underline;
+  font-size: 1em;
+  margin: 0;
+  padding-top: 10px;
+}
+
+footer p:hover {
+  color: #000;
 }
