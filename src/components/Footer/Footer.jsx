@@ -10,7 +10,39 @@ function Footer() {
   };
 
   return (
-    <footer className="">
+    <footer className="footer-content">
+      <div className="subscription">
+        <div className="subs">
+          <p className="sub-title"> Subscribe</p>
+          <p>Sign up for our newsletter to receive news and updates!</p>
+          <input type="email" placeholder="Email Address" />
+          <button>Sign up</button>
+        </div>
+      </div>
+      <div className="site-map">
+        <p className="site-title">Site maps</p>
+        <ul>
+          <li>
+            <a href="#">about</a>
+          </li>
+
+          <li>
+            <a href="#">Purchase</a>
+          </li>
+          <li>
+            <a href="#">Contact us</a>
+          </li>
+          <li>
+            <a href="#">FAQ</a>
+          </li>
+        </ul>
+      </div>
+      <div className="follow">
+        <p className="follow-title">Follow</p>
+        <img src="/icons/instigram.png" />
+        <img src="/icons/fblogo.png" />
+        <img src="/icons/linn.png" />
+      </div>
       <p onClick={handleClick}>Contact Us</p>
     </footer>
   );

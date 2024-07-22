@@ -1,4 +1,84 @@
-footer {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.footer-content {
+  width: 100%;
+  background-color: rgba(28, 28, 29, 1);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.footer-content .subscription .subs {
+  padding: 20px;
+}
+
+.footer-content .subscription .subs .sub-title {
+  font-size: 35px;
+  font-family: "Poppins";
+  font-weight: bold;
+  color: white;
+}
+.footer-content .subscription .subs p {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  margin-top: 0px;
+  color: white;
+  display: flex;
+}
+.footer-content .subscription .subs input {
+  width: 300px;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.footer-content .subscription .subs button {
+  border: none;
+  background-color: black;
+  color: white;
+  margin-left: 20px;
+  border-radius: none;
+}
+
+.footer-content .site-map {
+  padding: 20px;
+  display: flex;
+  padding-left: 100px;
+  flex-direction: column;
+}
+
+.footer-content .site-map .site-title {
+  font-size: 35px;
+  font-family: "Poppins";
+  font-weight: bold;
+  color: white;
+}
+
+.footer-content .site-map ul {
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+.footer-content .site-map ul li {
+  margin-bottom: 10px;
+}
+.footer-content .site-map ul li a {
+  margin-bottom: 10px;
+  color: white;
+}
+.footer-content .follow .follow-title {
+  font-size: 35px;
+  font-family: "Poppins";
+  font-weight: bold;
+  color: white;
+}
+.footer-content .follow img {
+  width: 100px;
+  object-fit: cover;
+}
+
+/* footer {
   margin-top: 80px;
   padding: 20px;
   text-align: center;
@@ -7,9 +87,9 @@ footer {
   align-items: center;
   position: relative;
   z-index: 10;
-}
+} */
 
-footer p {
+/* footer p {
   cursor: pointer;
   color: #555;
   text-decoration: underline;
@@ -20,4 +100,4 @@ footer p {
 
 footer p:hover {
   color: #000;
-}
+} */
