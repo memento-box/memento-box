@@ -29,7 +29,7 @@ import RecipientMixtape from "../RecipientMixtape/RecipientMixtape";
 import RecipientVideos from "../RecipientVideos/RecipientVideos";
 import ThankYouPage from "../ThankYouPage/ThankYouPage";
 import BoxSetupInformation from "../BoxSetupInformation/BoxSetupInformation";
-import BoxSetupDesign from "../BoxDesign/BoxSetupDesign.jsx"
+import BoxSetupDesign from "../Boxdesign/BoxSetupDesign.jsx"
 import "./App.css";
 import PreviewSend from "../PreviewSend/PreviewSend";
 import AdminOverview from "../AdminOverview/AdminOverview";
