@@ -4,6 +4,7 @@
   margin: auto;
   background-color: #f9f9f9;
   border-radius: 8px;
+  margin-top: 20px;
 }
 
 .box-setup-title {
@@ -93,11 +94,12 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .next-steps button:hover {
-  background-color: #0a141d;
-}
+  background-color: #1a2a38;
+  transform: scale(1.05);}
 
 .coll-msg textarea {
   height: 100px;
@@ -159,8 +161,10 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .final-steps button:hover {
-  background-color: #0a141d;
+  background-color: #1a2a38;
+  transform: scale(1.05);
 }
