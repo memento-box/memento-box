@@ -16,7 +16,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 import AboutPage from "../AboutPage/AboutPage";
 import UserPage from "../UserPage/UserPage";
-import InfoPage from "../InfoPage/InfoPage";
+import AccountInfo from "../AccountInfo/AccountInfo";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
@@ -48,20 +48,17 @@ Modal.setAppElement("#react-root");
 
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector((store) => store.user);
-
   // Fetch user data on component mount
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
-
   return (
     <Router>
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
+          {/* Redirect root to /home */}
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:5173/about will show the about page. */}
@@ -86,44 +83,24 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows AccountInfo page, else shows LoginPage
             exact
             path="/info"
           >
-            <InfoPage />
+            <AccountInfo />
           </ProtectedRoute>
 
           <Route exact path="/login">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the login page
-              <LoginPage />
-            )}
+            {/* If the user is logged in, redirect to /home */}
+            {user.id ? <Redirect to="/home" /> : <LoginPage />}
           </Route>
-
           <Route exact path="/registration">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the registration page
-              <RegisterPage />
-            )}
+            {/* If the user is logged in, redirect to /home */}
+            {user.id ? <Redirect to="/home" /> : <RegisterPage />}
           </Route>
-
           <Route exact path="/home">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect them to the /user page
-              <Redirect to="/user" />
-            ) : (
-              // Otherwise, show the Landing page
-              <LandingPage />
-            )}
+            {/* Always shows LandingPage */}
+            <LandingPage />
           </Route>
 
           {/* Routes for box-turtles */}
@@ -159,25 +136,22 @@ function App() {
             <VoiceRecording />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/previewSend">
-              <PreviewSend />
+          <ProtectedRoute exact path="/previewSend">
+            <PreviewSend />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            exact
-            path="/adminOverview">
-              <AdminOverview/>
+          <ProtectedRoute exact path="/adminOverview">
+            <AdminOverview />
           </ProtectedRoute>
 
           {/* Routes for console-log */}
 
           <Route exact path="/box-setup-information">
+            {/* Shows BoxSetupInformation page */}
             <BoxSetupInformation />
           </Route>
-
           <Route exact path="/box-setup-design">
+            {/* Shows BoxSetupDesign page */}
             <BoxSetupDesign />
           </Route>
 
@@ -194,33 +168,43 @@ function App() {
 
           {/* Routes for three-toed-turtles */}
           <Route exact path="/recipientbox/:id">
+            {/* Shows RecipientBox page */}
             <RecipientBox />
           </Route>
+
           <Route exact path="/recipient/photos">
+            {/* Shows RecipientPhotos page */}
             <RecipientPhotos />
           </Route>
+
           <Route exact path="/recipient/videos">
+            {/* Shows RecipientVideos page */}
             <RecipientVideos />
           </Route>
           <Route exact path=" ">
             <RecipientVoiceNotes />
           </Route>
+
           <Route exact path="/recipient/gifts">
+            {/* Shows RecipientGifts page */}
             <RecipientGifts />
           </Route>
+
           <Route exact path="/recipient/mixtape">
+            {/* Shows RecipientMixtape page */}
             <RecipientMixtape />
           </Route>
           <Route exact path="/recipient/letters">
             <RecipientLetters />
           </Route>
           <Route exact path="/thankyou/:id">
+            {/* Shows ThankYouPage */}
             <ThankYouPage />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            <h1>404 - Not Found</h1>
           </Route>
         </Switch>
         <Footer />
@@ -228,5 +212,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

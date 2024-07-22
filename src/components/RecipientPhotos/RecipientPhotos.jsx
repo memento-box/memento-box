@@ -15,17 +15,17 @@ function RecipientPhotos({ onBack }) {
       ];
       const photoSenders = [
         'Fatima', 'Charlie', 'Guillermo', 'Sasha', 
-        'Priyanka', 'David', 'Erik', 'Michael'
+        'Priyanka', 'Fatima', 'Charlie', 'Guillermo'
       ];
       const photoCaptions = [
-        "Gardening brings peace to the mind. - Fatima",
-        "Gardening is a tranquil activity. - Charlie",
-        "Travel broadens the mind. - Guillermo",
-        "Travel brings new experiences. - Sasha",
-        "Turtles have existed for around 215 million years. - Priyanka",
-        "A turtle's shell is made up of 50 bones fused together. - David",
-        "Sea turtles can hold their breath for 5 hours underwater. - Erik",
-        "Turtles can live for more than 100 years. - Michael"
+        "Happy Birthday Casey! Gardening: where we get our hands dirty and our minds clean. - Fatima",
+        "Casey, this is what happens when houseplants aren't enough for us. Happy Birthday! - Charlie",
+        "Happy Birthday Casey! Greece was epic, but getting lost in Corfu was the highlight. - Guillermo",
+        "The northern lights are even better outside of a video game. Happy Birthday, Casey! - Sasha",
+        "Happy Birthday Casey! Remember when we helped those baby turtles find their way to the ocean? - Priyanka",
+        "Casey, just us at the turtle sanctuary. Happy Birthday! - Fatima",
+        "Swimming with sea turtles was unforgettable. Happy Birthday, Casey! - Charlie",
+        "Turtle adventures with you are the best, Casey! Happy Birthday! - Guillermo"
       ];
 
       const fetchedPhotos = photoFiles.map((file, index) => ({

@@ -14,6 +14,7 @@ const uploadRouter = require('./routes/upload.router');
 const userInfoRouter = require('./routes/userInfo.router');
 const thanksRouter = require('./routes/thanks.router');
 const emailRouter = require('./routes/email.router');
+const photoUploadRouter = require('./routes/photoUpload.router');
 
 // Express Middleware
 app.use(express.json());
@@ -34,6 +35,7 @@ app.use('/api/userInfo', userInfoRouter);
 app.use('/api/thanks', thanksRouter);
 app.use('/api/content', contentRouter);
 app.use('/api/email', emailRouter);
+app.use('/api/photoUpload', photoUploadRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {

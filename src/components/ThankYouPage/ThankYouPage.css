@@ -33,3 +33,8 @@ body {
     width: 500px;
     height: 100px;
 }
+
+#notif {
+    grid-column: 2;
+    grid-row: 4;
+}

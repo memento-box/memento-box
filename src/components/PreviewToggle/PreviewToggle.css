@@ -1,24 +1,32 @@
+/* PreviewToggle.css */
 .preview-overlay {
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); 
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   display: flex;
-  align-items: flex-start; 
-  justify-content: flex-end; 
+  align-items: flex-start;
+  justify-content: flex-end;
+  overflow: hidden; /* Prevent scroll on overlay */
 }
 
 .preview-content {
   background: white;
   padding: 20px;
-  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   position: relative;
-  width: 75%; 
-  height: 100%;
-  overflow-y: auto; 
+  width: 75%;
+  max-height: 100vh; /* Limit height to viewport height */
+  overflow-y: auto; /* Allow scrolling within the content */
+  transform: translateX(100%);
+  transition: transform 1.5s ease-in-out;
+}
+
+.preview-content.slide-in {
+  transform: translateX(0);
 }
 
 .close-button {
@@ -30,8 +38,4 @@
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-}
-
-.box-preview {
-  margin-top: 40px;
 }

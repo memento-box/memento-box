@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "../Boxdesign/BoxDesign.css";
 import { imgSliders } from "./imgSlider";
+import { useHistory } from "react-router-dom";
 import { SlArrowRight, SlArrowLeft } from "react-icons/sl"; // Ensure you have this library installed
 
 const BoxSetupDesign = () => {
   const [current, setCurrent] = useState(0);
+  const history = useHistory();
 
   const slideRight = () => {
     setCurrent(current === imgSliders.length - 1 ? 0 : current + 1);
@@ -13,11 +15,14 @@ const BoxSetupDesign = () => {
   const slideLeft = () => {
     setCurrent(current === 0 ? imgSliders.length - 1 : current - 1);
   };
+  const backto = () => {
+    history.push("/box-setup-information");
+  };
 
   return (
     <div className="box-design">
       <div className="box-title">
-        <h4>Memento Box setup</h4>
+        <h4>Memento Box Setup</h4>
       </div>
       <div className="content">
         <div className="step-two">
@@ -63,7 +68,7 @@ const BoxSetupDesign = () => {
           </div>
         </div>
         <div className="next-btn">
-          <button> back </button>
+          <button onClick={backto}> back </button>
           <button>Finish and get started</button>
         </div>
       </div>

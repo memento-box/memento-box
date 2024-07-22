@@ -1,26 +1,19 @@
 import React from 'react';
-
-import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import { useHistory } from 'react-router-dom';
+import './RegisterPage.css';
 
 function RegisterPage() {
   const history = useHistory();
 
-  return (
-    <div>
-      <RegisterForm />
+  // Handle redirect on successful registration
+  const handleRegisterSuccess = () => {
+    history.push('/home'); // Redirect to the landing page after registration
+  };
 
-      <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </button>
-      </center>
+  return (
+    <div className="page-container">
+      <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
     </div>
   );
 }
