@@ -86,7 +86,7 @@ function ThankYouPage() {
             </div> 
             <Button type='submit'
             variant='contained'
-            sx={{borderRadius:"50px", backgroundColor:"black"}}
+            sx={{borderRadius:"50px", backgroundColor:"black", fontFamily: "Poppins"}}
             id='sendButton'
             > Send </Button>
         </form>
