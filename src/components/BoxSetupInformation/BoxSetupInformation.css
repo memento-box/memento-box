@@ -1,7 +1,14 @@
 .box-setup-information {
-  width: 1392px;
-  margin: 0px auto;
-  height: 100vh;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.box-setup-title {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .box-setup-title h3 {
@@ -19,11 +26,11 @@
 .form-group {
   margin-bottom: 20px;
 }
-.occation .form-select {
-  width: 300px;
-  font-size: 15px;
-  padding: 7px;
-  border-radius: 5px;
+
+.form-group h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #0e1a28;
 }
 
 .form-select,
@@ -41,11 +48,6 @@
 .date {
   font-size: 14px;
 }
-.box-setup-content .occation-date .date {
-  font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid rgb(94, 94, 94);
-  padding: 8px;
 
 .error {
   color: red;
@@ -91,12 +93,10 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s, transform 0.3s; 
 }
 
 .next-steps button:hover {
-  background-color: #1a2a38; 
-  transform: scale(1.05); 
+  background-color: #0a141d;
 }
 
 .coll-msg textarea {
@@ -159,10 +159,8 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s, transform 0.3s; 
 }
 
 .final-steps button:hover {
-  background-color: #1a2a38; 
-  transform: scale(1.05); 
+  background-color: #0a141d;
 }
