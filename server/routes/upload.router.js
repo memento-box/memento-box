@@ -58,13 +58,14 @@ router.post("/voice", rejectUnauthenticated, (req, res) => {
     VALUES ($1, $2, $3, $4);
   `;// --,"public_id" = $5
 
-  const queryValues = {
-    box_id: box_id,
-    user_id: user,
-    media_url: secure_url,
-    media_type: mediaType.voice,
+  const queryValues = [
+    box_id,
+    user,
+    secure_url,
+    mediaType.voice,
     // public_id: public_id,
-  };
+  ];
+  console.log("queryValues:", queryValues);
 
   pool
     .query(queryText, queryValues)
