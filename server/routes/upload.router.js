@@ -4,9 +4,18 @@ const {
 } = require("../modules/authentication-middleware");
 const router = express.Router();
 const pool = require("../modules/pool");
-const query = require("express/lib/middleware/query");
 const cloudinary = require("cloudinary").v2;
-require("dotenv").config();
+require("dotenv").config;
+/**
+ * Example .env set up:
+ * SERVER_SESSION_SECRET=
+ *
+ * CLOUDINARY_CLOUD_NAME=
+ * CLOUDINARY_API_KEY=
+ * CLOUDINARY_API_SECRET=
+ * UPLOAD_PRESET=
+ */
+
 // Cloudinary configuration
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -15,26 +24,22 @@ cloudinary.config({
 });
 
 /************************** SIGNED URL **************************/
-router.get("/signed-url", rejectUnauthenticated, async (req, res) => {
+router.get("/signed-url", rejectUnauthenticated, (req, res) => {
   const timestamp = Math.round(new Date().getTime() / 1000);
-  const cloud_name = cloudinary.config().cloud_name;
-  const api_key = cloudinary.config().api_key;
-  console.log(api_key, "api_key router")
-  const api_secret = cloudinary.config().api_secret;
-  const upload_preset = process.env.CLOUDINARY_UPLOAD_PRESET;
   const signature = cloudinary.utils.api_sign_request(
     {
-      timestamp,
-      upload_preset,
+      timestamp: timestamp,
+      upload_preset: process.env.UPLOAD_PRESET,
     },
-    api_secret
+    cloudinary.config().api_secret
   );
+
   res.json({ // Response (JSON)
-    timestamp,
-    signature,
-    cloud_name,
-    api_key,
-    upload_preset,
+    timestamp: timestamp,
+    signature: signature,
+    cloud_name: cloudinary.config().cloud_name,
+    api_key: cloudinary.config().api_key,
+    upload_preset: process.env.UPLOAD_PRESET,
   });
 });
 /************************** MEDIA TYPE VARIABLES **************************/
