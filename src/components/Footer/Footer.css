@@ -1,41 +1,106 @@
 .footer-content {
+  width: 100%;
+  background-color: rgba(28, 28, 29, 1);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.edit-footer-content {
+  margin-left: 240px;
+  background-color: rgba(28, 28, 29, 1);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.footer-content .subscription .subs, 
+.edit-footer-content .subscription .subs {
   background-color: black;
   padding: 20px;
   display: flex;
-  justify-content: space-between; 
-  align-items: flex-start; 
-  color: #ffffff; 
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #ffffff;
+}
+
+.footer-content .subscription .subs .sub-title, 
+.edit-footer-content .subscription .subs .sub-title {
+  font-size: 35px;
+  font-family: "Poppins";
+  font-weight: bold;
+  color: white;
+}
+
+.footer-content .subscription .subs p, 
+.edit-footer-content .subscription .subs p {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  margin-top: 0px;
+  color: white;
+  display: flex;
+}
+
+.footer-content .subscription .subs input, 
+.edit-footer-content .subscription .subs input {
+  width: 300px;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.footer-content .subscription .subs button, 
+.edit-footer-content .subscription .subs button {
+  border: none;
+  background-color: black;
+  color: white;
+  margin-left: 20px;
+}
+
+.footer-content .site-map, 
+.edit-footer-content .site-map {
+  padding: 20px;
+  display: flex;
+  padding-left: 100px;
+  flex-direction: column;
+}
+
+.footer-content .site-map .site-title, 
+.edit-footer-content .site-map .site-title {
+  font-size: 35px;
+  font-family: "Poppins";
 }
 
 .subscription, .site-map, .follow {
-  flex: 1; 
+  flex: 1;
   text-align: center;
 }
 
 .subscription {
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 .site-map {
-  margin: 0 20px; 
+  margin: 0 20px;
 }
 
 .follow {
-  margin-left: 20px; 
+  margin-left: 20px;
 }
 
 .sub-title, .site-title, .follow-title {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #F8A820; 
+  color: #F8A820;
 }
 
-input[type="email"] {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-right: 10px;
+.footer-content .follow .follow-title, 
+.edit-footer-content .follow .follow-title {
+  font-size: 35px;
+  font-family: "Poppins";
+  font-weight: bold;
+  color: white;
 }
 
 button {
@@ -62,7 +127,7 @@ button:hover {
 
 .site-map a {
   text-decoration: none;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .site-map a:hover {
@@ -80,5 +145,5 @@ button:hover {
 .copyright {
   font-size: 14px;
   margin-top: 50px;
-  color: #ffffff; 
+  color: #ffffff;
 }

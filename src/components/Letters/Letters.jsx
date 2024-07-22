@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import EditingSidebar from "../EditingSidebar/EditingSidebar";
 
 const Letters = () => {
 
@@ -42,7 +43,8 @@ const Letters = () => {
     }
 
     return (
-        <div>
+        <div className='box-edit-container'>
+            <EditingSidebar/>
         <p>Either upload or craft a personalized letter to add to the box!</p>
 
         <form onSubmit={uploadFile}>
