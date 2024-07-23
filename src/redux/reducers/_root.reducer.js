@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   thankCollaborators,
-  content,
+  content, // contains box content for current box
+  email, // gathers information to send gift email
   boxSetup,
   occasion, 
 });
