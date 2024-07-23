@@ -1,76 +1,145 @@
-# Prime Solo Project - Starting Repo
+# Memento Box
 
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+## Description
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+_Duration: 3.5 Week Sprint, working part time_
 
-## Use the Template for This Repository (Don't Clone)
+Memento Box is a collaboration platform for groups to put together digital “boxes” around celebrations for loved ones. Collect videos, photos, voice memos and more to package into a digital box and send to someone.
+Memento is there for any occasion you want to celebrate - birthdays, anniversaries, weddings, retirements, you name it!
+What’s inside Memento box? That’s up to you!!
 
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+Users can:
+
+ * Create an account
+ * Design a box by choosing box color and from a number of ribbon colors and styles
+ * Solicit collaboration on a box by inviting their friends or act as a collaborator by contributing to an existing box
+ * Review box contents and schedule the box to be sent to its recipient
+ * Recipients receive an email and click the box to open the site, where they can then view its contents by clicking through the box
+ * Recipients can send thank you notes to some or all senders and collaborators 
+
+The app stores all users, content, and recipient information on a database until they are deleted.  Documentation provides sample content for the database in addition to the queries needed to properly structure the database.
+
+This app was built as a collaborative capstone project for a full-stack software engineering program at Prime Digital Academy.  Here are the [assignment instructions](./INSTRUCTIONS.md).
+
+Memento Box will be deployed using Heroku in the near future.
+
+## Development team
+
+This was a collaborative project.  Our development team was: 
+
+[Mohamed Ali](https://github.com/Mohagosaar)
+<br> [Matt Gilbertson](https://github.com/mgilbertsonund)
+<br> [Ken Grina](https://github.com/Kern89)
+<br> [Sean Harrison](https://github.com/Iskander789)
+<br> [Michael Kenyon](https://github.com/DeadstockFox)
+<br> [Zoe Lindman](https://github.com/zlindman)
+<br> [Sarah McCartney](https://github.com/smmc16)
+<br> [Lons Nadziejka Waller](https://github.com/lonsnw)
+<br> [Erik Silcox](https://github.com/Erik651)
+<br> [David Smith](https://github.com/Djsmith611)
+
+## Screen shots
+
+Home page:
+<br />
+<center><image src=public/readme/user-landing.png width=50%></center>
+<br />
+Box build forms:
+<br />
+<center><image src=public/readme/box-setup.png width=50%></center>
+<br />
+<center><image src=public/readme/box-selection.png width=50%></center>
+<br />
+Recipient email:
+<br />
+<center><image src=public/readme/recipient-email.png width=50%></center>
+<br />
+Recipient view of box: 
+<br />
+<center><image src=public/readme/recipient-landing.png width=50%></center>
+<br />
+Contents popup: 
+<br />
+<center><image src=public/readme/content-popup.png width=50%></center>
+<br />
+Thank you page: 
+<br />
+<center><image src=public/readme/thank-you-page.png width=50%></center>
+<br />
 
 ## Prerequisites
 
-Before you get started, make sure you have the following software installed on your computer:
+* [Node.js](https://nodejs.org/en/)
+* [Postgres](https://www.postgresql.org/download/)
+* [Nodemon](https://nodemon.io)
 
-- [Node.js](https://nodejs.org/en)
-- [PostgreSQL](https://www.postgresql.org)
-- [Nodemon](https://nodemon.io)
+## Setup instructions
 
-## Create Database and Table
+The application has been tested and run on a local machine using the browser. It may be deployed in the future but currently is only available locally.
 
-Create a new database called `prime_app` and create a `user` table:
+1. Clone down a version of this repository
+1. Create a database named `prime-app`
+1. Create and populate the tables needed for the database 
+    * This project is built on [Postgres](https://www.postgresql.org/download/), which you will need to install to use the app
+    * The `database.sql` file contained in this repository provides all of the necessary queries for creating the table needed to run the app
+    * The queries will also populate some tables with necessary information to enable styling and occasion selections in the application
+1. Create a `.env` file at the root of the project.  Generate and add a `SERVER_SESSION_SECRET`.  For example:
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+   `SERVER_SESSION_SECRET=X5hooooSAMPLEAPIKEYoooodN6v`
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`.
+   If you add a `.env` file and secret or create a secret with less than eight characters, you will get a warning when you try to use the application.
+1. Open in your editor of choice and run an `npm install`
+1. Run `npm run server` in your terminal
+1. Run `npm run client` in your terminal
+1. Navigate to the localhost port provided by your terminal when you initiate your client.  The default port when running Vite, for example, is `http://localhost:5173/`
 
-## Development Setup Instructions
+__Note:__ You will need to set up MailChimp to use this application.  [Instructions for working with MailChimp and the Memento Box application](#mailchimp-email) can be found at the end of this document.
 
-- Run `npm install`.
-    - Be sure to take stock of `package.json` to see which dependencies you'll need to add.
-- Create a `.env` file at the root of the project and paste this line into the file:
+## Usage
 
-```plaintext
-SERVER_SESSION_SECRET=superDuperSecret
-```
 
-While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [Password Generator Plus](https://passwordsgenerator.net). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+## Technologies
 
-- Start postgres if not running already by using opening up the [Postgres.app](https://postgresapp.com), or if using [Homebrew](https://brew.sh) you can use the command `brew services start postgresql`.
-- Run `npm run server` to start the server.
-- Run `npm run client` to start the client.
-- Navigate to `localhost:5173`.
+* [hamburger-react](https://www.npmjs.com/package/hamburger-react)
+* [Material UI](https://mui.com/)
+* [Moment](https://momentjs.com/)
+* [Multer](https://www.npmjs.com/package/multer)
+* [Slick Carousel](https://kenwheeler.github.io/slick/)
+* React
+* Redux
+* Sagas
+* HTML
+* CSS
+* JavaScript
+* Node.js
+* Express
+* [MailChimp](https://mailchimp.com/)
+* [Cloudinary](https://cloudinary.com/)
+* [Passport](https://www.passportjs.org/)
+* PostgreSQL
 
-## Debugging
+## Tools
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+* [DB Designer](https://www.dbdesigner.net/)
+* [Figma](https://www.figma.com)
+* GitHub
+* Google Workspace
+* Slack
+* Zoom
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+## Documentation
+This project included scope documentation.
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+This documentation was built following a [provided template](https://github.com/PrimeAcademy/readme-template/blob/main/README.md).   It has been edited for style,  consistency, and to provide all relevant details.
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
+## Future development
+The following features are planned for development:
 
-## Testing Routes with Postman
-
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
-
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
-
-1. Run `npm run server` to start the server.
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password.
-   2. `POST /api/user/login` will login a user, see body to change username/password.
-   3. `GET /api/user` will get user information, by default it's not very much.
-
-After running the login route above, you can try any other route you've created that requires a logged in user!
+* Security: the application needs to apply unique keys to boxes in order to be secure for users and recipients
+* Pricing tiers: box build out will be priced according to the number of collaborators
+* Photo scanning feature: users will be able to use their phones to take pictures of documents and upload them as scanned documents
+* Data collection and flow: for full functionality, data flow through the app will need to be standardized
+* Newsletter: visitors to the site will be able to provide their email address in a field in the footer and will be registered to receive the Memento Box Newsletter
 
 ## Production Build
 
@@ -80,34 +149,12 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 - Run `npm start`.
 - Navigate to `localhost:5173`.
 
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
 Directory Structure:
 
 - `src/` contains the React application.
 - `public/` contains static assets for the client-side.
 - `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site.
 - `server/` contains the Express App.
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
 
 ## Deployment
 
@@ -124,14 +171,15 @@ This code is also heavily commented. We recommend reading through the comments, 
 Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2.
 
 ----
+----
 
-# MailChimp email
+## MailChimp email
 
 MailChimp has a [breakdown of when you should use which of their APIs](https://mailchimp.com/developer/transactional/guides/send-first-email/#transactional-vs-marketing-email). 
 
-The following is a step-by-step guide for how MailChimp is integrated with this application and how you can implement it in your own instance.
+The following is a step-by-step guide for how MailChimp is or will be integrated with this application and how you can implement it in your own instance.
 
-## Marketing email (newsletter) setup using MailChimp
+### Marketing email (newsletter) setup using MailChimp
 
 * If you have not already created a `.env` file at the root of the project, create one.
 * Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application.
@@ -157,7 +205,7 @@ MARKETING_DC=us12
 MARKETING_AUD_ID=304g5398t4
 ```
 
-## Transactional email (gift emails, etc.) setup using MailChimp
+### Transactional email (gift emails, etc.) setup using MailChimp
 
 1. If you have not already created a `.env` file at the root of the project, create one.
 1. Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application. <br>
@@ -176,7 +224,7 @@ __NOTE:__ The free version of MailChimp Transactional/Mandrill will ONLY send to
 TRANSACTIONAL_KEY=X5hooooSAMPLEAPIKEYoooodN6v
 ```
 
-### To use the email template: 
+#### Using the email template: 
 
 1. Create template for email in MailChimp account using template provided in this folder
     1. Log into Mandrill using MailChimp account information (can access Mandrill from the MailChimp dashboard by navigating to "Automations" > "Transactional email" in the sidebar)
