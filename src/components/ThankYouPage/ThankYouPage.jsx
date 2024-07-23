@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 import axios from 'axios';
 import './ThankYouPage.css';
 
@@ -55,7 +56,7 @@ function ThankYouPage() {
         })
         setTimeout(() => {
             setSendNotif(false)
-          }, 1000);
+          }, 2000);
         }
     }
 
@@ -75,7 +76,7 @@ function ThankYouPage() {
         <h4 id='messageTitle'>Send a message</h4>
         <form id='messageForm' onSubmit={(e) => handleSubmit(e)}>
             <textarea id='message' value={message} onChange={(event) => setMessage(event.target.value)}/>
-            <div>
+            <div id='collabs'>
             {collabs && (collabs.map((person) => 
             <div key={person.id}>
                 <input className='collaborator' type='checkbox' value={person.id} onChange={(e) => handleCheck(e)} /> 
@@ -83,7 +84,11 @@ function ThankYouPage() {
             </div>
             ))}
             </div> 
-            <input type='submit' value='Send'/>
+            <Button type='submit'
+            variant='contained'
+            sx={{borderRadius:"50px", backgroundColor:"black", fontFamily: "Poppins"}}
+            id='sendButton'
+            > Send </Button>
         </form>
         <p id='notif'>{sendNotif ? 'Success!' : ''}</p>
     </div>

@@ -25,20 +25,60 @@ const PreviewItems = ({ item, onClose }) => {
         return (
           <div>
             <h2>Photos</h2>
-            <img src="/example-photo1.jpg" alt="Example Photo 1" />
-            <img src="/example-photo2.jpg" alt="Example Photo 2" />
+            <div className="image-container">
+              <img src="/example/Frame 7.png" alt="Frame 7" />
+              <p>Remember this time!</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 8.png" alt="Frame 8" />
+              <p>What a great moment!</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 9.png" alt="Frame 9" />
+              <p>I can't believe we did this.</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 10.png" alt="Frame 10" />
+              <p>Unforgettable memories!</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 12.png" alt="Frame 12" />
+              <p>Such a special day!</p>
+            </div>
           </div>
         );
-      case 'Gift':
-        return <h2>Gift Details</h2>;
-      case 'Music':
-        return <h2>Music Details</h2>;
       case 'Videos':
-        return <h2>Videos Details</h2>;
-      case 'Voice Notes':
-        return <h2>Voice Notes Details</h2>;
+        return (
+          <div>
+            <h2>Videos</h2>
+            <div className="image-container">
+              <img src="/example/Frame 13.png" alt="Frame 13" />
+              <p>Highlight of the day!</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 14.png" alt="Frame 14" />
+              <p>Our fun times captured!</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 15.png" alt="Frame 15" />
+              <p>Memories we'll cherish.</p>
+            </div>
+            <div className="image-container">
+              <img src="/example/Frame 16.png" alt="Frame 16" />
+              <p>Can't get enough of this!</p>
+            </div>
+          </div>
+        );
       case 'Letters':
-        return <h2>Letters Details</h2>;
+        return (
+          <div>
+            <h2>Letters</h2>
+            <div className="image-container">
+              <img src="/example/Frame 19.png" alt="Frame 19" />
+              <p>A heartfelt letter!</p>
+            </div>
+          </div>
+        );
       default:
         return null;
     }

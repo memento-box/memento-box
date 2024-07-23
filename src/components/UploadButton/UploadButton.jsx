@@ -35,7 +35,7 @@ export default function UploadButton({reload, uploadFileType, endpoint}) {
             const payload = {
               box_id:box_id,
               secure_url:secure_url,
-              // public_id:public_id
+              public_id:public_id
             }
 
             endpoint(payload);

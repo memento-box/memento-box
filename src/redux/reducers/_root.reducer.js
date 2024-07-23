@@ -2,8 +2,9 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 import thankCollaborators from './recipient_thankyou.reducer';
-import content from './content.reducer'
-import email from './email.reducer'
+import content from './content.reducer';
+import boxSetup from './boxSetupSlice.reducer';
+import occasion from './occasion.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,8 @@ const rootReducer = combineReducers({
   thankCollaborators,
   content, // contains box content for current box
   email, // gathers information to send gift email
+  boxSetup,
+  occasion, 
 });
 
 export default rootReducer;

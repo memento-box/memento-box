@@ -1,147 +1,170 @@
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-/* body {
-  width: 100%;
-  height: 100vh;
-} */
-
 .box-setup-information {
-  width: 1392px;
-  margin: 0px auto;
-  height: 100vh;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 20px;
 }
+
+.box-setup-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .box-setup-title h3 {
-  font-family: "Poppins", sans-serif;
-  margin-left: 120px;
-  font-size: 30px;
-  margin-top: 100px;
+  font-size: 24px;
+  color: #0e1a28;
 }
-.box-setup-content {
-  margin-left: 150px;
-  margin-top: 30px;
-  width: 80%;
-  padding-left: 40px;
-  border-left: 1px solid rgb(193, 193, 193);
-  border-bottom: 1px solid rgb(193, 193, 193);
-  border-right: 1px solid rgba(193, 193, 193, 0.582);
-  font-family: "Poppins", sans-serif;
-  box-shadow: 1px 1px rgb(158, 158, 158);
-}
+
 .box-setup-content h5 {
-  font-size: 20px;
-  margin-top: 20px;
-}
-.occation {
-  margin-top: 20px;
-}
-.occation .form-select {
-  width: 300px;
-  font-size: 15px;
-  padding: 7px;
-  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
 }
 
-.box-setup-content .celebrate h4 {
-  margin-top: 20px;
-}
-.box-setup-content .celebrate input {
-  width: 300px;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid rgb(94, 94, 94);
+.form-group {
+  margin-bottom: 20px;
 }
 
-.box-setup-content .occation-date h4 {
-  margin-top: 20px;
+.form-group h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #0e1a28;
 }
-.box-setup-content .occation-date .date {
-  font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid rgb(94, 94, 94);
-  padding: 8px;
 
-  width: 300px;
+.form-select,
+.form-group input,
+.form-group textarea,
+.date {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.date {
+  font-size: 14px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
 }
 
 .coll-title {
   display: flex;
-  grid-column: 430px;
-  margin-bottom: 20px;
-}
-.collaborate .coll-title h4,
-a {
-  font-size: 20px;
-  margin-top: 20px;
-  margin-left: 50px;
-}
-.collabarate .coll-title h4 {
-  margin-right: 60px;
-}
-.collaborate .coll-title a:visited {
-  margin-bottom: 20px;
-  color: blue;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.collaborate .coll-contacts input {
-  width: 300px;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid rgb(94, 94, 94);
+.coll-title a {
+  color: #e85230;
+  text-decoration: none;
+  font-size: 14px;
 }
 
-.collaborate .coll-contacts {
-  width: 800px;
-}
-.collabarate .coll-contcts button {
-  border: none;
-  margin-left: 20px;
-  border-radius: 20px;
-  background-color: black;
-  color: white;
-  font-size: 18px;
-  padding: 15px;
-  cursor: pointer;
-  width: 150px;
+.coll-title a:hover {
+  text-decoration: underline;
 }
 
-.coll-msg {
-  margin-top: 20px;
-}
-.coll-msg h4 {
-  font-size: 20px;
-}
-
-.coll-msg textarea {
-  margin-top: 20px;
-  width: 800px;
-  height: 100px;
-}
-.prompt-msg-title {
-  margin-top: 20px;
-}
-.prompt-msg-title h4 {
+.coll-contacts .collaborator-inputs {
+  display: flex;
+  gap: 10px;
   margin-bottom: 10px;
 }
-ul {
-  list-style-type: none;
+
+.collaborator-inputs input {
+  flex: 1;
 }
 
 .next-steps {
-  display: flex;
-  justify-content: end;
-  margin-right: 30px;
-
-  margin-bottom: 30px;
+  text-align: right;
 }
+
 .next-steps button {
-  background-color: black;
-  padding: 10px;
-  width: 150px;
-  border-radius: 15px;
-  color: white;
-  font-size: 20px;
+  padding: 10px 20px;
+  background-color: #0e1a28;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-bottom: 30px;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.next-steps button:hover {
+  background-color: #1a2a38;
+  transform: scale(1.05);}
+
+.coll-msg textarea {
+  height: 100px;
+}
+
+.prompt-msg-title {
+  margin-top: 20px;
+}
+
+.prompt-msg-title h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.prompt-msg {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.prompt-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prompt-item button {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8a820;
+  color: #0e1a28;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.prompt-item button svg {
+  margin-right: 5px;
+}
+
+.prompt-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.final-steps {
+  text-align: right;
+}
+
+.final-steps button {
+  padding: 10px 20px;
+  background-color: #0e1a28;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.final-steps button:hover {
+  background-color: #1a2a38;
+  transform: scale(1.05);
 }
