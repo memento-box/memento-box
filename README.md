@@ -87,7 +87,7 @@ The application has been tested and run on a local machine using the browser. It
 
    `SERVER_SESSION_SECRET=X5hooooSAMPLEAPIKEYoooodN6v`
 
-   If you add a `.env` file and secret or create a secret with less than eight characters, you will get a warning when you try to use the application.
+   If you don't add a `.env` file and secret or create a secret with less than eight characters, you will get a warning when you try to use the application.
 1. Open in your editor of choice and run an `npm install`
 1. Run `npm run server` in your terminal
 1. Run `npm run client` in your terminal
@@ -96,6 +96,7 @@ The application has been tested and run on a local machine using the browser. It
 __Note:__ You will need to set up MailChimp to use this application.  [Instructions for working with MailChimp and the Memento Box application](#mailchimp-email) can be found at the end of this document.
 
 ## Usage
+
 
 
 ## Technologies
@@ -166,10 +167,6 @@ Directory Structure:
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security.
 1. In the deploy section, select manual deploy.
 
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2.
-
 ----
 ----
 
@@ -179,7 +176,7 @@ MailChimp has a [breakdown of when you should use which of their APIs](https://m
 
 The following is a step-by-step guide for how MailChimp is or will be integrated with this application and how you can implement it in your own instance.
 
-### Marketing email (newsletter) setup using MailChimp
+### Marketing email (newsletter) setup using MailChimp -- FUTURE STATE
 
 * If you have not already created a `.env` file at the root of the project, create one.
 * Create a MailChimp account.  You should be able to use a [free account](https://login.mailchimp.com/signup/?plan=free_monthly_plan_v0&locale=en&subscribers=500) for the basic functionality of this application.
