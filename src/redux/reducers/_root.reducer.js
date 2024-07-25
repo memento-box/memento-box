@@ -5,6 +5,7 @@ import thankCollaborators from './recipient_thankyou.reducer';
 import content from './content.reducer';
 import boxSetup from './boxSetupSlice.reducer';
 import occasion from './occasion.reducer';
+import email from './email.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,6 @@ const rootReducer = combineReducers({
   thankCollaborators,
   content, // contains box content for current box
   email, // gathers information to send gift email
-  boxSetup,
   occasion, 
 });
 

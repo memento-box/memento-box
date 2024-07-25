@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 function Footer() {
   const url =
-    "https://us14.list-manage.com/contact-form?u=b443c9da3e589e0f1325e7f34&form_id=778634d15230b49196fc729fbc061075";
+    "https://us22.list-manage.com/contact-form?u=d3caac5fe2d1c1b6f88e4b998&form_id=4a475dbdbfdb675071d6a7b56b42e528";
 
   const handleContactClick = (e) => {
     e.preventDefault();
