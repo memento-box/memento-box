@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 function Footer() {
   const url =
-    "ADD MAILCHIMP FORM URL HERE";
+    "https://us22.list-manage.com/contact-form?u=d3caac5fe2d1c1b6f88e4b998&form_id=4a475dbdbfdb675071d6a7b56b42e528";
 
   const handleContactClick = (e) => {
     e.preventDefault();
